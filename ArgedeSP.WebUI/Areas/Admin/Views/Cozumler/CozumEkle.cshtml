@@ -1,0 +1,699 @@
+﻿@model UrunEkle_RES
+<style>
+    .check {
+        opacity: 0.5;
+        color: #996;
+    }
+
+    .box {
+        margin-bottom: 5px;
+    }
+</style>
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="container-fluid" style="padding-top:20px">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h2 class="m-portlet__head-text">
+                                    Çözüm Ekle
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    @if (TempData["Basarili"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            @TempData["Basarili"].ToString()
+                        </div>
+                    }
+
+                    @if (TempData["Hata"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["Hata"].ToString()
+
+                        </div>
+                    }
+
+                    <!--begin::Form-->
+                    <form asp-controller="Cozumler" asp-action="CozumEkle" asp-area="Admin" method="post">
+                        <span asp-validation-for="UrunEkle_REQ.BeklenmedikHata"></span>
+                        <div class="m-form m-form--fit m-form--label-align-right">
+                            <div class="m-portlet__body">
+                                <div class="row p-3">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">Dil</label>
+                                        <select class="form-control" asp-for="UrunEkle_REQ.Dil">
+                                            <option value="">Dil Seçiniz</option>
+                                            <option value="1">Türkçe</option>
+                                            <option value="2">İngilizce</option>
+                                        </select>
+                                        <span asp-validation-for="UrunEkle_REQ.Dil"></span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Kategori</label>
+                                        <select class="form-control m-select2" asp-for="UrunEkle_REQ.UrunKategoriId">
+
+                                            @for (int i = 0; i < Model.UrunKategorileri.Count; i++)
+                                            {
+                                                <option value="@Model.UrunKategorileri[i].Id">@(Model.UrunKategorileri[i].Ad)</option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="UrunEkle_REQ.UrunKategoriId"></span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Çözüm Adı</label>
+                                        <input asp-for="UrunEkle_REQ.UrunAdi" type="text" class="form-control m-input" placeholder="Proje Adı">
+                                        <span asp-validation-for="UrunEkle_REQ.UrunAdi"></span>
+                                    </div>
+
+                                    @*<div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Model</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <input asp-for="UrunEkle_REQ.UrunModel" type="text" class="form-control m-input" placeholder="Model">
+                <span asp-validation-for="UrunEkle_REQ.UrunModel"></span>
+            </div>
+        </div>*@
+
+
+                                    @*<div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Çözüm Fiyatı</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <input asp-for="UrunEkle_REQ.Fiyat" type="text" class="form-control m-input" placeholder="Çözüm Fiyatı">
+                <span asp-validation-for="UrunEkle_REQ.Fiyat"></span>
+            </div>
+        </div>*@
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">Seo Url</label>
+                                        <input asp-for="UrunEkle_REQ.SeoUrl" type="text" class="form-control m-input" placeholder="Seo Url">
+                                        <span asp-validation-for="UrunEkle_REQ.SeoUrl"></span>
+                                    </div>
+                                    @*<div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">Proje Sırası</label>
+                                        <input asp-for="UrunEkle_REQ.UrunSira" type="text" class="form-control m-input" placeholder="Yayın Sırası">
+                                        <span asp-validation-for="UrunEkle_REQ.UrunSira"></span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">Fiyat</label>
+                                        <input asp-for="UrunEkle_REQ.Fiyat" type="text" class="form-control m-input" placeholder="Fiyat">
+                                        <span asp-validation-for="UrunEkle_REQ.Fiyat"></span>
+                                    </div>*@
+
+                                    @*<div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">İndirimli Fiyat</label>
+                                        <input asp-for="UrunEkle_REQ.IndirimliFiyat" type="text" class="form-control m-input" placeholder="İndirimli Fiyat">
+                                        <span asp-validation-for="UrunEkle_REQ.IndirimliFiyat"></span>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">İndirim Oranı</label>
+                                        <input asp-for="UrunEkle_REQ.Indirim" type="text" class="form-control m-input" placeholder="İndirim Oranı">
+                                        <span asp-validation-for="UrunEkle_REQ.Indirim"></span>
+                                    </div>*@
+
+                                    <div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Çözümün Kısa Açıklaması</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <input asp-for="UrunEkle_REQ.KisaAciklama" type="text" class="form-control m-input" placeholder="Çözümün Kısa Açıklama">
+                <span asp-validation-for="UrunEkle_REQ.KisaAciklama"></span>
+            </div>
+        </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">Keywords</label>
+                                        <input asp-for="UrunEkle_REQ.Keywords" type="text" class="form-control m-input" placeholder="Keywords">
+                                        <span asp-validation-for="UrunEkle_REQ.Keywords"></span>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label class="col-form-label " style="text-align:right;">Çözümün Uzun Açıklaması</label>
+
+                                        <textarea asp-for="UrunEkle_REQ.UzunAciklama" rows="10" cols="80">
+                                             @Model.UrunEkle_REQ.UzunAciklama
+                                            </textarea>
+                                        <span asp-validation-for="UrunEkle_REQ.UzunAciklama"></span>
+                                    </div>
+
+                                    @*<div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12" style="text-align:left;">Detay Açıklama</label>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <textarea asp-for="UrunEkle_REQ.DetayAciklama" rows="10" cols="80">
+                     @Model.UrunEkle_REQ.DetayAciklama
+                    </textarea>
+                <span asp-validation-for="UrunEkle_REQ.DetayAciklama"></span>
+            </div>
+        </div>*@
+
+                                    @*<center>
+            <a target="_blank" href="~/Client/assets/teknikozellikler.txt">Teknik Özellikler örnek Html şablon </a>
+            not  Değişiklik yapıldıktan sonra source kısmına yapıştırabilirsiniz.
+        </center>*@
+                                    @*<div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12" style="text-align:left;">Teknik Özlellikler</label>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <textarea asp-for="UrunEkle_REQ.TeknikOzellikler" rows="10" cols="80">
+                     @Model.UrunEkle_REQ.TeknikOzellikler
+                    </textarea>
+                <span asp-validation-for="UrunEkle_REQ.TeknikOzellikler"></span>
+            </div>
+        </div>*@
+
+
+
+                                    @*<div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12" style="text-align:left;">Döküman Açıklama Yazısı </label>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <textarea asp-for="UrunEkle_REQ.NasilCalisir" rows="10" cols="80">
+                     @Model.UrunEkle_REQ.NasilCalisir
+                    </textarea>
+                <span asp-validation-for="UrunEkle_REQ.NasilCalisir"></span>
+            </div>
+        </div>*@
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Ana Resim</label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <img id="secilen-resim" class="w-100 mb-2" src="@(Model.UrunEkle_REQ.AnaResim)" />
+                                                <button type="button" class="btn btn-info w-100 " id="resim-sec-modal"><i class="fa fa-plus" style="font-size:20px"></i> Resim Seç</button>
+                                            </div>
+                                        </div>
+
+                                        <input asp-for="UrunEkle_REQ.AnaResim" type="text" class="form-control m-input d-none">
+                                        <span asp-validation-for="UrunEkle_REQ.AnaResim"></span>
+                                    </div>
+
+
+
+
+                                    @*<div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Dökümanlar </label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <div class="row" id="dokuman-galeri">
+                    @{ int z = 0;}
+                    @for (int i = 0; i < Model.UrunEkle_REQ.UrunDokumanlari?.Count; i++)
+                    {
+                    <div class="col-md-3 mb-2">
+
+
+                         <input class="d-none" asp-for="@Model.UrunEkle_REQ.Dokumanlar" value="@Model.UrunEkle_REQ.Dokumanlar[i]"> bu satır yorumda normalde
+                        <input class="d-none" asp-for="@Model.UrunEkle_REQ.UrunDokumanlari[z].DokumanUrl" value="@Model.UrunEkle_REQ.UrunDokumanlari[z].DokumanUrl">
+                        <input class="form-control m-input" asp-for="@Model.UrunEkle_REQ.UrunDokumanlari[z].DokumanAdi" type="text" value="@Model.UrunEkle_REQ.UrunDokumanlari[z].DokumanAdi">
+                        <button type="button" class="btn text-white text-center w-100 bg-danger galeri-dokuman-sil">Sil</button>
+                    </div>
+                        z++;
+                    }
+                    <div class="col-md-3 mb-2" style="height:142px" id="dokuman-galeri-disi">
+                        <button type="button" class="btn text-white text-center w-100 h-100 bg-success" id="dokuman-sec-modal"><i class="fa fa-plus" style="font-size:20px"></i><br />Dokuman Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">Ana Sayfa Çözüm Resmi</label>
+                                        <div class="row" id="resim-galeri">
+                                            @for (int i = 0; i < Model.UrunEkle_REQ.ResimGalerisi.Count; i++)
+                                            {
+                                                <div class="col-md-6 mb-2">
+                                                    <img class="mb-1" style="height:100px;width:100%" src="@Model.UrunEkle_REQ.ResimGalerisi[i]" />
+                                                    <input class="d-none" asp-for="UrunEkle_REQ.ResimGalerisi" value="@Model.UrunEkle_REQ.ResimGalerisi[i]">
+                                                    <button type="button" class="btn text-white text-center w-100 bg-danger galeri-resim-sil">Sil</button>
+                                                </div>
+                                            }
+                                            <div class="col-md-12 mb-2" id="resim-galeri-disi">
+                                                <button type="button" class="btn text-white text-center w-100 h-100 bg-info" id="galeri-sec-modal"><i class="fa fa-plus" style="font-size:20px"></i><br />Resim Ekle</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="mt-4">Durum</div>
+                                        <span class="m-switch m-switch--icon">
+                                            <label>
+                                                <input asp-for="UrunEkle_REQ.Durum" type="checkbox">
+                                                <span asp-validation-for="UrunEkle_REQ.Durum"></span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
+                            <div class="m-portlet__foot m-portlet__foot--fit">
+                                <div class="m-form__actions m-form__actions">
+                                    <div class="row">
+                                        <div class="col-lg-12 ">
+                                            <button type="submit" class="btn btn-info float-right">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                    </form>
+                    <!--end::Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resimSec" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Resim Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resimGaleriSec" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload2" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Resim Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images-gallery">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="dokumanGaleriSec" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Döküman Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload3" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Döküman Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images-gallery1">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $("#UrunEkle_REQ_UrunKategoriId").select2({
+            placeholder: "Kategori Seçiniz"
+        });
+
+    </script>
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+
+    <script>
+    var dosyaAdi = "img/urun-resimleri";
+    Dropzone.autoDiscover = false;
+    $(function () {
+
+        CKEDITOR.replace('UrunEkle_REQ.UzunAciklama', {
+            customConfig: '/lib/ckeditor/config.js'
+        });
+
+        //CKEDITOR.replace('UrunEkle_REQ.TeknikOzellikler', {
+        //    customConfig: '/lib/ckeditor/config.js'
+        //});
+        //CKEDITOR.replace('UrunEkle_REQ.DetayAciklama', {
+        //    customConfig: '/lib/ckeditor/config.js'
+        //});
+
+        //CKEDITOR.replace('UrunEkle_REQ.NasilCalisir', {
+        //    customConfig: '/lib/ckeditor/config.js'
+        //});
+
+        $("#dZUpload").dropzone({
+            url: '@Url.Action("Upload","DosyaIslemleri",new {dosyaAdi= "img/urun-resimleri", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check" style="height:100px">' +
+                    '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                $("#images").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+       $("#dZUpload2").dropzone({
+            url: '@Url.Action("Upload","DosyaIslemleri",new {dosyaAdi="img/urun-resimleri", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check2" style="height:100px">' +
+                    '<input type="checkbox" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                $("#images-gallery").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+
+          $("#dZUpload3").dropzone({
+
+            url: '@Url.Action("Upload","DosyaIslemleri",new {dosyaAdi= "dokumanlar/", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check" style="height:100px">' +
+                    '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                $("#images").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+
+        $("#resim-sec-modal").click(function () {
+            dosyaAdi = "img/urun-resimleri";
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + dosyaAdi,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html = '<div class="col-md-3 box text-center">' +
+                            '<img src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check">' +
+                            '<label>' + extractFileNameFromPath(data[i]) + '</label>' +
+                            '<input type="radio" value="val1" class="d-none" autocomplete="off"><br>' +
+                            '<button data-filepath="' + data[i] + '" type="button" class="btn btn-danger delete-file">X</button>' +
+                            '</div>';
+
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+
+
+            $('#resimSec').modal('show');
+
+        });
+        $(document).on("click", ".img-check", function (e) {
+            $('.img-check').not(this).removeClass('check')
+                .siblings('input').prop('checked', false);
+
+            $(this).addClass('check')
+                .siblings('input').prop('checked', true);
+
+
+            var image = $(this);
+
+            $("#UrunEkle_REQ_AnaResim").attr("value", image.attr("src"));
+            $("#secilen-resim").attr("src", image.attr("src"))
+        });
+
+
+
+        $("#galeri-sec-modal").click(function () {
+            dosyaAdi = "img/urun-resimleri";
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + dosyaAdi,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html = '<div class="col-md-3 box text-center">' +
+                            '<img src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check2">' +
+                            '<label>' + extractFileNameFromPath(data[i]) + '</label>' +
+                            '<input type="radio" value="val1" class="d-none" autocomplete="off"><br>' +
+                            '<button data-filepath="' + data[i] + '" type="button" class="btn btn-danger delete-file">X</button>' +
+                            '</div>';
+
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images-gallery").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images-gallery").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+
+            $('#resimGaleriSec').modal('show');
+
+        });
+
+        $(document).on("click", ".img-check2", function () {
+            $(this).toggleClass("check");
+            var checkbox = $(this).siblings(':checkbox');
+            var val = checkbox.prop("checked");
+
+            if (val) {
+                $("#secilen_galeri_resmi_" + checkbox.data("value")).remove();
+            }
+            else {
+
+                var html =
+                    '<div class="col-md-3 mb-2" id="secilen_galeri_resmi_' + checkbox.data("value")+'">' +
+                    '<img class="mb-1" style="height:100px;width:100%" src="' + $(this).attr("src") + '"/>' +
+                    '<input class="d-none" name="UrunEkle_REQ.ResimGalerisi" value="' + $(this).attr("src") + '">' +
+                    '<button type="button" class="btn text-white text-center w-100 bg-danger galeri-resim-sil">Sil</button>' +
+                    '</div>';
+                $(html).insertBefore("#resim-galeri-disi");
+            }
+
+        });
+        $(document).on("click", ".galeri-resim-sil", function () {
+            $(this).parent().remove();
+        });
+
+        //to delete files
+        $(document).on("click", ".delete-file", function (e) {
+            var filepath = $(this).data("filepath");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/DeleteFile?fileUrl=" + filepath,
+                type: "DELETE",
+                beforeSend: function () {
+                    return confirm("Are you sure?");
+                },
+                success: $(this).parent(".img-box").remove(),
+            });
+            $(document).ajaxStop(function () {
+                window.location.reload();
+            });
+        });
+        function extractFileNameFromPath(path) {
+            arr = path.split('/');
+            return arr[arr.length - 1];
+        }
+
+        $("#dokuman-sec-modal").click(function () {
+            dosyaAdi = "dokumanlar/";
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + dosyaAdi,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    var docimage = "";
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].includes("docx")) {
+                            docimage = '<img src="/dokumanlar/docximage.png" data-src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check3">';
+                        }
+                        else if (data[i].includes("pdf")) {
+                            docimage = '<img src="/dokumanlar/pdfimage.png" data-src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check3">';
+                        }
+                        else if (data[i].includes("zip")) {
+                            docimage = '<img src="/dokumanlar/zipimage.jpg" data-src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check3">';
+                        }
+                        else {
+                            docimage = '<img src="' + data[i] + '" data-src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check3">'
+                        }
+
+                        html = '<div class="col-md-3 box text-center">' +
+                            '<label>' +
+                            docimage +
+                            '<br>' + data[i].split("/")[2] +
+                            '<input type="checkbox" value="" data-value="' + i + '" class="d-none" autocomplete="off">' +
+                            '</label>' +
+                            '</div>';
+
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images-gallery1").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images-gallery1").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+
+            $('#dokumanGaleriSec').modal('show');
+
+        });
+
+
+        $(document).on("click", ".img-check3", function () {
+            $(this).toggleClass("check");
+            var checkbox = $(this).siblings(':checkbox');
+            var val = checkbox.prop("checked");
+
+            if (val) {
+                $("#secilen_galeri_dokumani_" + checkbox.data("value")).remove();
+            }
+            else {
+
+                var html =
+                    '<div class="col-md-3 mb-2" id="secilen_galeri_resmi_' + checkbox.data("value") + '">' +
+                    '<img class="mb-1" style="height:100px;width:100%" src="' + $(this).attr("src") + '"/>' +
+                    '<input class="d-none" name="UrunEkle_REQ.UrunDokumanlari" value="' + $(this).attr("data-src") + '">' +
+                    '<input class="form-control m-input" asp-for="UrunEkle_REQ.UrunDokumanlari" type="text" value="' + $(this).attr("data-src") + '">' +
+                    '<button type="button" class="btn text-white text-center w-100 bg-danger galeri-dokuman-sil">Sil</button>' +
+                    '</div>';
+                $(html).insertBefore("#dokuman-galeri-disi");
+            }
+
+        });
+        $(document).on("click", ".galeri-dokuman-sil", function () {
+            $(this).parent().remove();
+        });
+
+
+
+
+        $("#UrunEkle_REQ_Dil").change(function () {
+
+            var dil = $(this).val();
+
+            $.ajax({
+                url: "/Admin/Urunler/UrunDilKategorileri?dil=" + dil,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    console.log(data);
+                    var html = '<option value="">Ana Kategori Seçiniz</option>';
+                    if (data.BasariliMi) {
+                        for (var i = 0; i < data.Model.length; i++) {
+                            html += '<option value="' + data.Model[i].KategoriId + '">' + data.Model[i].KategoriAdi + '</option>';
+                        }
+
+                        $("#UrunEkle_REQ_UrunKategoriId").html(html);
+                    }
+                },
+                beforeSend: function () {
+                },
+                error: function (data) {
+
+                }
+            });
+
+        })
+    });
+    </script>
+
+}

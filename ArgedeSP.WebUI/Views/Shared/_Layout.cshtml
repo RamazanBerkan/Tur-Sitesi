@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+
+<head>
+    <!-- PAGE TITLE -->
+    @*@(await Component.InvokeAsync("HeadComponent"))*@
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="keywords" content="@ViewBag.MainKeywords">
+    <!-- META-DATA -->
+    <meta http-equiv="content-type" content="text/html;" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    @*<link rel="icon" href="~/favicon.svg" type="image/x-icon" />*@
+    <link rel="icon" type="image/svg" href="~/images/icon.png" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/Client/assets/css/search.css" rel="stylesheet" />
+    <link href="~/Client/assets/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+    <link rel="icon" type="image/png" href="~/images/homePage/travel.jpg" />
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- UIkit Css -->
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <script src="js/uikit.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.10.0/dist/css/uikit.min.css" />
+
+    <!-- UIkit İcons -->
+    <script src="js/uikit-icons.min.js"></script>
+
+
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    @RenderSection("styles", false)
+</head>
+<body>
+
+    <style>
+        #myBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            bottom: 20px; /* Place the button at the bottom of the page */
+            right: 30px; /* Place the button 30px from the right */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: #4fcaf2; /* Set a background color */
+            color: white; /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 50%; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+        }
+
+            #myBtn:hover {
+                background-color: #555; /* Add a dark-grey background on hover */
+            }
+    </style>
+
+    <header>
+        @(await Component.InvokeAsync("KategoriComponent"))
+        @(await Component.InvokeAsync("WhatsappComponent"))
+
+
+    </header>
+
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+
+    @(await Component.InvokeAsync("FooterComponent"))
+
+
+
+    <script>
+        /*$(document).ready(function () {
+            $('#searchItem').keyup(function () {
+                var name = $(this).val();
+                var pattern = name.toLowerCase();
+                var targetId = "";
+                var divs = document.getElementsByClassName("item");
+
+                $(document).find('.item').hide();
+
+                $('.item').each(function (i) {
+                    var para = divs[i].getElementsByTagName("q");
+                    var index = para[0].innerText.toLowerCase().indexOf(pattern);
+                    if (index != -1) {
+                        $(this).show();
+                    }
+                });
+            });
+        });*/
+    </script>
+
+
+
+    <script>
+        const currentLocation = location.href;
+        const menuItem = document.getElementsByClassName('nav-link');
+        const menuLength = menuItem.length;
+        for (let i = 0; i < menuLength; i++) {
+            if (menuItem[i].href === currentLocation) {
+                menuItem[i].className = "nav-link active";
+            }
+            if (currentLocation == 'https://localhost:44375/BlogDetail') {
+                menuItem[3].className = "nav-link active";
+
+            }
+
+        }
+
+    </script>
+
+    <script>
+        $(function () {
+            $('.carousel-2').slick({
+                infinite: true,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                responsive: [{
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                    }
+                }
+                ]
+            });
+        });
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+   
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.10.0/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.10.0/dist/js/uikit-icons.min.js"></script>
+
+
+
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

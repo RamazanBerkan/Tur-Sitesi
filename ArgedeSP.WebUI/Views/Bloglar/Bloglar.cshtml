@@ -1,0 +1,491 @@
+﻿@{
+    ViewData["Title"] = "Blog";
+}
+@model BlogViewModel
+<div class="banner-container">
+    <img class="img-fluid blog-banner" src="~/images/homePage/blog.jpg" style="object-fit:cover;">
+    <div class="blueOverlay"></div>
+
+    <div class="bannerText">
+        Blog
+    </div>
+
+</div>
+
+@(await Component.InvokeAsync("SlickComponent"))
+<div class="home-blogs">
+    <div class="container pt-5">
+        <div class="row">
+            @foreach (var blog in Model.Bloglar)
+            {
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top blog-img-card" src="@blog.Resim" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">@blog.Baslik</h5>
+                            <p class="card-text">
+                                @blog.KisaAciklama
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" asp-route-blogId="@blog.Id" asp-route-seoUrl="@blog.Baslik.FriendlyUrl()" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+            @*<div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/barselona.jpeg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" asp-route-blogId="" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/paris.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Yaptığımız gezilerden
+                            </h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/safran.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/mardin.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/istanbul.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/bolu.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5 ">
+                    <div class="card h-100">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/ormanya.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/bosna.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>*@
+
+
+
+
+        </div>
+
+
+
+        @*<div class="content-form">
+                <h3> Yorum Yap</h3>
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" placeholder="Kullanıcı adı" name="KullaniciAdi" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" placeholder="Mail" name="Mail" />
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea placeholder="Yorum" name="Yorum"></textarea>
+
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Gönder" />
+                </form>
+
+            </div>*@
+
+
+
+
+
+
+
+
+
+        <nav aria-label="...">
+            <ul class="pagination pagination-lg justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <img src="~/images/homePage/left-arrow.png" />
+                    </a>
+                </li>
+
+                <li class="page-item active">
+                    <a class="page-link" href="#" tabBlogDetayi="-1">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" style="background-color: #F2F3F5 " href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <img src="~/images/homePage/black-right-arrow.png" />
+                    </a>
+                </li>
+
+
+            </ul>
+        </nav>
+        <!--<div style="text-align:center;">
+            <h3>YORUM YAP</h3>
+
+        </div>
+        <div class=" form">
+            <div class="row mt-3">
+                <div class="col-md-11 form-group">
+
+                    <h4>Kullanıcı Adı</h4>
+                    <input type="text" id="name" placeholder="Adınız" /><br /><br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11 form-group">
+                    <h4>Tarih</h4>
+                    <input type="date" id="date" placeholder="gün-ay-yıl"/><br /><br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11 form-group">
+                    <h4>Tecrübelerinizi Paylaşın</h4>
+                    <textarea rows="5" cols="30" id="bodyText"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11 form-group">-->
+        @*<label for="phone"> Tarih</label><br />*@
+        <!--<input type="button" id="addComent" value="Yorum Ekle" />
+            </div>
+        </div>-->
+        @*Name:<input type="text" id="name" /><br /><br />
+            Date:<input type="date" id="date" /><br /><br />*@
+
+
+
+
+
+
+
+        @*Body:<textarea rows="5" cols="30" id="bodyText"></textarea><br /><br />
+            <input type="button" id="addComent" value="Add Comment" />*@
+
+        <!--</div>
+        <div>
+
+
+        </div>
+
+        <div style="text-align:center;">
+            <h3 style="margin-top:60px;">YORUMLARINIZ</h3>
+
+        </div>
+        <div id="containerAdd">
+
+        </div>-->
+
+
+
+
+    </div>
+</div>
+@*
+*@
+
+@*"<div class='container-fluid site-padding my-5 mx-4 deneme'><div class='row deneme'> <div class='col-md-1'> <h6 class='text-day'> "+data.date+ "</h6> </div><div class='col-md-6'><h6 class='blog-title'>"  +data.name+" </h6> <hr /> <p class='site-article'>"   +data.body+" </p>  </div> </div></div>"*@
+
+@*
+*@
+<style>
+    .deneme {
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 15px;
+    }
+
+    .form {
+        padding: 10px;
+        border: 1px solid #000000;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        /*text-align: center;*/
+    }
+
+        .form h5 {
+            text-align: center;
+        }
+
+        .form input[type="text"], .form textarea, .form input[type="date"] {
+            border: 1px solid #000;
+            border-radius: 15px;
+            padding: 2px;
+            width: 300px;
+        }
+</style>
+@*@section scripts{
+    <script>
+        //var coment = [
+        //    { "name": "berkan", "date": "10 Apri 2016", "body": "this comment 1" },
+        //];
+        //for (var i = 0; i < coment.length; i++) {
+        //    var html = "<div>selam</div><h1>selam</h1>";
+        //    $('containerAdd').append(html);
+        //}
+
+
+        //function render(data) {
+        //    var html = "<div class='comentBox'><div class='leftPanelImg'> <img src='~/images/homePage/user.jpg' style='max-height:60px;' /></div> <div class='rightPanel'><span>" + data.name + "</span><div class'date'>" + data.date + "</div><p>" + data.body + "</p></div><div class='clear'></div></div>";
+
+        //    $('#containerAdd').append(html);
+        //}
+
+
+        function render(data) {
+            var html = "<div class='container-fluid site-padding my-5 mx-4 deneme'><div class='row'> <div class='col-md-1'> <h6 class='text-day'> " + data.date + "</h6> </div><div class='col-md-6'><h6 class='blog-title' style='word-break:break-all;'>" + data.name + " </h6> <hr /> <p class='site-article' style='word-break:break-all;'>" + data.body + " </p>  </div> </div></div>";
+
+            $('#containerAdd').append(html);
+        }
+
+
+
+
+
+        $(document).ready(function () {
+
+            var coment = [
+                {
+                    "name": "Berkan", "date": "10 Apri 2021", "body": "Yapılan Safranbolu gezisi çok güzeldi. Tekrardan gitmek isterim Farklı yerler keşfetmek istiyorum",
+
+                },
+            ];
+
+
+            for (var i = 0; i < coment.length; i++) {
+                render(coment[i]);
+            }
+
+
+            $('#addComent').click(function () {
+                var addObj = {
+                    "name": $('#name').val(),
+                    "date": $('#date').val(),
+                    "body": $('#bodyText').val(),
+                };
+
+                coment.push(addObj);
+                render(addObj);
+                $('#name').val('');
+                $('#date').val('dd/mm/yyyy');
+                $('#bodyText').val('');
+            }
+            )
+        });
+
+
+    </script>*@
+}
+
+@*<style>
+        .home-blogs img {
+            min-height: 47%;
+            max-height: 47%;
+            object-fit: cover;
+        }
+    </style>
+
+    etmodel BlogViewModel
+    et{
+        ViewData["Title"] = "Blog";
+    }
+    <div class="banner-container">
+        <img class="img-fluid" src="~/images/homePage/blogBg.png">
+        <div class="blueOverlay"></div>
+
+        <div class="bannerText">
+            Blog
+        </div>
+
+    </div>
+
+    <div class="home-blogs">
+        <div class="container pt-5">
+            <div class="row" >
+
+
+            etforeach (var model in Model.Bloglar)
+            {
+                <div class="col-md-4 mb-5 wrapper">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="etHtml.Raw(model.Resim)" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title demo-2">    etHtml.Raw(model.Baslik)</h5>
+                            <p class="card-text  demo-3">
+                                etHtml.Raw(model.UzunAciklama)
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Bloglar" asp-action="BlogDetayi" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            }
+
+
+
+            </div>
+            <nav aria-label="...">
+                <ul class="pagination pagination-lg justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <img src="~/images/homePage/left-arrow.png" />
+                        </a>
+                    </li>
+
+                    <li class="page-item active">
+                        <a class="page-link" href="#" tabBlogDetayi="-1">1</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" style="background-color: #F2F3F5 " href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">...</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <img src="~/images/homePage/black-right-arrow.png" />
+                        </a>
+                    </li>
+
+
+                </ul>
+            </nav>
+
+
+        </div>
+    </div>*@

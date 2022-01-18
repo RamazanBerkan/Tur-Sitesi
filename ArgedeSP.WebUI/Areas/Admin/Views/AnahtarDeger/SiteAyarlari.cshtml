@@ -1,0 +1,443 @@
+﻿@model Ayarlar_REQ
+
+<style>
+    th {
+        vertical-align: middle !important
+    }
+
+    td {
+        vertical-align: middle !important
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @if (TempData["Basarili"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                    @TempData["Basarili"].ToString()
+                </div>
+            }
+
+            @if (TempData["Hata"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["Hata"].ToString()
+
+                </div>
+            }
+
+            <h2 style="color:#f5a61f; font-family: Arial, Helvetica, sans-serif" class="mt-5 mb-5 text-center">Site Ayarları</h2>
+            <form asp-controller="AnahtarDeger" asp-action="SiteAyarlari">
+                <table class="table m-table m-table--head-separator-primary">
+                    <thead>
+                        <tr class="text-center">
+                            <th>#</th>
+                            <th>Ad</th>
+                            <th>Dil</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <th scope="row">#1</th>
+                            <td>Proje Adı</td>
+                            <td>
+                                <span class="badge badge-info">Türkçe</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="ProjeAdi_TR" />
+                                <span asp-validation-for="ProjeAdi_TR"></span>
+                            </td>
+                        </tr>
+                        @*<tr class="text-center">
+            <th scope="row">#2</th>
+            <td>Proje Adı</td>
+            <td>
+                <span class="badge badge-danger">İngilizce</span>
+            </td>
+            <td>
+                <input class="form-control" asp-for="ProjeAdi_EN" />
+                <span asp-validation-for="ProjeAdi_EN"></span>
+            </td>
+        </tr>*@
+                        <tr class="text-center">
+                            <th scope="row">#3</th>
+                            <td>Site Adı</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="SiteAdi" />
+                                <span asp-validation-for="SiteAdi"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <th scope="row">#4</th>
+                            <td>Telefon</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="Telefon" />
+                                <span asp-validation-for="Telefon"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <th scope="row">#4</th>
+                            <td>Faks</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="Faks" />
+                                <span asp-validation-for="Faks"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            x
+                            <th scope="row">#5</th>
+                            <td>E-mail</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="Email" />
+                                <span asp-validation-for="Email"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <th scope="row">#6</th>
+                            <td>Adres</td>
+                            <td>
+                                <span class="badge badge-success">Türkçe</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="Adres_TR" />
+                                <span asp-validation-for="Adres_TR"></span>
+                            </td>
+                        </tr>
+                        @*<tr class="text-center">
+            <th scope="row">#7</th>
+            <td>Adres</td>
+            <td>
+                <span class="badge badge-danger">İngilizce</span>
+            </td>
+            <td>
+                <input class="form-control" asp-for="Adres_EN" />
+                <span asp-validation-for="Adres_EN"></span>
+            </td>
+        </tr>
+        <tr class="text-center">
+            <th scope="row">#8</th>
+            <td>Site altındaki Yazı</td>
+            <td>
+                <span class="badge badge-success">Türkçe</span>
+            </td>
+            <td>
+                <input class="form-control" asp-for="FooterYazi_TR" />
+                <span asp-validation-for="FooterYazi_TR"></span>
+            </td>
+        </tr>
+        <tr class="text-center">
+            <th scope="row">#9</th>
+            <td>Site altındaki Yazı</td>
+            <td>
+                <span class="badge badge-danger">İngilizce</span>
+            </td>
+            <td>
+                <input class="form-control" asp-for="FooterYazi_EN" />
+                <span asp-validation-for="FooterYazi_EN"></span>
+            </td>
+        </tr>*@
+                        <tr class="text-center">
+                            <th scope="row">#9</th>
+                            <td>Google Map</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="GoogleMap" />
+                                <span asp-validation-for="GoogleMap"></span>
+                            </td>
+                        </tr>
+
+                        <tr class="text-center">
+                            <th scope="row">#10</th>
+                            <td>Instagram</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="Instagram" />
+                                <span asp-validation-for="Instagram"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <th scope="row">#11</th>
+                            <td>Twitter</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="Twitter" />
+                                <span asp-validation-for="Twitter"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <th scope="row">#12</th>
+                            <td>Facebook</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="Facebook" />
+                                <span asp-validation-for="Facebook"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <th scope="row">#13</th>
+                            <td>Description</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="Description" />
+                                <span asp-validation-for="Description"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <th scope="row">#14</th>
+                            <td>Main Keywords</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="MainKeywords" />
+                                <span asp-validation-for="MainKeywords"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <th scope="row">#14</th>
+                            <td>İletişim Açıklama Başlığı</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="IletisimAciklamaBaslik" />
+                                <span asp-validation-for="IletisimAciklamaBaslik"></span>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <th scope="row">#14</th>
+                            <td>İletişim Açıklama</td>
+                            <td>
+                                <span class="badge badge-info">Yok</span>
+                            </td>
+                            <td>
+                                <input class="form-control" asp-for="IletisimAciklama" />
+                                <span asp-validation-for="IletisimAciklama"></span>
+                            </td>
+                        </tr>
+                        @*<tr>
+            <th scope="row">#13</th>
+            <td>Ana Sayfa Banner</td>
+            <td>
+                <span class="badge badge-success">Türkçe</span>
+            </td>
+            <td>
+                <div class="form-group m-form__group row">
+                    <label class="col-form-label col-lg-3 col-sm-12">Link</label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        <input asp-for="AnaSayfaBanner_TR.Link" type="text" class="form-control m-input" placeholder="Link">
+                        <span asp-validation-for="AnaSayfaBanner_TR.Link"></span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <label class="col-form-label col-lg-3 col-sm-12">Uzun Açıklama</label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        <textarea asp-for="AnaSayfaBanner_TR.Html" rows="10" cols="80">
+                             @Model.AnaSayfaBanner_TR.Html
+                            </textarea>
+                        <span asp-validation-for="AnaSayfaBanner_TR.Html"></span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <label class="col-form-label col-lg-3 col-sm-12">Ana Resim</label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        <img id="AnaSayfaBanner_TR_Resim_secilen_resim" style="height:100px;width:100px;" src="@Model.AnaSayfaBanner_TR.Resim" />
+                        <button type="button" class="btn btn-info resim-sec" data-hedef="AnaSayfaBanner_TR_Resim">Resim Seç</button>
+                        <input asp-for="AnaSayfaBanner_TR.Resim" type="text" class="form-control m-input d-none">
+                        <span asp-validation-for="AnaSayfaBanner_TR.Resim"></span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">#13</th>
+            <td>Ana Sayfa Banner</td>
+            <td>
+                <span class="badge badge-danger">İngilizce</span>
+            </td>
+            <td>
+                <div class="form-group m-form__group row">
+                    <label class="col-form-label col-lg-3 col-sm-12">Link</label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        <input asp-for="AnaSayfaBanner_EN.Link" type="text" class="form-control m-input" placeholder="Link">
+                        <span asp-validation-for="AnaSayfaBanner_EN.Link"></span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <label class="col-form-label col-lg-3 col-sm-12">Uzun Açıklama</label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        <textarea asp-for="AnaSayfaBanner_EN.Html" rows="10" cols="80">
+                             @Model.AnaSayfaBanner_EN.Html
+                            </textarea>
+                        <span asp-validation-for="AnaSayfaBanner_EN.Html"></span>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <label class="col-form-label col-lg-3 col-sm-12">Ana Resim</label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        <img id="AnaSayfaBanner_EN_Resim_secilen_resim" style="height:100px;width:100px;" src="@Model.AnaSayfaBanner_EN.Resim" />
+                        <button type="button" class="btn btn-info resim-sec" data-hedef="AnaSayfaBanner_EN_Resim">Resim Seç</button>
+                        <input asp-for="AnaSayfaBanner_EN.Resim" type="text" class="form-control m-input d-none">
+                        <span asp-validation-for="AnaSayfaBanner_EN.Resim"></span>
+                    </div>
+                </div>
+            </td>
+        </tr>*@
+                    </tbody>
+                </table>
+                <button class="btn btn-primary w-100">Kaydet</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="resim-sec-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Resim Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+
+    <script>
+        var folderName = "img/genel-resimler";
+        Dropzone.autoDiscover = false;
+
+
+    $(function () {
+
+        //CKEDITOR.replace('AnaSayfaBanner_TR.Html', {
+        //    customConfig: '/lib/ckeditor/config.js'
+        //});
+        //CKEDITOR.replace('AnaSayfaBanner_EN.Html', {
+        //    customConfig: '/lib/ckeditor/config.js'
+        //});
+        var hedef = "";
+        $("#dZUpload").dropzone({
+            url: '@Url.Action("Upload","DosyaIslemleri",new { dosyaAdi = "img/genel-resimler", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check" data-hedef="'+hedef+'" style="height:100px">' +
+                    '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                $("#images").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+        $(".resim-sec").click(function () {
+            hedef = $(this).data("hedef");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + folderName,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html = '<div class="col-md-3 box text-center">' +
+                            '<label>' +
+                            '<img src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check" data-hedef="' + hedef + '">' +
+                            '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                            '</label>' +
+                            '</div>';
+
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+            $('#resim-sec-modal').modal('show');
+        });
+
+        $(document).on("click", ".img-check", function (e) {
+            var hedef = $(this).data("hedef");
+            $('.img-check').not(this).removeClass('check')
+                .siblings('input').prop('checked', false);
+
+            $(this).addClass('check')
+                .siblings('input').prop('checked', true);
+
+
+            var image = $(this);
+
+            $("#" + hedef).attr("value", image.attr("src"));
+            $("#"+hedef+"_secilen_resim").attr("src", image.attr("src"))
+        });
+
+
+        });
+
+
+    </script>
+
+}

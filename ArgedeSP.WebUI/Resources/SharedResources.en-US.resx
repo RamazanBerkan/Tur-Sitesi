@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ad-soyad" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="adres" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="anasayfa" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="blog" xml:space="preserve">
+    <value>Blogs</value>
+  </data>
+  <data name="blog-yazilari" xml:space="preserve">
+    <value>&lt;h2&gt;&lt;span&gt;Blog&lt;/span&gt;Articles &lt;/h2&gt;</value>
+  </data>
+  <data name="blogdetay" xml:space="preserve">
+    <value>Blog Detail</value>
+  </data>
+  <data name="BottomBracket" xml:space="preserve">
+    <value>Bottom Bracket</value>
+  </data>
+  <data name="Crank" xml:space="preserve">
+    <value>Crank</value>
+  </data>
+  <data name="cuzdan-fotokopisi" xml:space="preserve">
+    <value>Photocopy of Identity Card</value>
+  </data>
+  <data name="detay" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="detayli-bilgi" xml:space="preserve">
+    <value>MORE INFORMATION</value>
+  </data>
+  <data name="digertekneler" xml:space="preserve">
+    <value>Other Products</value>
+  </data>
+  <data name="duyuru-ve-haberler" xml:space="preserve">
+    <value>ANNOUNCEMENT &amp; NEWS</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Fork" xml:space="preserve">
+    <value>Fork</value>
+  </data>
+  <data name="foto-galeri" xml:space="preserve">
+    <value>Photo Gallery</value>
+  </data>
+  <data name="Frame" xml:space="preserve">
+    <value>Frame</value>
+  </data>
+  <data name="gonder" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="haberdar-olun" xml:space="preserve">
+    <value>Announcements &lt;span&gt; Notify &lt;/ span&gt;</value>
+  </data>
+  <data name="hakkimizda" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="Hakkında" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="haklari-saklidir" xml:space="preserve">
+    <value>All Rights Reserved.</value>
+  </data>
+  <data name="ikametgah" xml:space="preserve">
+    <value>Place of Residence</value>
+  </data>
+  <data name="iletisim" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="iletisim-formu" xml:space="preserve">
+    <value>Contact Form</value>
+  </data>
+  <data name="iletisimyollari" xml:space="preserve">
+    <value>CONTACT WAYS</value>
+  </data>
+  <data name="imkanlar" xml:space="preserve">
+    <value>Facilities</value>
+  </data>
+  <data name="incele" xml:space="preserve">
+    <value>REVIEW</value>
+  </data>
+  <data name="kayit-ol" xml:space="preserve">
+    <value>REGISTER</value>
+  </data>
+  <data name="kayitta-gerekli-belgeler" xml:space="preserve">
+    <value>Documents Required for Registration</value>
+  </data>
+  <data name="kesin-kayit-yapilirken" xml:space="preserve">
+    <value>(Will be given by the Dormitory Management during final registration)</value>
+  </data>
+  <data name="konu" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="konum" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="mesaj-gonderildi" xml:space="preserve">
+    <value>Your message was successfully sent. Return will be made as soon as possible.</value>
+  </data>
+  <data name="mesaj" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="muracaat-dilekcesi" xml:space="preserve">
+    <value>Application Petition</value>
+  </data>
+  <data name="ogrenciler-ne-diyor" xml:space="preserve">
+    <value>What do the students say?</value>
+  </data>
+  <data name="onecikan" xml:space="preserve">
+    <value>Featured</value>
+  </data>
+  <data name="online-kayit" xml:space="preserve">
+    <value>Online Registration</value>
+  </data>
+  <data name="online-kayit-basarili" xml:space="preserve">
+    <value>Sign-up process is successfu</value>
+  </data>
+  <data name="ozellikler" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="RearDerailleur" xml:space="preserve">
+    <value>Rear Derailleur</value>
+  </data>
+  <data name="Referanslar" xml:space="preserve">
+    <value>References</value>
+  </data>
+  <data name="rezervasyon" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+  <data name="satiliktekneler" xml:space="preserve">
+    <value>PRODUCTS</value>
+  </data>
+  <data name="sendmail" xml:space="preserve">
+    <value>Send Mail</value>
+  </data>
+  <data name="Shifters" xml:space="preserve">
+    <value>Shifters</value>
+  </data>
+  <data name="sicil-kaydi" xml:space="preserve">
+    <value>Judicial Registration</value>
+  </data>
+  <data name="sundugumuz-imkanlar" xml:space="preserve">
+    <value>Facilities we offer</value>
+  </data>
+  <data name="takip-et" xml:space="preserve">
+    <value>Follow Us</value>
+  </data>
+  <data name="teknedetay" xml:space="preserve">
+    <value>Product Details</value>
+  </data>
+  <data name="telefon" xml:space="preserve">
+    <value>Telephone</value>
+  </data>
+  <data name="tumu" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="vesikalik" xml:space="preserve">
+    <value>2 Photos</value>
+  </data>
+  <data name="WheelSize" xml:space="preserve">
+    <value>WheelSize</value>
+  </data>
+  <data name="yardım" xml:space="preserve">
+    <value>Need help?</value>
+  </data>
+  <data name="yemek-listesi" xml:space="preserve">
+    <value>Food list</value>
+  </data>
+  <data name="yeni-evin-yeni-hayatin" xml:space="preserve">
+    <value>New Life</value>
+  </data>
+  <data name="yorumlar" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="yurdumuz" xml:space="preserve">
+    <value>Our Hostel</value>
+  </data>
+  <data name="ögrenci-belgesi" xml:space="preserve">
+    <value>Student Certificate</value>
+  </data>
+  <data name="tutar" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Partnerlerimiz" xml:space="preserve">
+    <value>Our Partners</value>
+  </data>
+  <data name="urundetay" xml:space="preserve">
+    <value>Product Details</value>
+  </data>
+  <data name="urunler" xml:space="preserve">
+    <value>PRODUCTS</value>
+  </data>
+  <data name="neredenalirim" xml:space="preserve">
+    <value>Nereden Alırım</value>
+  </data>
+  <data name="anasayfa-u" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="blog-u" xml:space="preserve">
+    <value>BLOGS</value>
+  </data>
+  <data name="blog-yakinda" xml:space="preserve">
+    <value>Our Blogs Page Is Coming Soon...</value>
+  </data>
+  <data name="galeri" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="galeri-u" xml:space="preserve">
+    <value>GALLERY</value>
+  </data>
+  <data name="hakkimizda-u" xml:space="preserve">
+    <value>ABOUT US</value>
+  </data>
+  <data name="iletisim-u" xml:space="preserve">
+    <value>CONTACT</value>
+  </data>
+  <data name="online-satis" xml:space="preserve">
+    <value>Online Sales</value>
+  </data>
+  <data name="online-satis-u" xml:space="preserve">
+    <value>ONLINE SALES</value>
+  </data>
+  <data name="online-satis-yakinda" xml:space="preserve">
+    <value>Our Online Store Is Coming Soon...</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ulasmak-icin" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="yardım-icin" xml:space="preserve">
+    <value>Help:</value>
+  </data>
+  <data name="acıklama" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="benzer-urun" xml:space="preserve">
+    <value>Similar Products</value>
+  </data>
+</root>

@@ -1,0 +1,97 @@
+﻿
+/*.urun {
+    width: 20.9rem;
+    height: 20em;
+}
+
+@media screen and (max-width: 1200px) {
+    .urun {
+        width: 17.3rem;
+        height: 18em;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .urun {
+        width: 26.3rem;
+        height: 20em;
+    }
+}
+@media screen and (max-width: 990px) {
+    .urun {
+        width: 21rem;
+        height: 19em;
+    }
+}
+
+
+@media screen and (max-width: 760px) {
+    .urun {
+        width: 21rem;
+        height: 19em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .urun {
+        width: 31rem;
+        height: 20em;
+    }
+}
+*/
+
+
+#product-slider .slide-image:hover .product-mask {
+    backdrop-filter: blur(27px) brightness(-23%) opacity(1);
+    background-color: #151515;
+    opacity: .5;
+}
+
+#product-slider .slide-image:hover .remove-text {
+    opacity: 0;
+}
+
+.products-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    padding: 3rem;
+    text-align: left;
+    font-style: normal;
+}
+
+.product-slider .slide-image:hover .products-overlay {
+    opacity: 1;
+}
+
+.products-overlay h6 {
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(255,255,255,1);
+    min-height: 3rem;
+}
+
+.products-overlay p {
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255,255,255,1);
+    min-height: 7rem;
+}
+
+
+.products-overlay .more-info {
+    font-weight: bold;
+    font-size: 19px;
+    color: rgba(198,40,41,1);
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+

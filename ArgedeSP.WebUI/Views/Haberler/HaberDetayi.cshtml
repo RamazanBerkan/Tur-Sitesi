@@ -1,0 +1,50 @@
+﻿@model Haber
+
+ 
+
+<link href="~/Client/assets/css/news.css" rel="stylesheet" />
+<div class="container-fluid p-0">
+    <div class="card card-image site-banner" 
+         style="background-image: url('../Client/assets/img/banner/news-banner.png')">
+        <div class="banner-mask">
+            <center><h6 class="banner-text">Haberler</h6></center>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="title-box" style="width: 16%">Bizden Haberler</div>
+        </div>
+        <div class="col-md-12">
+            <h6 class="news-title">@Model.Baslik</h6>
+            <h6 class="softBlue my-3"><i class="fa fa-calendar"></i> @Model.OlusturmaTarihi.ToShortDateString()</h6>
+            <article class="site-article">
+                @(Html.Raw(Model.UzunAciklama))
+            </article>
+        </div>
+    </div>
+</div>
+
+<div class="position-relative d-none">
+    <img class="img-fluid" src="~/images/danismanlikImg.png" />
+    <div class="GrayOverlay"></div>
+    <div class="BlueTriangle"></div>
+    <div class="BlueTriangleMain"></div>
+    <div class="DanismanlikImgText">Haber Detayı</div>
+</div>
+
+<div class="container mt-5 d-none">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center"><img src="@Model.Resim" class="img-fluid w-75" /></div>
+            <h2 class="text-center">@Model.Baslik</h2>
+
+            <h6 class="softBlue my-3"><i class="fa fa-calendar"></i> @Model.OlusturmaTarihi.ToShortDateString()</h6>
+            <div>
+                @(Html.Raw(Model.UzunAciklama))
+            </div>
+        </div>
+    </div>
+</div>

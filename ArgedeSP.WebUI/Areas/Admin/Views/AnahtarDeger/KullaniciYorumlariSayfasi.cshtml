@@ -1,0 +1,167 @@
+﻿@model Yorum
+
+<div class="m-content">
+    <div class="container-fluid" style="padding-top:20px">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Slider Düzenle
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--begin::Form-->
+                    <form asp-controller="AnahtarDeger" asp-action="KullaniciYorumlariSayfasi" asp-area="Admin" method="post">
+                        <input type="hidden" name="dil" value="1" />
+                        <h3 class="text-center mt-4">Türkçe</h3>
+                        <table class="table m-table m-table--head-separator-primary">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>#</th>
+                                    <th>Yorum</th>
+                                    <th>Ad Soyad</th>
+                                    <th>Meslek</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int sayac = 1;}
+                                @foreach (var yorum in (List<Yorum>)ViewBag.Yorumlar_TR)
+                                {
+                                    <tr class="text-center">
+                                        <th scope="row">#@sayac</th>
+                                        <td>@yorum.YorumIcerik</td>
+                                        <td>@yorum.AdSoyad</td>
+                                        <td>@yorum.Isi</td>
+                                        <td style="vertical-align:middle">
+                                            <span class="badge badge-danger yorum-sil" data-value="@yorum.Id" data-dil="1" style="cursor:pointer"><i class="fa fa-trash"></i></span>
+                                        </td>
+                                    </tr>
+                                    sayac++;
+                                }
+
+                                <tr>
+                                    <td></td>
+                                    <td class="text-center">
+                                        <input asp-for="YorumIcerik" type="text" class="form-control m-input">
+                                        <span asp-validation-for="YorumIcerik"></span>
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <input class="form-control" asp-for="AdSoyad" />
+                                        <span asp-validation-for="AdSoyad"></span>
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <input class="form-control" asp-for="Isi" />
+                                        <span asp-validation-for="Isi"></span>
+                                    </td>
+
+                                    <td style="vertical-align:middle"><button type="submit" class="btn btn-success">Ekle</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <!--end::Form-->
+                    <!--begin::Form-->
+                    <form asp-controller="AnahtarDeger" asp-action="KullaniciYorumlariSayfasi" asp-area="Admin" method="post">
+                        <input type="hidden" name="dil" value="2" />
+                        <h3 class="text-center mt-4">İngilizce</h3>
+                        <table class="table m-table m-table--head-separator-primary">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>#</th>
+                                    <th>Yorum</th>
+                                    <th>Ad Soyad</th>
+                                    <th>Meslek</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int sayac2 = 1;}
+                                @foreach (var yorum in (List<Yorum>)ViewBag.Yorumlar_EN)
+                                {
+                                    <tr class="text-center">
+                                        <th scope="row">#@sayac2</th>
+                                        <td>@yorum.YorumIcerik</td>
+                                        <td>@yorum.AdSoyad</td>
+                                        <td>@yorum.Isi</td>
+                                        <td style="vertical-align:middle">
+                                            <span class="badge badge-danger yorum-sil" data-value="@yorum.Id" data-dil="2" style="cursor:pointer"><i class="fa fa-trash"></i></span>
+                                        </td>
+                                    </tr>
+                                    sayac2++;
+                                }
+
+                                <tr>
+                                    <td></td>
+                                    <td class="text-center">
+                                        <input asp-for="YorumIcerik" type="text" class="form-control m-input">
+                                        <span asp-validation-for="YorumIcerik"></span>
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <input class="form-control" asp-for="AdSoyad" />
+                                        <span asp-validation-for="AdSoyad"></span>
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <input class="form-control" asp-for="Isi" />
+                                        <span asp-validation-for="Isi"></span>
+                                    </td>
+                                    <td style="vertical-align:middle"><button type="submit" class="btn btn-success">Ekle</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <!--end::Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        $(function () {
+
+            $("body").on("click", ".yorum-sil", function () {
+                var yorumId = $(this).data("value");
+                var dil = $(this).data("dil");
+
+                $.ajax({
+                    url: "/Admin/AnahtarDeger/KullaniciYorumuSil?yorumId=" + yorumId + "&dil=" + dil,
+                    type: "POST",
+                    success: function (data) {
+                        if (data.BasariliMi == false) {
+
+                            var notify = $.notify({
+                                message: data.Mesaj
+                            }, {
+                                    delay: 1000,
+                                    type: 'danger',
+                                    allow_dismiss: true,
+                                    placement: {
+                                        from: 'top',
+                                        align: 'left'
+                                    },
+                                    z_index: 1051
+                                });
+                        }
+                        else {
+                            window.location.href = window.location.href;
+                        }
+                    },
+                    beforeSend: function () {
+
+                    },
+                    error: function (data) {
+
+                    }
+                });
+            })
+        })
+    </script>
+
+}

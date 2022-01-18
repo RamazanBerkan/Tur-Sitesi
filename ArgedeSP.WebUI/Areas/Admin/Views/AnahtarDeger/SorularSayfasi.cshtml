@@ -1,0 +1,52 @@
+﻿@model List<AnahtarDeger>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mt-5 mb-5 text-center">Sık Sorulan Sorular Sayfası</h2>
+            @if (TempData["Basarili"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                    @TempData["Basarili"].ToString()
+                </div>
+            }
+
+            @if (TempData["Hata"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["Hata"].ToString()
+
+                </div>
+            }
+
+            <table class="table m-table m-table--head-separator-primary">
+                <thead>
+                    <tr class="text-center">
+                        <th>#</th>
+                        <th>Ad</th>
+                        <th>Dil</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr class="text-center">
+                            <th scope="row">#@(i + 1)</th>
+                            <td>@Model[i].GorunenAd</td>
+                            <td>
+                                <span class="badge @(Model[i].Dil==Enums.Dil.Turkce?"badge-success":"badge-danger")">@Model[i].Dil.DilYaziyaCevir()</span>
+                            </td>
+                            <td>
+                                <a asp-controller="AnahtarDeger" asp-action="SorularSayfasiDuzenle" asp-route-anahtarDegerId="@Model[i].Id"><span class="badge badge-success" data-value="10" style="cursor:pointer"><i class="fas fa-sync"></i></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

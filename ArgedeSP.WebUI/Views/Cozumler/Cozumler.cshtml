@@ -1,0 +1,127 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Ürünlerimiz - EST";
+}
+@model CozumViewModel
+
+<link href="~/Client/assets/css/products.css" rel="stylesheet" />
+
+
+@{
+    ViewData["Title"] = "Çözümler";
+}
+<div class="banner-container">
+    <img class="img-fluid" src="~/images/homePage/solutionsBg.png">
+    <div class="blueOverlay"></div>
+
+    <div class="bannerText">
+        Çözümler
+    </div>
+
+</div>
+<div class="container py-5">
+    <div class="slick-wrapper">
+        <div class="carousel-2">
+            <img src="~/images/homePage/tpLink.png" class="img-fluid w-75" />
+            <img src="~/images/homePage/infinet.png" class="img-fluid w-75" />
+            <img src="~/images/homePage/Mimosa.png" class="img-fluid w-75" />
+            <img src="~/images/homePage/CNet.png" class="img-fluid  w-75" />
+            <img src="~/images/homePage/Ubiquiti.png" class="img-fluid  w-75" />
+            <img src="~/images/homePage/Ruijie.png" class="img-fluid  w-75" />
+
+
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+
+
+    <div class="solution">
+        <div class="solution-area">
+            <div class="container">
+                <h2>
+                    İhtiyacınıza en uygun <br />çözümü bulalım
+                </h2>
+            </div>
+
+
+
+
+            <div class="container">
+               
+                 @{ int k = 2; }
+
+                 @foreach (var urun in Model.Urunler) { @if (k % 2 == 0) {
+                     <div class="row pt-5">
+
+                            <div class="col-md-6">
+                                <img src="@Html.Raw(urun.Resim)" class="img-fluid mb-4 " />
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center mb-4">
+                                <div class="title-with-paragraph-solutions pl-3">
+                                    <h3 class="pb-3">
+                                        @Html.Raw(urun.UrunAdi)
+                                    </h3>
+                                    <p class="pb-3">
+                                        @Html.Raw(urun.UzunAciklama)
+                                    </p>
+                                    @foreach (var i in urun.UrunResimGalerisi)
+                                    {
+                                        <img src="@Html.Raw(i.ResimUrl)" class="img-fluid p-3" />
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (k % 2 ==1)
+                    {
+
+
+                        <div class="row pt-5">
+                            <div class="col-md-6 d-flex align-items-center mb-4">
+                                <div class="title-with-paragraph-solutions" style=" ">
+                                    <h3 class="pb-3">
+                                        @Html.Raw(urun.UrunAdi)
+                                    </h3>
+                                    <p class="pb-3">
+                                        @Html.Raw(urun.UzunAciklama)
+                                    </p>
+                                    @foreach (var i in urun.UrunResimGalerisi)
+                                    {
+                                        <img src="@Html.Raw(i.ResimUrl)" class="img-fluid p-3" />
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="@Html.Raw(urun.Resim)" class="img-fluid mb-4" />
+                            </div>
+                        </div>
+                    }
+
+                    k++;
+
+                    }
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+

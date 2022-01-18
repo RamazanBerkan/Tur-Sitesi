@@ -1,0 +1,214 @@
+﻿@model BlogDetayiViewModel
+@{
+    ViewData["Title"] = "Blog detayi";
+}
+<div class="banner-container">
+    <img class="img-fluid" src="~/images/homePage/blogBg.png">
+    <div class="blueOverlay"></div>
+    <div class="bannerText">
+        Blog Detay
+    </div>
+</div>
+
+<div class="blog-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 pb-3 text-center">
+                <h2>@Html.Raw(Model.Blog.Baslik)</h2>
+
+            </div>
+        </div>
+        <img src="@Html.Raw(Model.Blog.Resim)" class="fluid-img w-100 mb-4" style="max-height:500px; object-fit:contain;" />
+        <h5 class="blog-detail-subHeading mb-4">
+            Genel Bilgi
+        </h5>
+        <p class="text-justify">
+        @Html.Raw(Model.Blog.KisaAciklama )   
+        </p>
+        <h6 class="mb-4 blog-detail-subHeading">
+            Gezilen Yerler
+        </h6>
+        <p class="text-justify">
+           @Html.Raw(Model.Blog.UzunAciklama)
+        </p>
+
+
+        @*<div class="row mt-5">
+            <div class="col-md-12">
+                <h2 class="main-title title-dark-blue">Benzer İçerikler</h2>
+            </div>
+        </div>*@
+
+
+        @*<div class="row">
+            <div class="col-md-12">
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/safran.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="BlogDetail" asp-action="index" class="read-more">
+                                <span>
+                                    Devamıaa
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/bosna.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Blog" asp-action="index" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/barselona.jpeg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Blog" asp-action="index" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>*@
+    </div>
+</div>
+@*et{
+
+        Layout = "~/Views/Shared/_ContentLayout.cshtml";
+    }
+
+    <section id="y-single_info">
+                <div class="y-single_info">
+                    <div class="container">
+                        <div class="row y-single_info_inner y-section_content">
+                            <div class="clearfix">
+                                <div class="y-breadcrum clearfix wow fadeInDown" data-wow-delay=".9s">
+                                    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 y-blog_info ">
+                                        <h3 class="y-heading">Blog </h3>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                                        <ul class="pull-right"> </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-lg-12 col-md1-12 col-sm-7">
+                                    <div class="y-blog_detail_content">
+                                        <div class="y-blog_detail_info">
+                                            <h2>etModel.Blog.Baslik</h2>
+                                            <ul class="y-blog_general_info">
+                                                <li><span style="color:#2c2c2c; font-size:14px;"><i class="material-icons">access_time</i>etModel.Blog.OlusturmaTarihi</span></li>
+                                                et*<li><span><i class="material-icons">account_circle</i><a href="#">admin</a></span></li>*et
+                                            </ul>
+                                        </div>
+                                        <img alt="" class="img-responsive" src="etModel.Blog.Resim">
+                                        <div class="y-blog_detail_text">
+                                            etHtml.Raw(Model.Blog.UzunAciklama)
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-5 pull-right">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+
+
+
+
+
+
+    et*section id="y-single_info">
+        <div class="y-single_info">
+            <div class="container">
+                <div class="row margin-to y-section_content">
+                    <div class="col-lg-12 margin-bo clearfix">
+                        <div class="y-breadcrum clearfix wow fadeInDown" data-wow-delay=".9s">
+                            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+                                <h1 class="y-heading">etLocalizer["blogdetay"]</h1>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                                <ul class="pull-right">
+                                    <li><a asp-controller="AnaSayfa" asp-action="AnaSayfa">etLocalizer["anasayfa"]</a></li>
+                                    <li><a asp-controller="Bloglar" asp-action="Bloglar">etLocalizer["blog"]</a></li>
+                                    <li><span>etLocalizer["blogdetay"]</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="">
+
+                        <div class="col-lg-9">
+                            <center><img class="w-100" src="etModel.Blog.Resim"></center>
+                            <h3>etModel.Blog.Baslik</h3>
+                            et*<small class="mt-2 mb-5"><span style="color: cornflowerblue;font-weight: bolder">|</span>etModel.Blog.OlusturmaTarihi.ToShortDateString()</small>
+                            etHtml.Raw(Model.Blog.UzunAciklama)
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="card sticky-top">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h6><span style="color: cornflowerblue;font-weight: bolder">|</span> Son Girilen Bloglar</h6>
+                                            <hr>
+                                        </div>
+
+                                        etforeach (var blog in Model.SonBloglar.Take(3))
+                                        {
+
+                                            <div class="col-lg-12">
+                                                <div class="blog-item-2">
+                                                    <div class="blog-image">
+                                                        <a asp-controller="Bloglar" asp-action="BlogDetayi" asp-route-seoUrl="etblog.Baslik.FriendlyUrl()" asp-route-blogId="etblog.Id"><img src="etblog.Resim" alt="">etblog.Baslik</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section> *et*@

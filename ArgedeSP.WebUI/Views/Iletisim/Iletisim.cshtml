@@ -1,0 +1,188 @@
+﻿@model IletisimViewModel
+
+@{
+    ViewData["Title"] = "iletişim";
+}
+
+<div class="banner-container">
+    <img class="img-fluid site-ust-banner" src="~/images/homePage/contactBg.png">
+    <div class="blueOverlay"></div>
+
+    <div class="bannerText">
+        İletişim
+    </div>
+
+</div>
+
+<div class="right-solutions">
+    <!--<div class="kmz-logo text-center">-->
+    @*<a href="https://wa.me/905358758540" target="_blank"class="blue-links">
+            <img src="~/images/homePage/WhatsApp.svg" class="img-fluid" data-toggle="tooltip" data-placement="left" title="KMZ Dosyası Oluşturma
+        Rehberi" />
+        </a>*@
+    <!--<a href="https://api.whatsapp.com/send?phone=95358758540&text=Merhaba%20iletişim%20için%20WhatsappWebb%20kullanın" target="_blank" class="blue-links">
+            <img src="~/images/homePage/WhatsApp.svg" class="img-fluid" data-toggle="tooltip" data-placement="left" title="KMZ Dosyası Oluşturma
+        Rehberi" />
+        </a>
+
+    </div>-->
+    @*<div class="wp-logo text-center">
+            <a href="https://api.whatsapp.com/send?phone=95358758540&text=Merhaba%20iletişim%20için%20WhatsappWebb%20kullanın" target="_blank" class="blue-links">
+                <img src="~/images/homePage/WhatsApp.svg" class="img-fluid" data-toggle="tooltip" data-placement="left" title="Whattsapp ile iletişime geç" />
+            </a>
+        </div>*@
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="pb-3"> @Model.IletisimAciklamaBaslik</h2>
+                <p class="right-solution-paragraph">
+                    @Model.IletisimAciklama
+                </p>
+
+
+            </div>
+        </div>
+        <div class="row ">
+
+
+
+            <div class="col-md-4 blue-phone mb-5 contact-buttons ">
+                <div class="title-with-paragraph">
+                    <h4>
+                        Telefon
+                    </h4>
+                    <p>
+                        @Model.TelefonNo
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 yellow-email mb-5 contact-buttons">
+                <div class="title-with-paragraph">
+                    <h4>
+                        Mail
+                    </h4>
+                    <p>
+                        @Model.Email
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 purple-location mb-5 contact-buttons">
+                <div class="title-with-paragraph">
+                    <h4>
+                        Adres
+                    </h4>
+                    <p>
+                        @Model.Adres
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-5">
+            <iframe class="w-100" src="@Model.GoogleMap" width="550" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+</div>
+<style>
+    .contact-buttons {
+        min-height: 7rem;
+        max-height: 7rem;
+        min-width: auto;
+        max-width: auto;
+    }
+</style>
+@*et{
+        ViewData["Title"] = "iletişim";
+    }
+    <style>
+        .kmz-logo img {
+            cursor: pointer;
+            position: fixed;
+            right: 0;
+            top: 70%;
+            z-index: 100;
+            width: 7rem;
+        }
+    </style>
+
+    <div class="banner-container">
+        <img class="img-fluid" src="~/images/homePage/contactBg.png">
+        <div class="blueOverlay"></div>
+
+        <div class="bannerText">
+            İletişim
+        </div>
+
+    </div>
+
+    <div class="right-solutions">
+        <div class="kmz-logo text-center">
+            <a asp-controller="KMZGuide" asp-action="index" class="blue-links">
+                <img src="~/images/homePage/kmz.png" class="img-fluid" data-toggle="tooltip" data-placement="left" title="KMZ Dosyası Oluşturma
+    Rehberi" />
+            </a>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="pb-3">etHtml.Raw(Model.IletisimAciklamaBaslik)</h2>
+                    <p class="right-solution-paragraph">
+
+                        etHtml.Raw(Model.IletisimAciklama)
+                    </p>
+
+
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="col-md-6 mb-5">
+                    <iframe class="w-100" src="etHtml.Raw(Model.GoogleMap)" width="550" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="col-md-5 offset-1">
+                    <div class="blue-phone mb-5">
+                        <div class="title-with-paragraph">
+                            <h4>
+                                Telefon
+                            </h4>
+                            <p>
+                                etHtml.Raw(Model.TelefonNo)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="yellow-email mb-5">
+                        <div class="title-with-paragraph">
+                            <h4>
+                                Mail
+                            </h4>
+                            <p>
+                                etHtml.Raw(Model.Email)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="purple-location mb-5">
+                        <div class="title-with-paragraph">
+                            <h4>
+                                Adres
+                            </h4>
+                            <p>
+                                etHtml.Raw(Model.Adres)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>*@
+

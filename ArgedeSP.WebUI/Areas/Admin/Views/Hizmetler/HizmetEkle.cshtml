@@ -1,0 +1,276 @@
+﻿@model HizmetEkle_RES
+<style>
+    .check {
+        opacity: 0.5;
+        color: #996;
+    }
+
+    .box {
+        margin-bottom: 5px;
+    }
+</style>
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="container-fluid" style="padding-top:20px">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Stok Ekleme
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    @if (TempData["Basarili"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            @TempData["Basarili"].ToString()
+                        </div>
+                    }
+
+                    @if (TempData["Hata"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["Hata"].ToString()
+
+                        </div>
+                    }
+
+                    <!--begin::Form-->
+                    <form asp-controller="Hizmetler" asp-action="HizmetEkle" asp-area="Admin" method="post">
+                        <div class="m-form m-form--fit m-form--label-align-right">
+                            <div class="m-portlet__body">
+                                <input asp-for="HizmetEkle_REQ.Id" type="hidden" />
+
+                                <div class="row p-4">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">Dil</label>
+                                        <select class="form-control" asp-for="HizmetEkle_REQ.Dil">
+                                            <option value="">Dil Seçiniz</option>
+                                            <option value="1">Türkçe</option>
+                                            <option value="2">İngilizce</option>
+                                        </select>
+                                        <span asp-validation-for="HizmetEkle_REQ.Dil"></span>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">Stok Adı</label>
+                                        <input asp-for="HizmetEkle_REQ.HizmetAdi" type="text" class="form-control m-input" placeholder="Hizmet adı">
+                                        <span asp-validation-for="HizmetEkle_REQ.HizmetAdi"></span>
+                                    </div>
+
+
+
+                                    @*<div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label class="col-form-label">Uzun Açıklama</label>
+                                        <textarea asp-for="HizmetEkle_REQ.UzunAciklama" rows="10" cols="80">
+                                             @Model.HizmetEkle_REQ.UzunAciklama
+                                            </textarea>
+                                        <span asp-validation-for="HizmetEkle_REQ.UzunAciklama"></span>
+                                    </div>*@
+
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Seo Url</label>
+                                        <input asp-for="HizmetEkle_REQ.SeoUrl" type="text" class="form-control m-input" placeholder="Seo url giriniz">
+                                        <span asp-validation-for="HizmetEkle_REQ.SeoUrl"></span>
+                                    </div>
+
+
+                                    @*<div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Sıralama</label>
+                                        <input asp-for="HizmetEkle_REQ.Siralama" type="number" class="form-control m-input" placeholder="Sıra numarası giriniz.">
+                                        <span asp-validation-for="HizmetEkle_REQ.Siralama"></span>
+                                    </div>*@
+                                  
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label "> PDF Seç </label><br>
+                                        <iframe style="height:100px;width:100px;" id="HizmetEkle_REQ_ArkaplanResim_secilen_resim" src="@Model.HizmetEkle_REQ.ArkaplanResim"></iframe><br />
+                                        <button type="button" class="btn btn-info resim-sec ml-2 my-2" data-hedef="HizmetEkle_REQ_ArkaplanResim">PDF Seç</button>
+                                        <input asp-for="HizmetEkle_REQ.ArkaplanResim" type="text" class="form-control m-input d-none">
+                                        <span asp-validation-for="HizmetEkle_REQ.ArkaplanResim"></span>
+                                    </div>
+
+                                    @*<div class="col-lg-6 col-md-6 col-sm-12">
+                                            <label class="col-form-label">Renk Seç</label><br />
+                                            <input asp-for="HizmetEkle_REQ.ArkaplanResim" type="color">
+                                            <span asp-validation-for="HizmetEkle_REQ.ArkaplanResim"></span>
+                                        </div>*@
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label ">Ana Resim</label><br>
+                                        <img id="HizmetEkle_REQ_Resim_secilen_resim" style="height:100px;width:100px;" src="@Model.HizmetEkle_REQ.Resim" /><br>
+                                        <button type="button" class="btn btn-info resim-sec ml-2 my-2" data-hedef="HizmetEkle_REQ_Resim">Resim Seç</button>
+                                        <input asp-for="HizmetEkle_REQ.Resim" type="text" class="form-control m-input d-none">
+                                        <span asp-validation-for="HizmetEkle_REQ.Resim"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-portlet__foot m-portlet__foot--fit">
+                                    <div class="m-form__actions m-form__actions">
+                                        <div class="row">
+                                            <div class="col-lg-9 ml-lg-auto">
+                                                <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--end::Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resim-sec-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Resim Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+
+    <script>
+        var dosyaAdi = "img/hizmet-resimleri";
+        Dropzone.autoDiscover = false;
+    $(function () {
+
+        CKEDITOR.replace('HizmetEkle_REQ.UzunAciklama', {
+            customConfig: '/lib/ckeditor/config.js'
+        });
+        var hedef = "";
+        $("#dZUpload").dropzone({
+            url: '@Url.Action("Upload","DosyaIslemleri",new {dosyaAdi= "img/hizmet-resimleri", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check" data-hedef="'+hedef+'" style="height:100px">' +
+                    '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                //$("#images").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+        $(".resim-sec").click(function () {
+            hedef = $(this).data("hedef");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + dosyaAdi,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html = '<div class="col-md-3 box text-center">' +
+                            getListItemHtml(data[i]) + '<br>' +
+                            '<label>' + extractFileNameFromPath(data[i]) + '</label>' +
+                            '<input type="radio" value="val1" class="d-none" autocomplete="off"><br>' +
+                            '<button data-filepath="' + data[i] + '" type="button" class="btn btn-danger delete-file">X</button>' +
+                             '</div>';
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+            $('#resim-sec-modal').modal('show');
+        });
+
+        function getListItemHtml(item) {
+            if (!item.endsWith('pdf')) {
+                return '<img src="' + item + '" alt="image" style="height:100px" class="img-thumbnail img-check" data-hedef="' + hedef + '"/>';
+            } else {
+                return '<img src="/img/pdf.png" alt="image" style="height:100px" class="img-thumbnail img-check" data-hedef="' + hedef + '"/>';
+            }
+        }
+
+        function extractFileNameFromPath(path) {
+            arr = path.split('/');
+            return arr[arr.length - 1];
+        }
+
+        $(document).on("click", ".img-check", function (e) {
+            var hedef = $(this).data("hedef");
+            $('.img-check').not(this).removeClass('check')
+                .siblings('input').prop('checked', false);
+
+            $(this).addClass('check')
+                .siblings('input').prop('checked', true);
+
+
+            var image = $(this);
+
+            $("#" + hedef).attr("value", image.attr("src"));
+            $("#"+hedef+"_secilen_resim").attr("src", image.attr("src"))
+        });
+
+        //to delete files
+        $(document).on("click", ".delete-file", function (e) {
+            var filepath = $(this).data("filepath");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/DeleteFile?fileUrl=" + filepath,
+                type: "DELETE",
+                beforeSend: function () {
+                    return confirm("Are you sure?");
+                },
+                success: $(this).parent(".img-box").remove(),
+            });
+            $(document).ajaxStop(function () {
+                window.location.reload();
+            });
+        });
+    });
+    </script>
+
+}

@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Stoklar - EST";
+}
+@model HizmetlerViewModel
+
+<link href="~/Client/assets/css/stocks.css" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <div class="card card-image site-banner"
+         style="background-image: url('../Client/assets/img/banner/products-stock-banner.png')">
+        <div class="banner-mask">
+            <h6 class="banner-text">Stoklarımız</h6>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        @foreach (var item in Model.Hizmetler)
+        {
+
+            <div class="col-sm-12 col-md-6 col-lg-4 offset-md-3 offset-lg-4 mt-5">
+                <a href="@item.ArkaPlanResim" target="_blank">
+                    @*<a href="/pdf/deneme.pdf" target="_blank">*@
+                    <div class="card pdf">
+                        <h6>@item.HizmetAdi</h6>
+                        <div class="row">
+                            <div class="col-md-6 offset-3">
+                                <img class="img-fluid" src="~/Client/assets/img/stocks/pdf-logo.svg" />
+                            </div>
+                        </div>
+                        <div class="card-img-top">
+                            <img class="img-fluid" src="@item.Resim" />
+                            <span class="pdf-mask">
+                                <img class="img-fluid" src="~/Client/assets/img/stocks/pdf-mask.svg" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-text">
+                        </span>
+                    </div>
+                </a>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+

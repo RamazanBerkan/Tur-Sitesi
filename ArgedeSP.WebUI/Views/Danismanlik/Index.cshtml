@@ -1,0 +1,101 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@model AnaSayfaViewModel
+<link href="~/Client/assets/css/Danismanlik.css" rel="stylesheet" />
+
+<div class="position-relative">
+    <img class="img-fluid" src="~/images/danismanlikImg.png" />
+    <div class="GrayOverlay"></div>
+    <div class="BlueTriangle"></div>
+    <div class="BlueTriangleMain"></div>
+    <div class="DanismanlikImgText">Kaizen Türk Danışmanlık</div>
+</div>
+<p class="my-5 mainFont">Hizmetlerimiz</p>
+<div class="container">
+    <div class="row">
+        @foreach (var hizmet in Model.Hizmetler)
+        {
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3 my-3 hizmetHover">
+                <div class="position-relative">
+                    <img class="img-fluid" onerror="this.src='/images/resim-yok.png'" src="@hizmet.Resim" />
+                    <div class="GrayOverlay"></div>
+                    <div class="ServicesBlueShadow"></div>
+                    <div class="ServicesBlue"></div>
+                    <div class="ServicesText px-2">
+                        @hizmet.HizmetAdi
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    <p class="my-5 mainFont">Danışmanlık Modellerimiz</p>
+    <div class="row">
+        @{
+            int count = 0;
+            foreach (var danismanlik in Model.OnHizmetler)
+            {
+                if (count % 2 == 0)
+                {
+                    <div class="col-12 mb-5">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 resimBosluk">
+                                <img class="w-100 img-fluid ShadowRight" onerror="this.src='/images/resim-yok.png'" src="@danismanlik.Resim" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <p class="ModelBaslik">@danismanlik.OnHizmetAdi</p>
+                                <p class="ModelIcerik">
+                                    @Html.Raw(danismanlik.UzunAciklama)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-12 mb-5">
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <p class="ModelBaslik">@danismanlik.OnHizmetAdi</p>
+                                <p class="ModelIcerik">
+                                    @Html.Raw(danismanlik.UzunAciklama)
+                                </p>
+                            </div>
+                            <div class="col-12 col-sm-6 resimBosluk">
+                                <img onerror="this.src='/images/resim-yok.png'" class="w-100 img-fluid ShadowLeft" src="@danismanlik.Resim" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                count++;
+            }
+        }
+    </div>
+</div>
+
+<div class="container">
+    <p class="my-5 mainFont">Global Yalın Dönüşüm</p>
+    <div class="row">
+        <div class="col-12 mb-5">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <img class="img-fluid" src="~/images/GlobalYalinDonusum.png" />
+                </div>
+                <div class="col-12 col-sm-6">
+                    <p class="ModelBaslik">
+                        Global ölçekte bir sürekli iyileştirme sistemi
+                        yaygınlaştırmasını mı planlıyorsunuz?
+                    </p>
+                    <p class="ModelIcerik">
+                        Global ölçekte bir sürekli iyileştirme sistemi yaygınlaştırmasını mı planlıyorsunuz?
+                        Kaizen Institute, çok uluslu şirketler için değişim yönetiminde 30 yıldan daha fazla tecrübeye sahiptir. Tecrübeli profesyonellerinde oluşan ekimiz, lokal bir tat ve bütünsel bir yaklaşım ile Kaizen Institute'ün standart proseslerini izlemektedir. Çeşitli kültürler ve dillerdeki çeşitliliğimiz ve tecrübemiz, her global organizasyon içerisinde bir sürekli iyileştirme kültürünün başarılı ve zamanında uygulanmasına imkanlar sağlar.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

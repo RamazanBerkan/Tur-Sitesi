@@ -1,0 +1,235 @@
+﻿@{
+    ViewData["Title"] = "Hakkımızda";
+}
+
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<div class="banner-container">
+    <img class="img-fluid site-ust-banner" src="~/images/homePage/aboutUs-banner.png">
+    <div class="blueOverlay"></div>
+    <div class="bannerText">
+        Hakkımızda
+    </div>
+</div>
+
+
+
+
+
+@*solutions*@
+<div class="right-solutions">
+
+    <div class="container">
+        <div class="site-container" data-aos="zoom-in-up" data-aos-duration="3000">
+      
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Raw(ViewBag.Hakkimizda)
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="col-md-1">
+                    <div class="online-support mb-5">
+                        <div class="title-with-paragraph">
+                            @Html.Raw(ViewBag.Hakkimizda1)
+                        </div>
+
+                    </div>
+                </div>
+                @*<div class="col-md-6">
+                    <div class="thinker-icon mb-5">
+                        <div class="title-with-paragraph">
+                            <h4>
+                                Yeni Yerler Keşfedin
+                            </h4>
+                            <p>
+                                Her geçen gün büyüyen dostluklarla aynı heyecan ve aynı amatör ruh ile birlikte yürüyoruz.
+                            </p>
+                        </div>
+                    </div>
+                </div>*@
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<style>
+</style>
+@*about us banner*@
+<div class="aboutUs-banner ">
+    <img src="~/images/homePage/tur.jpg" class="w-100 site-banner  aboutUs-Banner-img ">
+    <div class="card-img-overlay">
+        <img src="~/images/homePage/leftQuote.png" class="position-absolute left-quote">
+        <img src="~/images/homePage/rightQuote.png" class="position-absolute right-quote">
+
+        @*<img src="~/images/homePage/rightQuote.png" class="">*@
+
+    <div class="content alt-banner-yazi" style="bottom:2%!important;" data-aos="zoom-in-up" data-aos-duration="3000">
+        @Html.Raw(ViewBag.Hakkimizda2)
+        @*<h3 class="pb-4">
+            Sizce de güzel bir tatili hak etmediniz mi?
+
+        </h3>
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+            <br /><br /> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+        </p>*@
+    </div>
+    </div>
+</div>
+
+@*vision and mission*@
+<div class="vission-misson">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <img src="~/images/homePage/solution1.png" class="img-fluid mb-4 travel-img" />
+            </div>
+            <div class="col-md-6 d-flex align-items-center mb-4" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <div class="title-with-paragraph-solutions pl-3">
+                    <h3 class="pb-3">
+                        Hedefimiz
+                    </h3>
+                    <p class="pb-3">
+                     @Html.Raw(ViewBag.Hedef) </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5">
+
+            <div class="col-md-6 d-flex align-items-center mb-4" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <div class="title-with-paragraph-solutions">
+                    <h3 class="pb-3">
+                        Vizyon & Misyon
+                    </h3>
+                    <p class="pb-3">
+                      @Html.Raw(ViewBag.Vizyon )
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-md-6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <img src="~/images/homePage/solution (2).jpg" class="img-fluid travel-img" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+        AOS.init();
+</script>
+
+<!--{
+    ViewData["Title"] = "Hakkımızda";
+}
+
+<div class="banner-container">
+    <img class="img-fluid" src="~/images/homePage/aboutUs-banner.png">
+    <div class="blueOverlay"></div>
+    <div class="bannerText">
+        Hakkımızda
+    </div>
+</div>-->
+@*solutions*@
+<!--<div class="right-solutions">
+    ""
+    <div class="container">
+        <div class="site-container">
+            <div class="row">
+                <div class="col-md-12">
+                   et*<h2 class="pb-3">Doğru Çözümler</h2>
+                    <p class="right-solution-paragraph">
+                       et(Html.Raw(ViewBag.Hakkimizda1))
+                    </p>
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="col-md-6">
+                    <div class="online-support mb-5">
+                        <div class="title-with-paragraph">
+                            <h4>
+                                300’den Fazla Proje
+                            </h4>
+                            <p>
+                                Eğitim, seminer, fuar ve bayi toplantıları, konusunda uzman teknik kadro,
+                                2 yıl garanti ve telefonda ücretsiz destek.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="thinker-icon mb-5">
+                        <div class="title-with-paragraph">
+                            <h4>
+                                2500’e Ulaşan Bayi Ağı
+                            </h4>
+                            <p>
+                                Her geçen gün büyüyen dostluklarla aynı heyecan ve aynı amatör ruh ile birlikte yürüyoruz.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>-->
+@*about us banner*@
+<!--<div class="aboutUs-banner">
+    <img src="~/images/homePage/blueBannerBg.PNG" class="w-100   bannerBg">
+    <div class="card-img-overlay">
+        <img src="~/images/homePage/leftQuote.png" class="position-absolute left-quote">
+        <img src="~/images/homePage/rightQuote.png" class="position-absolute right-quote">
+
+       et*<img src="~/images/homePage/rightQuote.png" class="">
+
+        <div class="content">
+            <p>
+               et(Html.Raw(ViewBag.Hakkimizda2))
+            </p>
+        </div>
+    </div>
+</div>-->
+@*vision and mission*@
+<!--<div class="vission-misson">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="~/images/homePage/solution1.png" class="img-fluid mb-4" />
+            </div>
+            <div class="col-md-6 d-flex align-items-center mb-4">
+                <div class="title-with-paragraph-solutions pl-3">
+                    <h3 class="pb-3">
+                        Hedefimiz
+                    </h3>
+                    <p class="pb-3">
+                       et(Html.Raw(ViewBag.Hedef))
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5">
+
+            <div class="col-md-6 d-flex align-items-center mb-4">
+                <div class="title-with-paragraph-solutions">
+                    <h3 class="pb-3">
+                        Vizyon & Misyon
+                    </h3>
+                    <p class="pb-3">
+                       et(Html.Raw(ViewBag.Vizyon))
+                        </p>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <img src="~/images/homePage/solution1.png" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</div>-->

@@ -1,0 +1,415 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <!-- PAGE TITLE -->
+    @(await Component.InvokeAsync("HeadComponent"))
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="keywords" content="@ViewBag.MainKeywords">
+    <!-- META-DATA -->
+    <meta http-equiv="content-type" content="text/html;" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Client/assets/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.1/slick/slick-theme.css" />
+    <!-- FavIcon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">*@
+
+
+    <!-- CSS:: FONTS -->
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="~/Client/assets/css/Yeni Metin Belgesi.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="~/Client/assets/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,600,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <!-- CSS:: BOOTSTRAP -->
+    <!--<link rel="stylesheet" href="~/Client/assets/css/bootstrap.min.css">-->
+    <!-- CSS:: ANIMATION -->
+    <!--<link rel="stylesheet" href="~/Client/assets/css/animate.css">-->
+    <!-- CSS:: OWL -->
+    <!--<link rel="stylesheet" type="text/css" href="~/Client/assets/css/owl.carousel.css">-->
+    <!-- CSS:: THUMBNAIL SLIDER -->
+    <!--<link rel="stylesheet" href="~/Client/assets/css/camera.css" type="text/css">-->
+    <!-- CSS:: -->
+    <!--<link rel="stylesheet" type="text/css" href="~/Client/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="~/Client/assets/css/main.css">-->
+    <!-- CSS:: 3.3.7 -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+    <link href="https://www.jqueryscript.net/demo/Fullscreen-Responsive-Gallery-Lightbox-Plugin-SimpleLightbox/dist/simpleLightbox.css" rel="stylesheet" type="text/css">-->
+
+    @RenderSection("styles", false)
+</head>
+
+<body>
+    <!--<div class="y-inner_header y-product">
+        <div class="y-header_outer">
+            <div class="header iconback">
+                <div class="y-header_top_info ">
+
+                </div>
+                <div class="container">
+                    <div class="row clearfix">
+                        <div data-wow-duration="1s" class="col-xs-2 col-sm-2 col-md-12 col-lg-12 wow fadeInDown text-center">
+                            <a class="y-logo" is-active-route asp-controller="AnaSayfa" asp-action="AnaSayfa"><img  alt="" src="~/Client/assets/img/logo.png"></a>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  ">
+                            <div class="y-menu_outer web-h " style="z-index:9999;">
+                                <div class="rmm style mobilee ">
+                                    <ul>
+                                        <li>
+                                            <a is-active-route asp-controller="AnaSayfa" asp-action="AnaSayfa">@Localizer["anasayfa-u"]</a>
+
+                                        </li>
+                                        <li>
+                                            <a is-active-route asp-controller="Hakkimizda" asp-action="Hakkimizda">@Localizer["hakkimizda-u"]</a>
+                                        </li>
+
+                                        @(await Component.InvokeAsync("KategoriComponent"))
+
+
+                                        <li>
+                                            <a is-active-route asp-controller="OnlineSatis" asp-action="OnlineSatis">@Localizer["online-satis-u"]</a>
+
+                                        </li>
+                                        <li>
+                                            <a is-active-route asp-controller="ResimGaleri" asp-action="ResimGaleri">@Localizer["galeri-u"]</a>
+
+                                        </li>
+                                        <li>
+                                            <a is-active-route asp-controller="BlogYakinda" asp-action="BlogYakinda">@Localizer["blog-u"]</a>
+
+                                        </li>
+                                        <li>
+                                            <a is-active-route asp-controller="Iletisim" asp-action="Iletisim">@Localizer["iletisim-u"]</a>
+
+                                        </li>
+                                        <li class="webnone d-lg-n" style="border-bottom:none !important">
+                                            <div class="d-flex justify-content-center" >
+                                                <a class=" px-2  " asp-controller="AnaSayfa" asp-action="SetLanguage" asp-route-culture="tr-TR">
+
+
+                                                    <p class="font-1" style="color: #f5a61f; font-weight:500">TR  &nbsp |</p>
+                                                </a>
+
+                                                <a class="px-2 " asp-controller="AnaSayfa" asp-action="SetLanguage" asp-route-culture="en-US">
+
+                                                    <p class="font-1 " style="color:#f5a61f; font-weight:500">EN</p>
+                                                </a>
+                                            </div>
+                                        </li>
+
+
+                                    </ul>
+
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+
+                                <div class="y-social d-flex1 mblnone1 mblnone justify-content-around " style="display:flex">
+
+                                    <a class="y-fb fa fa-facebook " href="@TempData["facebook"]"></a>
+                                    <a class="y-tw fa fa-twitter " href="@TempData["twitter"]"></a>
+
+                                    <a class=" fa fa-instagram mr-5 " href="@TempData["instagram"]"></a>
+
+                                    <a class=" px-2  " asp-controller="AnaSayfa" asp-action="SetLanguage" asp-route-culture="tr-TR">-->
+    @*<img src="~/assets/image/reino-unido.png" alt="..." class="rounded-circle language ml-2" data-toggle="tooltip" data-placement="bottom" title="English" width="20px">*@
+
+    <!--<p class="font-1" style="color: white; font-weight:500">TR  &nbsp |</p>
+    </a>
+
+    <a class="px-2 " asp-controller="AnaSayfa" asp-action="SetLanguage" asp-route-culture="en-US">-->
+    @*<img src="~/assets/image/russia.png" alt="..." class="rounded-circle language ml-2" data-toggle="tooltip" data-placement="bottom" title="English" width="20px">*@
+
+    <!--<p class="font-1 " style="color:white; font-weight:500">EN</p>
+                                    </a>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <header class="position-absolute w-100">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-transparent p-0">
+            <div class="container-fluid p-0">
+                <div class="headerLogo">
+                    <a class="navbar-brand p-0 m-0" asp-area="" asp-controller="Home" asp-action="Index"><img class="img-fluid" src="~/images/logo.svg" /></a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-navicon"></i>
+                </button>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav d-none" id="Gizlencek">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Hakkımızda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Danismanlik" asp-action="Index">Kaizen Türk Danışmanlık</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Kaizen Türk Bilişim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Projelerimiz</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Haberler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">İletişim</a>
+                        </li>
+                    </ul>
+                    <i class="fa fa-navicon text-white" id="AcKapa"></i>
+                </div>
+                <span class="headerSocialMediaLinks">
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-facebook ml-3"></i></a>
+                    <a href="#"><i class="fa fa-instagram ml-3"></i></a>
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <!--Referanslarımız Kısmı-->
+        <div class="footerReferans m-0 py-4">
+            <p class="referansText">Referanslarımız</p>
+            <div class="container-fluid">
+                <div class="row mb-5 mx-auto">
+                    <div class="col-12 col-sm-2 text-center mx-auto my-3 my-sm-0">
+                        <div class="footerReferansLogo p-2 p-sm-2 p-md-2 p-lg-4">
+                            <img class="img-fluid" src="~/images/referans1.png" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 text-center mx-auto my-3 my-sm-0">
+                        <div class="footerReferansLogo p-2 p-sm-2 p-md-2 p-lg-4">
+                            <img class="img-fluid" src="~/images/referans1.png" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 text-center mx-auto my-3 my-sm-0">
+                        <div class="footerReferansLogo p-2 p-sm-2 p-md-2 p-lg-4">
+                            <img class="img-fluid" src="~/images/referans1.png" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 text-center mx-auto my-3 my-sm-0">
+                        <div class="footerReferansLogo p-2 p-sm-2 p-md-2 p-lg-4">
+                            <img class="img-fluid" src="~/images/referans1.png" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 text-center mx-auto my-3 my-sm-0">
+                        <div class="footerReferansLogo p-2 p-sm-2 p-md-2 p-lg-4">
+                            <img class="img-fluid" src="~/images/referans1.png" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 text-center mx-auto my-3 my-sm-0">
+                        <div class="footerReferansLogo p-2 p-sm-2 p-md-2 p-lg-4">
+                            <img class="img-fluid" src="~/images/referans1.png" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Backende giydirildiğinde googleMapUrl propertysini iframe içine aktar(Google Maps görünümü için)-->
+        @*<iframe class="w-100 border-0" src="__________"></iframe>*@
+
+        <img class="img-fluid" src="https://via.placeholder.com/1920x350.png" />
+        <div class="jumbotron m-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <ul class="list-unstyled footerMain">
+                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a asp-area="" asp-action="Index" asp-controller="Danismanlik">Kaizen Türk Danışmanlık</a></li>
+                            <li><a href="#">Kaizen Türk Bilişim</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <ul class="list-unstyled footerMain">
+                            <li><a href="#">Projelerimiz</a></li>
+                            <li><a href="#">Haberler</a></li>
+                            <li><a href="#">İletişim</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <ul class="list-unstyled footerMain">
+                            <li><h5>Bize Ulaşın</h5></li>
+                            <li><i class="fa fa-envelope-o"></i> <span class="footerBizeUlasinText">Kaızenturk@gmail.com</span></li>
+                            <li><i class="fa fa-phone"></i> <span class="footerBizeUlasinText">+90 (555) 555 55 55</span></li>
+                            <li><i class="fa fa-phone"></i> <span class="footerBizeUlasinText">+90 (555) 555 55 55</span></li>
+                            <li><i class="fa fa-home"></i> <span class="footerBizeUlasinText">örn. Sakarya / Esentepe Teknokent</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col ml-auto footerLinks">
+                        <a href="@TempData["linkedin"]"><i class="fa fa-linkedin"></i></a>
+                        <a href="@TempData["facebook"]"><i class="fa fa-facebook ml-3"></i></a>
+                        <a href="@TempData["instagram"]"><i class="fa fa-instagram ml-3"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="container">
+                <div class="row">
+                    <div class="col ml-auto footerLinks">
+                        <img class="img-fluid" src="~/images/argede_logo.svg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @*<footer style="background-color:#000000; margin-top:30px;" class="mbl-footer0">
+            <div class="overlay overlay--dark">
+            </div>
+            <div class="parallax parallax--footer">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7 col-md-9 col-12">
+                            <h1 class="mbl-h1">
+                                <a is-active-route asp-controller="AnaSayfa" asp-action="AnaSayfa">
+                                    <img alt="Logo" class="mbl-f-img" src="~/Client/assets/img/logo.png" />
+
+                                </a>
+                            </h1>
+
+                            <ul class="ul--inline ul--footer mbl--footer">
+                                <li>
+                                    <a is-active-route asp-controller="AnaSayfa" asp-action="AnaSayfa">
+                                        @Localizer["anasayfa"]
+                                    </a>
+                                </li>
+                                <li>
+                                    <a is-active-route asp-controller="Hakkimizda" asp-action="Hakkimizda">
+                                        @Localizer["hakkimizda"]
+                                    </a>
+                                </li>
+                                <li>
+                                    <a is-active-route asp-controller="OnlineSatis" asp-action="OnlineSatis">
+                                        @Localizer["online-satis"]
+                                    </a>
+                                </li>
+                                <li>
+                                    <a is-active-route asp-controller="ResimGaleri" asp-action="ResimGaleri">
+                                        @Localizer["galeri"]
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a is-active-route asp-controller="BlogYakinda" asp-action="BlogYakinda">
+                                        @Localizer["blog"]
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a is-active-route asp-controller="Iletisim" asp-action="Iletisim">
+                                        @Localizer["iletisim"]
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="social">
+                                <a href="@TempData["facebook"]" class="social__item social__item--circle fa  fa-facebook " style="color:#f5a61f">
+
+                                </a>
+                                <a href="@TempData["twitter"]" class="social__item social__item--circle fa fa-twitter" style="color:#f5a61f">
+                                    <i class="zmdi zmdi-twitter"></i>
+                                </a>
+                                <a href="@TempData["instagram"]" class="social__item social__item--circle fa fa-instagram" style="color:#f5a61f">
+                                    <i class="zmdi zmdi-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>*@
+    <!-- End Footer -->
+    <!-- Copyright -->
+    @*<section class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        Copyright &copy; @DateTime.Now.Year FiveN, All rights reserved
+
+                    </div>
+                </div>
+            </div>
+        </section>*@
+
+    <script>
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+        var menu = document.getElementById('AcKapa');
+        var gizle = document.getElementById('Gizlencek');
+
+        menu.onclick = function () {
+            if (gizle.classList.contains("d-none")) {
+                gizle.classList.remove("d-none");
+                gizle.classList.add("d-flex");
+                menu.classList.remove("fa-navicon");
+                menu.classList.add("fa-align-right");
+            }
+            else {
+                gizle.classList.remove("d-flex");
+                gizle.classList.add("d-none");
+                menu.classList.remove("fa-align-right");
+                menu.classList.add("fa-navicon");
+            }
+        }
+    </script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>*@
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="~/lib/slick-1.8.1/slick/slick.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/Client/assets/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/f888e9e3ee.js" crossorigin="anonymous"></script>
+
+    @RenderSection("Scripts", required: false)
+
+
+</body>
+</html>
+

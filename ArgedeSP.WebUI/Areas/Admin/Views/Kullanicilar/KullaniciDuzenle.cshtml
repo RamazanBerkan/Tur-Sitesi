@@ -1,0 +1,289 @@
+﻿@model Kullanici_REQ
+<div class="m-content">
+    <div class="container-fluid" style="padding-top:20px">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Öğrenci Ekleme
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    @if (TempData["Basarili"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            @TempData["Basarili"].ToString()
+                        </div>
+                    }
+
+                    @if (TempData["Hata"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["Hata"].ToString()
+
+                        </div>
+                    }
+
+                    <!--begin::Form-->
+                    <form asp-controller="Kullanicilar" asp-action="KullaniciDuzenle" method="post">
+                        <div class="m-form m-form--fit m-form--label-align-right">
+                            <div class="m-portlet__body">
+                                <input asp-for="Id" type="hidden" />
+
+                                <div class="row p-4">
+
+
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">TC Numarası</label>
+                                        <input asp-for="TCKN" type="text" class="form-control m-input" placeholder="TC Numarası">
+                                        <span asp-validation-for="TCKN"></span>
+                                    </div>
+                                
+
+
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Ad</label>
+                                        <input asp-for="Ad" type="text" class="form-control m-input" placeholder="Ad">
+                                        <span asp-validation-for="Ad"></span>
+                                    </div>
+                               
+
+
+                                   
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Soyad</label>
+                                        <input asp-for="Soyad" type="text" class="form-control m-input" placeholder="Soyad">
+                                        <span asp-validation-for="Soyad"></span>
+                                    </div>
+                              
+
+
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">E-mail</label>
+                                        <input asp-for="Email" type="text" class="form-control m-input" placeholder="E-mail adresi">
+                                        <span asp-validation-for="Email"></span>
+                                    </div>
+                               
+
+
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Telefon Numarası</label>
+                                        <input asp-for="PhoneNumber" type="text" class="form-control m-input" placeholder="Telefon numarası">
+                                        <span asp-validation-for="PhoneNumber"></span>
+                                    </div>
+                               
+
+
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Üniversite</label>
+                                        <input asp-for="Universite" type="text" class="form-control m-input" placeholder="Üniversite">
+                                        <span asp-validation-for="Universite"></span>
+                                    </div>
+                                
+
+                                   
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Fakülte</label>
+                                        <input asp-for="Fakulte" type="text" class="form-control m-input" placeholder="Fakülte">
+                                        <span asp-validation-for="Fakulte"></span>
+                                    </div>
+                               
+
+
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Sınıf</label>
+                                        <input asp-for="Sinif" type="text" class="form-control m-input" placeholder="Sinif">
+                                        <span asp-validation-for="Sinif"></span>
+                                    </div>
+                               
+
+
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Profil Resmi</label> <br /> 
+                                        <img id="Resim_secilen_resim" style="height:100px;width:100px;" src="@Model.Resim" /> <br />
+                                        <button type="button" class="btn btn-info resim-sec ml-1 mt-2" data-hedef="Resim">Resim Seç</button>
+                                        <input asp-for="Resim" type="text" class="form-control m-input d-none">
+                                        <span asp-validation-for="Resim"></span>
+                                    </div>
+                               
+
+
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Şifre</label>
+                                        <input asp-for="Password" type="text" class="form-control m-input" placeholder="Şifre">
+                                        <span asp-validation-for="Password"></span>
+                                    </div>
+
+
+
+                            
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Profil Gizlensin Mi?</label> <br />
+                                        <span class="m-switch m-switch--icon">
+                                            <label>
+                                                <input asp-for="ProfilGizliMi" type="checkbox">
+                                                <span asp-validation-for="ProfilGizliMi"></span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                
+
+
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label">Hesap Durumu</label> <br />
+                                        <span class="m-switch m-switch--icon">
+                                            <label>
+                                                <input asp-for="Durum" type="checkbox">
+                                                <span asp-validation-for="Durum"></span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="m-portlet__foot m-portlet__foot--fit">
+                                <div class="m-form__actions m-form__actions">
+                                    <div class="row">
+                                        <div class="col-lg-9 ml-lg-auto">
+                                            <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+                    <!--end::Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resim-sec-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Resim Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        var dosyaAdi = "img/profil-resimleri";
+        Dropzone.autoDiscover = false;
+        $(function () {
+            var hedef = "";
+
+        $("#dZUpload").dropzone({
+            url: '@Url.Action("Upload","DosyaIslemleri",new { dosyaAdi= "img/profil-resimleri", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check" data-hedef="'+hedef+'" style="height:100px">' +
+                    '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                $("#images").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+        $(".resim-sec").click(function () {
+            hedef = $(this).data("hedef");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + dosyaAdi,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html = '<div class="col-md-3 box text-center">' +
+                            '<label>' +
+                            '<img src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check" data-hedef="' + hedef + '">' +
+                            '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                            '</label>' +
+                            '</div>';
+
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+            $('#resim-sec-modal').modal('show');
+        });
+
+        $(document).on("click", ".img-check", function (e) {
+            var hedef = $(this).data("hedef");
+            $('.img-check').not(this).removeClass('check')
+                .siblings('input').prop('checked', false);
+
+            $(this).addClass('check')
+                .siblings('input').prop('checked', true);
+
+
+            var image = $(this);
+
+            $("#" + hedef).attr("value", image.attr("src"));
+            $("#"+hedef+"_secilen_resim").attr("src", image.attr("src"))
+            });
+        })
+    </script>
+}

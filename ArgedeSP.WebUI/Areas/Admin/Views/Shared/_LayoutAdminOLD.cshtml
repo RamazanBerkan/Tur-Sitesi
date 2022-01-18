@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<!-- begin::Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Panel</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+
+    <!--begin::Web font -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!--end::Web font -->
+    <!--begin::Global Theme Styles -->
+    <link href="~/Admin/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+    <!--RTL version:<link href="~/Admin/assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+    <link href="~/Admin/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+
+    <!--RTL version:<link href="~/Admin/assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+    <!--end::Global Theme Styles -->
+    <!--begin::Page Vendors Styles -->
+    <link href="~/Admin/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Admin/css/argedesp-admin.css" rel="stylesheet" />
+    <!--RTL version:<link href="~/Admin/assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+    <!--end::Page Vendors Styles -->
+
+    <link href="~/Client/assets/css/main.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Client/assets/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Client/assets/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="icon" type="image/png" href="~/Client/assets/img/logo1.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="~/Client/assets/img/logo1.png" sizes="16x16">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    @*<link rel="shortcut icon" href="~/Admin/assets/demo/default/media/img/logo/favicon.ico" />*@
+</head>
+
+<!-- end::Head -->
+<!-- begin::Body -->
+<body class="m-page--fluid m--skin---skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default ">
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <!-- BEGIN: Header -->
+        <header id="m_header" class="m-grid__item m-header" m-minimize-offset="200" m-minimize-mobile-offset="200">
+            <div class="m-container  m-container--fluid m-container--full-height">
+                <div class="m-stack m-stack--ver m-stack--desktop">
+                    <!-- BEGIN: Brand -->
+                    <div class="m-stack__item m-brand  m-brand--skin-dark color-1  ">
+                        <div class="m-stack m-stack--ver m-stack--general">
+                            <div class="m-stack__item m-stack__item--middle m-brand__logo">
+                                <a asp-controller="AnaSayfa" asp-action="AnaSayfa" asp-area="" target="_blank" class="m-brand__logo-wrapper">
+                                    <img style="width:160px;" src="~/Client/assets/img/logo.png" />
+                                </a>
+                            </div>
+                            <div class="m-stack__item m-stack__item--middle m-brand__tools">
+                                <!-- BEGIN: Left Aside Minimize Toggle -->
+                                <a href="javascript:;" id="m_aside_left_minimize_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-desktop-inline-block  ">
+                                    <span></span>
+                                </a>
+
+                                <!-- END -->
+                                <!-- BEGIN: Responsive Aside Left Menu Toggler -->
+                                <a href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
+                                    <span></span>
+                                </a>
+
+                                <!-- END -->
+                                <!-- BEGIN: Responsive Header Menu Toggler -->
+                                <a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
+                                    <span></span>
+                                </a>
+
+                                <!-- END -->
+                                <!-- BEGIN: Topbar Toggler -->
+                                <a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
+                                    <i class="flaticon-more"></i>
+                                </a>
+                                <!-- BEGIN: Topbar Toggler -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- END: Brand -->
+                    <div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
+
+                        <!-- BEGIN: Horizontal Menu -->
+                        <button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-dark " id="m_aside_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+                        <!-- END: Horizontal Menu -->
+                        <!-- BEGIN: Topbar -->
+                        <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general m-stack--fluid">
+                            <div class="m-stack__item m-topbar__nav-wrapper">
+                                <ul class="m-topbar__nav m-nav m-nav--inline">
+                                    @*<li class="m-nav__item m-topbar__languages m-dropdown m-dropdown--small m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width" m-dropdown-toggle="click">
+                                            <a href="#" class="m-nav__link m-dropdown__toggle">
+                                                <span class="m-nav__link-text">
+                                                    <img class="m-topbar__language-selected-img" src="~/Admin/assets/app/media/img/flags/006-turkey.svg">
+                                                </span>
+                                            </a>
+                                            <div class="m-dropdown__wrapper">
+                                                <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                                                <div class="m-dropdown__inner">
+                                                    <div class="m-dropdown__header m--align-center" style="background: url(../Admin/assets/app/media/img/misc/quick_actions_bg.jpg); background-size: cover;">
+                                                        <span class="m-dropdown__header-subtitle">Dil Seçiniz</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>*@
+                                    <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+                                        m-dropdown-toggle="click">
+                                        <a href="#" class="m-nav__link m-dropdown__toggle">
+                                            <span class="m-topbar__userpic">
+                                                <i class="fa fa-user fa-2x"></i>
+                                            </span>
+                                            <span class="m-topbar__username m--hide">Admin</span>
+                                        </a>
+                                        <div class="m-dropdown__wrapper">
+                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                                            <div class="m-dropdown__inner">
+                                                <div class="m-dropdown__header m--align-center" style="background: url(../../Admin/assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
+                                                    <div class="m-card-user m-card-user--skin-dark">
+                                                        <div class="m-card-user__pic">
+                                                            <i class="fa fa-user-alt fa-2x text-white"></i>
+                                                            <!--
+                                                            <span class="m-type m-type--lg m--bg-danger"><span class="m--font-light">S<span><span>
+                                                            -->
+                                                        </div>
+                                                        <div class="m-card-user__details">
+                                                            <span class="m-card-user__name m--font-weight-500">@User.Identity.Name</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-dropdown__body">
+                                                    <div class="m-dropdown__content">
+                                                        <ul class="m-nav m-nav--skin-light">
+                                                            @*<li class="m-nav__item">
+                                                                    <a href="header/profile.html" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-info"></i>
+                                                                        <span class="m-nav__link-text">Hesap Ayarları</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="m-nav__item">
+                                                                    <a href="header/profile.html" class="m-nav__link">
+                                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                        <span class="m-nav__link-text">Genel Ayarlar</span>
+                                                                    </a>
+                                                                </li>*@
+                                                            <li class="m-nav__separator m-nav__separator--fit">
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a asp-controller="Hesap" asp-action="Cikis" class="btn m-btn--pill  btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Çıkış</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- END: Topbar -->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- END: Header -->
+        <!-- begin::Body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+            <!-- BEGIN: Left Aside -->
+            <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn"><i class="la la-close"></i></button>
+            <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+
+                <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+
+                    <!-- BEGIN: Aside Menu -->
+                    <div id="m_ver_menu" class="m-aside-menu m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark m-scroller ps ps--active-y color-1" m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative; height: 899px; overflow: hidden;">
+                        <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+                            @*<li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
+                                    <a asp-controller="AnaSayfa" asp-action="AnaSayfa" asp-area="admin" class="m-menu__link ">
+                                        <i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-title">
+                                            <span class="m-menu__link-wrap">
+                                                <span class="m-menu__link-text">Analiz Sayfası</span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>*@
+                            <li class="m-menu__section ">
+                                <h4 class="m-menu__section-text text-color">Site Yönetimİ</h4>
+                                <i class="m-menu__section-icon flaticon-more-v2"></i>
+                            </li>
+                            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                                <i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Ürün Yönetimi</span><i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
+                                <div class="m-menu__submenu ">
+                                    <span class="m-menu__arrow"></span>
+                                    <ul class="m-menu__subnav">
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Urunler" asp-action="Urunler" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Ürünleri Listele</span></a></li>
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Urunler" asp-action="UrunEKle" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Ürün Ekle</span></a></li>
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Urunler" asp-action="UrunKategorileri" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Ürün Kategori Listele </span></a></li>
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Urunler" asp-action="UrunKategorisiEkle" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Ürün Kategori Ekle</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                                <i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Hizmetler Yönetimi</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                                <div class="m-menu__submenu ">
+                                    <span class="m-menu__arrow"></span>
+                                    <ul class="m-menu__subnav">
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Hizmetler" asp-action="Hizmetler" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Hizmetleri Listele</span> </a></li>
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Hizmetler" asp-action="HizmetEkle" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Hizmet Ekle</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Ana Sayfa Avantajlar Yönetimi</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                                <div class="m-menu__submenu ">
+                                    <span class="m-menu__arrow"></span>
+                                    <ul class="m-menu__subnav">
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="OnHizmetler" asp-action="OnHizmetler" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Ön Hizmetleri Listele</span> </a></li>
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="OnHizmetler" asp-action="OnHizmetEkle" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Ön Hizmet Ekle</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+
+
+                            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Blog Yönetimi</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                                <div class="m-menu__submenu ">
+                                    <span class="m-menu__arrow"></span>
+                                    <ul class="m-menu__subnav">
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="BLoglar" asp-action="Bloglar" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Blogları Listele</span> </a></li>
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Bloglar" asp-action="BlogEkle" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Blog Ekle</span></a></li>
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Bloglar" asp-action="BlogKategoriler" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Blog Kategori Listele </span></a></li>
+                                        <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Bloglar" asp-action="BlogKategoriEkle" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Blog Kategori Ekle</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            @*<li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                    <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Referans Yönetimi</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                                    <div class="m-menu__submenu ">
+                                        <span class="m-menu__arrow"></span>
+                                        <ul class="m-menu__subnav">
+                                            <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Referanslar" asp-action="Referanslar" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Referansları Listele</span> </a></li>
+                                            <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Referanslar" asp-action="ReferansEkle" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Referans Ekle</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>*@
+                            @*<li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                    <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Haber Yönetimi</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                                    <div class="m-menu__submenu ">
+                                        <span class="m-menu__arrow"></span>
+                                        <ul class="m-menu__subnav">
+                                            <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Haberler" asp-action="Haberler" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Haberleri Listele</span> </a></li>
+                                            <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Haberler" asp-action="HaberEkle" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Haber Ekle</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>*@
+                            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                <a asp-controller="AnahtarDeger" asp-action="Slider" asp-area="Admin" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Slider & Banner Yönetimi</span></a>
+                            </li>
+                            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                <a asp-controller="AnahtarDeger" asp-action="HakkimizdaSayfasi" asp-area="Admin" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Hakkımızda Yönetimi</span></a>
+                            </li>
+                            @*
+                                <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                    <a asp-controller="AnahtarDeger" asp-action="FotoGaleriSayfasi" asp-area="Admin" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Foto Galeri Yönetimi</span></a>
+                                </li>*@
+                            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                <a asp-controller="AnahtarDeger" asp-action="SiteAyarlari" asp-area="Admin" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Site Ayarları</span></a>
+                            </li>
+                            @*<li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                    <a asp-controller="AnahtarDeger" asp-action="SorularSayfasi" asp-area="Admin" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Sık Sorulan Sorular Yönetimi</span></a>
+                                </li>
+                                <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                    <a asp-controller="AnahtarDeger" asp-action="GizlilikPolitikasiSayfasi" asp-area="Admin" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Gizlilik Politikası Yönetimi</span></a>
+                                </li>*@
+                            @*<li class="m-menu__section ">
+                                    <h4 class="m-menu__section-text text-white">... Yönetimİ</h4>
+                                    <i class="m-menu__section-icon flaticon-more-v2"></i>
+                                </li>
+                                <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                    <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-share"></i><span class="m-menu__link-text">Öğrenci Yönetimi</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                                    <div class="m-menu__submenu ">
+                                        <span class="m-menu__arrow"></span>
+                                        <ul class="m-menu__subnav">
+                                            <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Kullanicilar" asp-action="Kullanicilar" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Öğrenci Listesi</span></a></li>
+                                            <li class="m-menu__item " aria-haspopup="true"><a asp-controller="Kullanicilar" asp-action="KullaniciEkle" asp-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Öğrenci Ekle</span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>*@
+                        </ul>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 899px; right: 4px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 742px;"></div></div>
+                    </div>
+                    <!-- END: Aside Menu -->
+                </div>
+                <!-- END: Aside Menu -->
+            </div>
+            <!-- END: Left Aside -->
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                @RenderBody()
+            </div>
+        </div>
+
+        <!-- end:: Body -->
+    </div>
+
+    <!-- end:: Page -->
+    <!-- end::Quick Sidebar -->
+    <!-- begin::Scroll Top -->
+    <div id="m_scroll_top" class="m-scroll-top">
+        <i class="la la-arrow-up"></i>
+    </div>
+
+    <!-- end::Scroll Top -->
+    <!-- begin::Quick Nav -->
+    <!-- begin::Quick Nav -->
+    <script src="~/Admin/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+    <script src="~/Admin/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <!--end::Global Theme Bundle -->
+    <!--begin::Page Vendors -->
+    <script src="~/Admin/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+    <!--end::Page Vendors -->
+    <!--begin::Page Scripts -->
+    <script src="~/Admin/assets/app/js/dashboard.js" type="text/javascript"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/src/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="~/Admin/js/argedesp-admin.js"></script>
+    <!--end::Page Scripts -->
+    @RenderSection("scripts", false)
+    <scripts render="true"></scripts>
+
+</body>
+<!-- end::Body -->
+</html>

@@ -1,0 +1,43 @@
+﻿@model List<Yorum>
+<style>
+    .testimonial_are .active {
+        color: black !important;
+    }
+</style>
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a asp-controller="AnaSayfa" asp-action="AnaSayfa">@Localizer["anasayfa"]</a></li>
+                        <li>@Localizer["yorumlar"]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="testimonial_are mt-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="testimonial_titile">
+                    <h1>@Localizer["ogrenciler-ne-diyor"]</h1>
+                </div>
+            </div>
+            <div class="testimonial_active owl-carousel">
+                @foreach (var yorum in Model)
+                {
+                    <div class="col-12">
+                        <div class="single_testimonial">
+                            <p>@yorum.YorumIcerik</p>
+                            <span class="name">@yorum.AdSoyad</span>
+                            <span class="job_title">@yorum.Isi</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+﻿<div class="wp-logo text-center">
+    @{ string telefon = "https://api.whatsapp.com/send?phone=9" + @ViewBag.TelefonNo + "&text=Merhaba%20iletişim%20için%20WhatsappWebb%20kullanın";
+        telefon=telefon.Replace(" ", "");
+        }
+    <a href=@telefon target="_blank" class="blue-links">
+        <img src="~/images/homePage/WhatsApp.svg" class="img-fluid" data-toggle="tooltip" data-placement="left" title="Whattsapp ile iletişime geç" />
+    </a>
+</div> 

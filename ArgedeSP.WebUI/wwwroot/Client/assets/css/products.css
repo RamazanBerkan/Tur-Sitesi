@@ -1,0 +1,47 @@
+﻿.product {
+    margin-bottom:2rem;
+}
+
+ .urun {
+  
+    height: 28vh;
+} 
+.product .card
+{
+    padding:10%;
+}
+
+    .product .card-title {
+        text-align: left;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        color: rgba(101,101,101,1);
+        min-height: 3rem;
+        display:inline-flex;
+    }
+
+    .product .fa-circle {
+        font-size: 6px;
+        color: #B30707;
+        padding: .7rem .75rem 0 0;
+    }
+/*@media screen and (max-width: 1200px) {
+    .urun {
+   
+        height: 13rem;
+    }
+}
+@media screen and (max-width: 991px) {
+    .urun {
+ 
+        height: 10rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .urun {
+ 
+        height: 20rem;
+    }
+} */

@@ -1,0 +1,212 @@
+﻿@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Urun>
+
+<div class="container my-5">
+
+
+    <div class="solution">
+        <div class="solution-area">
+            <div class="container">
+                <h2>
+                    İhtiyacınıza en uygun <br />yolculuğu bulalım
+                </h2>
+            </div>
+
+
+
+            <div class="container">
+
+                @{ int k = 2; }
+
+                @foreach (var urun in Model)
+                {@if (k % 2 == 0)
+                    {
+                        <div class="row pt-5">
+                            <div class="col-md-6" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                                <img src="@Html.Raw(urun.Resim)" class="img-fluid mb-4  travel-img img-hov  zoom" />
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center mb-4" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                                <div class="title-with-paragraph-solutions pl-3">
+                                    <h3 class="pb-3">
+                                        @Html.Raw(urun.UrunAdi)
+                                    </h3>
+                                    <p class="pb-3">
+
+                                        @Html.Raw(urun.KisaAciklama)
+                                    </p>
+                                    @foreach (var i in urun.UrunResimGalerisi.Take(3))
+                                    {
+                                        <img src="@Html.Raw(i.ResimUrl)" class="img-fluid p-3  travel-small-img img-hov  zoom" />
+                                    }
+                                    @*<img src="~/images/homePage/aruba.png" class="img-fluid p-3" />
+                                        <img src="~/images/homePage/extreme.png" class="img-fluid p-3" />*@
+                                    <p>
+                                        <a asp-controller="Travel" asp-action="TravelDetay" asp-route-urunSeoUrl="@urun.SeoUrl" class="read-more">
+                                            <span>
+                                                Seyahatı incele
+                                            </span>
+                                        </a>
+                                    </p>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                        @*<div class="row pt-5">
+
+                                <div class="col-md-6">
+                                    <img src="@Html.Raw(urun.Resim)" class="img-fluid mb-4 " />
+                                </div>
+                                <div class="col-md-6 d-flex align-items-center mb-4">
+                                    <div class="title-with-paragraph-solutions pl-3">
+                                        <h3 class="pb-3">
+                                            @Html.Raw(urun.UrunAdi)
+                                        </h3>
+                                        <p class="pb-3">
+                                            @Html.Raw(urun.UzunAciklama)
+                                        </p>
+                                        @foreach (var i in urun.UrunResimGalerisi)
+                                        {
+                                            <img src="@Html.Raw(i.ResimUrl)" class="img-fluid p-3  travel-small-img img-hov  zoom" />
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>*@
+                    }
+                @if (k % 2 == 1)
+                {
+                    <div class="row pt-5">
+                        <div class="col-md-6 d-flex align-items-center mb-4" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                            <div class="title-with-paragraph-solutions" style=" ">
+                                <h3 class="pb-3">
+
+                                    @Html.Raw(urun.UrunAdi)
+                                </h3>
+                                <p class="pb-3">
+                                    @Html.Raw(urun.KisaAciklama)
+                                </p>
+                                @foreach (var i in urun.UrunResimGalerisi.Take(3))
+                                {
+                                    <img src="@Html.Raw(i.ResimUrl)" class="img-fluid p-3  travel-small-img img-hov  zoom" />
+                                }
+                                <p>
+
+                                    <a asp-controller="Travel" asp-action="TravelDetay" asp-route-urunSeoUrl="@urun.SeoUrl" class="read-more">
+                                        <span>
+                                            Seyahatı incele
+                                        </span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                            <img src="@Html.Raw(urun.Resim)" class="img-fluid mb-4  travel-img img-hov  zoom" />
+                        </div>
+                    </div>
+
+
+                    @*<div class="row pt-5">
+                            <div class="col-md-6 d-flex align-items-center mb-4">
+                                <div class="title-with-paragraph-solutions" style=" ">
+                                    <h3 class="pb-3">
+                                        @Html.Raw(urun.UrunAdi)
+                                    </h3>
+                                    <p class="pb-3">
+                                        @Html.Raw(urun.UzunAciklama)
+                                    </p>
+                                    @foreach (var i in urun.UrunResimGalerisi)
+                                    {
+                                        <img src="@Html.Raw(i.ResimUrl)" class="img-fluid p-3  travel-small-img img-hov  zoom" />
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="@Html.Raw(urun.Resim)" class="img-fluid mb-4" />
+                            </div>
+                        </div>*@
+                }
+
+                k++;
+
+            }
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@*<div class="container">
+
+        @{ int k = 2; }
+
+        @foreach (var urun in Model)
+        {@if (k % 2 == 0)
+            {
+                <div class="row pt-5">
+
+                    <div class="col-md-6">
+                        <img src="@Html.Raw(urun.Resim)" class="img-fluid mb-4 " />
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center mb-4">
+                        <div class="title-with-paragraph-solutions pl-3">
+                            <h3 class="pb-3">
+                                @Html.Raw(urun.UrunAdi)
+                            </h3>
+                            <p class="pb-3">
+                                @Html.Raw(urun.KisaAciklama)
+                            </p>
+                            @foreach (var i in urun.UrunResimGalerisi)
+                            {
+                                <img src="@Html.Raw(i.ResimUrl)" class="img-fluid p-3" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+        @if (k % 2 == 1)
+        {
+
+
+            <div class="row pt-5">
+                <div class="col-md-6 d-flex align-items-center mb-4">
+                    <div class="title-with-paragraph-solutions" style=" ">
+                        <h3 class="pb-3">
+                            @Html.Raw(urun.UrunAdi)
+                        </h3>
+                        <p class="pb-3">
+                            @Html.Raw(urun.KisaAciklama)
+                        </p>
+                        @foreach (var i in urun.UrunResimGalerisi)
+                        {
+                            <img src="@Html.Raw(i.ResimUrl)" class="img-fluid p-3" />
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="@Html.Raw(urun.Resim)" class="img-fluid mb-4" />
+                </div>
+            </div>
+        }
+
+        k++;
+
+    }
+
+
+
+
+
+    </div>*@

@@ -1,0 +1,605 @@
+﻿@model TravelDetayViewModel
+
+<style>
+    .blog-detail p {
+        word-break: break-all;
+    }
+
+
+    #myImg {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        #myImg:hover {
+            opacity: 0.7;
+        }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    }
+
+    /* Modal Content (image) */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+    }
+
+    /* Caption of Modal Image */
+    #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+    }
+
+    /* Add Animation */
+    .modal-content, #caption {
+        -webkit-animation-name: zoom;
+        -webkit-animation-duration: 0.6s;
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+
+
+    /* The Close Button */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    /* 100% Image Width on Smaller Screens */
+
+</style>
+
+@{
+    ViewData["Title"] = "TravelDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="banner-container">
+    <img class="img-fluid" src="~/images/homePage/blogBg.png">
+    <div class="blueOverlay"></div>
+    <div class="bannerText">
+        Tur Detayı
+    </div>
+</div>
+
+<div class="blog-detail">
+    <div class="container">
+        @*  *@
+
+        <div class="container text-center p-2">
+            <h2>
+                @Html.Raw(Model.Urun.UrunAdi)
+            </h2>
+        </div>
+
+        @*  *@
+        <img src="@Model.Urun.Resim" class="fluid-img w-100 mb-4" style="max-height:500px; object-fit:contain;" />
+        <h5 class="blog-detail-subHeading mb-4">
+            Genel Bilgi
+        </h5>
+        <p class="text-justify">
+            @Html.Raw(Model.Urun.UzunAciklama)
+            <h6 class="mb-4 blog-detail-subHeading">
+                Gezilen Yerler
+            </h6>
+        <p class="text-justify">
+            @Html.Raw(Model.Urun.KisaAciklama)
+        </p>
+        <h5 class="mb-4 blog-detail-subHeading">
+            Detay açıklama
+        </h5>
+        <h6 class="text-justify">
+            @Html.Raw(Model.Urun.DetayAciklama)
+        </h6>
+        <h5 class="mb-4 blog-detail-subHeading">
+            Fiyat
+        </h5>
+        <h6 class="text-justify">
+            @Html.Raw(Model.Urun.Fiyat)
+        </h6>
+        <h5 class="mb-4 blog-detail-subHeading">
+            Fotoğraflar
+        </h5>
+        <div class="row">
+            @foreach (var item in Model.Urun.UrunResimGalerisi)
+            {
+
+                <div class="col-md-3 ">
+                    <img class="img-fluid my-3 zoom travel-img2 image-detail" src="@item.ResimUrl">
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("myImg");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    $(".image-detail").click(function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    });
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+</script>
+@*<div class="row mt-5">
+        <div class="col-md-12">
+            <h2 class="main-title title-dark-blue">Benzer İçerikler</h2>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top blog-img-card" src="~/images/homePage/safran.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Yaptığımız gezilerden</h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-controller="BlogDetail" asp-action="index" class="read-more">
+                            <span>
+                                Devamı
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top blog-img-card" src="~/images/homePage/bosna.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Yaptığımız gezilerden</h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-controller="Blog" asp-action="index" class="read-more">
+                            <span>
+                                Devamı
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top blog-img-card" src="~/images/homePage/barselona.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Yaptığımız gezilerden</h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-controller="Blog" asp-action="index" class="read-more">
+                            <span>
+                                Devamı
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>*@
+
+
+
+
+
+<!--etmodel TravelDetayViewModel
+
+et{
+
+    Layout = "~/Views/Shared/_ContentLayout.cshtml";
+}
+
+
+    ViewData["Title"] = "TravelDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="banner-container">
+    <img class="img-fluid" src="~/images/homePage/blogBg.png">
+    <div class="blueOverlay"></div>
+    <div class="bannerText">
+        Tur Detayı
+    </div>
+</div>
+
+<div class="blog-detail">
+    <div class="container">
+        et*  *et
+
+        <div class="container text-center p-2">
+            <h2>
+                ROMA
+            </h2>
+        </div>
+
+        et*  *et
+        <img src="~/images/homePage/roma.jpg" class="fluid-img w-100 mb-4" style="max-height:500px; object-fit:contain;" />
+        <h5 class="blog-detail-subHeading mb-4">
+            Genel Bilgi
+        </h5>
+        <p class="text-justify">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fringilla in turpis vel est lobortis. In tristique fringilla ultricies tortor. Curabitur eget vel nisl purus condimentum. Vel, sed dictum praesent gravida elementum sed dictumst tellus. Sed urna, sagittis iaculis vulputate pretium tellus ultrices. Suscipit enim lobortis volutpat aliquam neque est sed laoreet neque.
+
+            <br /><br />  Nulla nibh blandit ut morbi non. Morbi tincidunt maecenas cras consectetur. Auctor orci, tempor augue quam. Congue lorem et vitae, est suscipit integer lectus tincidunt et. Molestie et fermentum pulvinar adipiscing quis eget mauris dolor auctor. Posuere quis quis pellentesque risus urna in nibh suspendisse sed. Vitae velit, urna, sed malesuada elementum lacinia fringilla. Pulvinar neque, hendrerit amet eu sed volutpat. Luctus a ut vestibulum lacus elit in maecenas nec ante. Id nisi nibh nulla malesuada mus ac, fames mattis etiam. Purus vulputate aenean ultrices enim eget convallis pretium nibh odio. Elementum mauris interdum id lectus. Quis id bibendum ac, in erat nisl nulla malesuada posuere. Nulla et porttitor orci non facilisis.
+            Lacus tristique consequat tempus, pellentesque nibh. Viverra facilisis turpis non sem vestibulum sed. Sed consectetur quis amet, ultricies montes, ac. Quis ut donec integer vulputate. Risus placerat sagittis egestas ut eros, tempus massa pulvinar massa. Vitae ullamcorper neque quam eget massa. Auctor amet tempor senectus sed volutpat aliquam. Hendrerit gravida tellus arcu consequat adipiscing facilisis pharetra sagittis.
+            Consequat sit sapien eros viverra eget. Nullam consequat blandit tempus tellus arcu. Neque ipsum enim aliquet proin viverra elementum odio nunc. Venenatis augue nisi malesuada diam viverra pulvinar. Ac pulvinar odio at mattis amet id ornare amet. Volutpat aliquet lorem lectus sit imperdiet quis sit. Commodo turpis amet cras aliquet.
+        </p>
+        <h6 class="mb-4 blog-detail-subHeading">
+            Gezilen Yerler
+        </h6>
+        <p class="text-justify">
+            Eget netus ut enim ut at pellentesque nulla. Nulla tempus, vitae turpis nulla morbi porttitor diam urna. Fringilla quis purus vel tortor magna diam risus tincidunt. Mi, consectetur iaculis ultricies hendrerit interdum pellentesque pellentesque. Semper sit nisi, commodo in imperdiet justo. Pellentesque dignissim purus pharetra, egestas turpis aliquet amet consectetur. Ultricies gravida erat amet aliquam. Viverra turpis tempus cras adipiscing. Senectus nisl faucibus ullamcorper netus in nullam nisi, pellentesque libero. Diam pharetra proin vel vestibulum purus. Ut proin non, facilisi interdum donec. Id pellentesque porttitor at metus tincidunt tristique. Senectus enim, facilisis tincidunt donec vitae non. Bibendum amet duis at nulla.
+        </p>
+        <h5 class="mb-4 blog-detail-subHeading">
+            Fiyat
+        </h5>
+        <h6 class="text-justify">
+            5000 TL den başlayan fiyatlarla...
+        </h6>
+        <h5 class="mb-4 blog-detail-subHeading">
+            Fotoğraflar
+        </h5>
+        <div class="row">
+            <div class="col-md-3 ">
+                <img class="img-fluid my-3 zoom travel-img2" src="~/images/homePage/roma.jpg">
+            </div>
+            <div class="col-md-3">
+                <img class="img-fluid my-3 zoom travel-img2" src="~/images/homePage/roma1.jpeg">
+            </div>
+            <div class="col-md-3 ">
+                <img class="img-fluid my-3 zoom travel-img2" src="~/images/homePage/roma2.jpeg">
+            </div>
+
+
+        </div>
+
+
+
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2 class="main-title title-dark-blue">Benzer İçerikler</h2>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/safran.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="BlogDetail" asp-action="index" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/bosna.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Blog" asp-action="index" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top blog-img-card" src="~/images/homePage/barselona.jpeg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Yaptığımız gezilerden</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Et dolore magna aliqua. Ut enim ad minim veniam
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a asp-controller="Blog" asp-action="index" class="read-more">
+                                <span>
+                                    Devamı
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>-->
+<!--<section id="y-single_info">
+    <div class="y-single_info">
+        <div class="container">
+            <div class="row y-single_info_inner y-section_content">
+                <div class="clearfix">
+                    <div class="y-breadcrum clearfix wow fadeInDown" data-wow-delay=".9s">
+                        <div class="     y-blog_info">
+                            <div class="y-heading " style="color:#f5a61f;">-->
+<!--et*  etforeach (var urunKategori in Model.UrunKategorileri)
+    {
+        etif (urunKategori.UstId == null)
+        {
+
+            <span>
+                eturunKategori.Ad >
+            </span>
+        etforeach (var altKategori in Model.UrunKategorileri.Where(x => x.UstId == urunKategori.Id && x.Id == Model.Urun.UrunKategori.Id))
+        {
+            <span>
+                etaltKategori.Ad >
+            </span>
+
+    }
+    }
+    }*et
+
+
+
+
+
+
+
+
+
+et*foreach (UrunKategori kategori in ViewBag.Kategoriler)
+{
+    if (!kategori.Urunler.Any())
+    {
+
+        <a style="vertical-align:middle; color:#f5a61f; font-size:16px; font-weight:500;" class="urunyolu " asp-controller="Kategoriler" asp-action="Kategoriler" asp-route-anaKategoriAdi="etkategori.SeoUrl" asp-route-altKategoriAdi="etkategori.SeoUrl">etkategori.Ad</a> <span style="color:#f5a61f; padding:0px; ">></span>
+
+    }
+
+    else
+    {
+        <a style="vertical-align:middle; color:#f5a61f; font-size:16px; font-weight:500;" class="urunyolu " asp-controller="Urunler" asp-action="Urunler" asp-route-anaKategoriAdi="etkategori.SeoUrl" asp-route-altKategoriAdi="etkategori.SeoUrl">etkategori.Ad</a> <span style="color:#f5a61f; padding:0px;">></span>
+
+
+    }
+
+
+}
+<a style="vertical-align:middle; color:#f5a61f; font-size:16px; font-weight:500;" class="urunyolu "> etModel.Urun.UrunAdi </a>
+
+    *et
+
+
+et*etforeach (UrunKategori kategori in ViewBag.Kategoriler)
+    {
+        etkategori.UstKategori.UstKategori.Ad
+
+    } >*et
+et*etforeach (UrunKategori kategori in ViewBag.Kategoriler)
+    {
+    etkategori.UstKategori.Ad
+
+    } >
+    etforeach (UrunKategori kategori in ViewBag.Kategoriler)
+    {
+        etkategori.Ad
+
+    }
+    >etModel.Urun.UrunAdi*et
+
+et*etModel.Urun.UrunKategori.UstKategori.Ad > etModel.Urun.UrunKategori.Ad > etModel.Urun.UrunAdi*et-->
+<!--</div>
+            <div style="height:20px;"> </div>
+        </div>
+
+    </div>
+</div>
+<div class="clearfix">
+    <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6">
+        <div>
+
+            <img id="big" src="etModel.Urun.Resim" class="img-responsive" alt="">
+
+        </div>
+        <div class="thumbnails">
+            et{
+                foreach (var item in Model.Urun.UrunResimGalerisi)
+                {
+                    <a onclick="OnChangeImage('etitem.ResimUrl')" href="etitem.ResimUrl">
+                        <img style="height:80px;  border:solid 1px #c8cad0 !important; margin-right:2px; margin-left:2px; margin-bottom:4px; " class="col-md-3 col-xs-3" src="etitem.ResimUrl" />
+                    </a>
+
+                }
+            }
+        </div>
+
+    </div>
+    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6 pull-right y-product_text_details">-->
+<!--et*<ul class="y-product_details clearfix">
+        <li><span class="y-nav_but" data-toggle="tooltip" data-placement="bottom" title="Paylaş"><i class="fa fa-share-alt"></i></span></li>
+        <li><span class="y-nav_but" data-toggle="tooltip" data-placement="bottom" title="Favorilere Ekle"><i class="fa fa-heart"></i></span></li>
+        <li><span class="y-nav_but" data-toggle="tooltip" data-placement="bottom" title="Karşılaştır"><i class="fa fa-sliders"></i></span></li>
+    </ul>*et-->
+<!--<h5>etLocalizer["acıklama"]</h5>
+<p>etHtml.Raw(Model.Urun.UzunAciklama) </p>-->
+<!--et*<div class="y-product_specs">
+        <h5>Özellikleri</h5>
+        <p>etHtml.Raw(Model.Urun.TeknikOzellikler) </p>
+    </div>*et
+et*<ul class="y-product_attr y-product_details clearfix">
+        <li><span class="y-attr_title">Renk</span><span class="y-nav_but y-color_attr"></span></li>
+        <li><span class="y-attr_title">Boyut</span><span class="y-nav_but">L</span></li>
+        <li><span class="y-attr_title">tekerlek</span><span class="y-nav_but">27.5"</span></li>
+    </ul>*et
+et*<div class="y-price_box">
+        <span>etModel.Urun.Fiyat</span>
+        <a class="y-button" href="#">Sepete ekle</a>
+    </div>*et-->
+<!--</div>
+</div>
+
+<div class="container" style="margin-bottom:70px;">
+    <div class="row y-blog_info">
+        <div id="y-popular_items" class="y-relative_outer mbl-benzeryazi">
+            <h3 class="y-inner_sub_head">etLocalizer["benzer-urun"]</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="y-popular_items y-relative_item clearfix  col-xs-12 col-sm-12 col-md-12 col-lg-12" id="y-rel_item_slide">
+
+            etforeach (var benzer in Model.SizinIcinSectiklerimiz)
+            {
+
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" style="display:inline-block; float:left !important;">
+
+                    <div class="y-relative_img "><a asp-action="UrunDetay" asp-route-urunSeoUrl="etbenzer.SeoUrl.FriendlyUrl()"><img src="etbenzer.Resim" class="img-responsive paddingtop1" alt=""></a></div>
+                    <div class="y-adv_info">
+                        <a class="y-heading benzerurun" asp-action="UrunDetay" asp-route-urunSeoUrl="etbenzer.SeoUrl.FriendlyUrl()"> <h4>etbenzer.UrunAdi </h4> </a>
+                        <div class="y-adv_info_foot clearfix">
+
+
+                        </div>
+                    </div>
+                </div>
+
+            }-->
+<!--et*<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="y-relative_img"><img src="assets/img/yatak2.jpg" class="img-responsive" alt=""></div>
+        <div class="y-adv_info">
+            <a class="y-heading" href="#">Corratec <br>BİZE ULAŞIN</a>
+            <div class="y-adv_info_foot clearfix">
+                <span class="pull-left">27899 TL</span>
+                <a href="#" class="pull-right"><i class="fa fa-cart-plus"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="y-relative_img"><img src="assets/img/yatak2.jpg" class="img-responsive" alt=""></div>
+        <div class="y-adv_info">
+            <a class="y-heading" href="#">Corratec <br>BİZE ULAŞIN</a>
+            <div class="y-adv_info_foot clearfix">
+                <span class="pull-left">27899 TL</span>
+                <a href="#" class="pull-right"><i class="fa fa-cart-plus"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="y-relative_img"><img src="assets/img/yatak2.jpg" class="img-responsive" alt=""></div>
+        <div class="y-adv_info">
+            <a class="y-heading" href="#">Corratec <br>BİZE ULAŞIN</a>
+            <div class="y-adv_info_foot clearfix">
+                <span class="pull-left">27899 TL</span>
+                <a href="#" class="pull-right"><i class="fa fa-cart-plus"></i></a>
+            </div>
+        </div>
+    </div>*et-->
+<!--</div>
+
+    </div>
+
+</div>-->
+<!--et*<div class="y-arrow_line">
+        <i class="fa fa-anchor y-left_anchor"></i>
+        <i class="fa fa-anchor y-right_anchor"></i>
+    </div>*et-->
+<!--</div>
+        </div>
+    </div>
+</section>
+<style>
+
+    .y-product {
+    background-image: url(etModel.Urun.UrunKategori.NavbarResim) !important;
+}
+
+</style>
+<script type="text/javascript">
+    window.onload = function () {
+        $('.thumbnails a').simpleLightbox();
+        $('.thumbnails a').on('show.simplelightbox', function (e) {
+            console.log(e);
+        });
+    }
+
+    function OnChangeImage(src) {
+        $('#big').attr('src', src);
+        $('#big').parent().attr('href', src);
+        $('.thumbnails a').simpleLightbox();
+
+    }
+</script>-->

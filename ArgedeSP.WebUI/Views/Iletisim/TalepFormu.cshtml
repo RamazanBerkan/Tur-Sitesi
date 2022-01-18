@@ -1,0 +1,83 @@
+﻿@model IletisimViewModel
+@{
+    ViewData["Title"] = "Talep Formu - EST";
+}
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid p-0">
+    <div class="card card-image site-banner" style="background-image: url('../Client/assets/img/banner/form-banner.png')">
+        <div class="banner-mask">
+            <h6 class="banner-text">Talep Formu</h6>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title-box" style="width:11% ">Bize Ulaşın</div>
+        </div>
+        <div class="col-md-12 mt-5">
+            @Html.AntiForgeryToken()
+            <form method="post" class="form site-form" role="form" asp-controller="Iletisim" asp-action="Iletisim">
+                <input type="hidden" name="RequestId" value="" />
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="phone">Firma / Gönderen</label>
+                        <input class="form-control" type="text" name="sirket" asp-for="IletisimForm_REQ.Sirket" />
+                        <span asp-validation-for="IletisimForm_REQ.Sirket"></span>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="phone">GSM</label>
+                        <input class="form-control" type="tel" name="phone" />
+                        <span asp-validation-for="IletisimForm_REQ.Telefon"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="phone2">Telefon</label>
+                        <input class="form-control" type="tel" name="phone" asp-for="IletisimForm_REQ.Telefon" />
+                        <span asp-validation-for="IletisimForm_REQ.Telefon"></span>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="address">Adres</label>
+                        <input class="form-control" type="text" name="adres" asp-for="IletisimForm_REQ.Ulke" />
+                        <span asp-validation-for="IletisimForm_REQ.Ulke"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="email">E-Posta</label>
+                        <input class="form-control" type="email" asp-for="IletisimForm_REQ.Email" />
+                        <span asp-validation-for="IletisimForm_REQ.Email"></span>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="subject">Konu</label>
+                        <input class="form-control" type="text" name="konu" asp-for="IletisimForm_REQ.Konu" />
+                        <span asp-validation-for="IletisimForm_REQ.Konu"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="discription">Açıklama</label>
+                        <textarea class="form-control" rows="5" name="discription" asp-for="IletisimForm_REQ.Mesajiniz">
+                        <span asp-validation-for="IletisimForm_REQ.Mesajiniz"></span>
+
+                       </textarea>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-xs-12 col-md-3 offset-md-9 col-lg-2 offset-lg-10 form-group">
+                        <center><button class="btn form-send" type="submit">Gönder</button></center>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<link href="~/Client/assets/css/form.css" rel="stylesheet" />

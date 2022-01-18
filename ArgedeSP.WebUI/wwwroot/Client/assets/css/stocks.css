@@ -1,0 +1,31 @@
+﻿.pdf {
+    text-align: center;
+}
+
+    .pdf .card-img-top {
+        padding: 0.5rem 2rem 2rem;
+    }
+
+.pdf-mask {
+   /* background-color: rgba(0,0,0,.15);*/
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+    .pdf-mask img {
+        position: absolute;
+        left: 4%;
+        top: 30%;
+    }
+
+.pdf h6 {
+    text-align:left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgba(112,112,112,1);
+    margin:2rem 1rem;
+}

@@ -1,0 +1,357 @@
+﻿@model ResimGalerisi
+<style>
+    .check {
+        opacity: 0.5;
+        color: #996;
+    }
+
+    .box {
+        margin-bottom: 5px;
+    }
+</style>
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="container-fluid" style="padding-top:20px">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h2 style="color:#f5a61f;" class="m-portlet__head-text">
+                                    Foto Galeri Düzenle
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    @if (TempData["Basarili"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            @TempData["Basarili"].ToString()
+                        </div>
+                    }
+
+                    @if (TempData["Hata"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["Hata"].ToString()
+
+                        </div>
+                    }
+
+                    <!--begin::Form-->
+                    <form asp-controller="AnahtarDeger" asp-action="FotoGaleriSayfasi" asp-area="Admin" method="post">
+                        <table class="table m-table m-table--head-separator-primary">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>#</th>
+                                    <th>Resim</th>
+                                    <th>Kategori</th>
+                                    <th>Sıra</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int sayac = 1;}
+                                @{
+                                    List<UrunKategori> UrunKategorileri = (List<UrunKategori>)ViewBag.UrunKategorileri;
+                                }
+
+                                @foreach (var resim in (List<ResimGalerisi>)ViewBag.FotoGalerileri)
+                                {
+                                    <tr class="text-center">
+                                        <th scope="row">#@sayac</th>
+                                        <td><img style="width:100px;height:100px" src="@resim.ResimYolu" /></td>
+                                        <td style="vertical-align:middle;width:40%">
+                                            <select class="form-control m-select2 urun-kategori" data-resimid="@resim.Id">
+                                                @for (int i = 0; i < UrunKategorileri.Count; i++)
+                                                {
+                                                    if (UrunKategorileri[i].Id == resim.UrunKategoriId)
+                                                    {
+                                                        <option selected value="@UrunKategorileri[i].Id">@(UrunKategorileri[i].Ad)</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@UrunKategorileri[i].Id">@(UrunKategorileri[i].Ad)</option>
+
+                                                    }
+                                                }
+                                            </select>
+                                        </td>
+                                        <td style="vertical-align:middle"><input class="form-control sira-no" type="number" data-resimid="@resim.Id" value="@resim.Sira" /></td>
+                                        <td style="vertical-align:middle">
+                                            <span class="badge badge-danger resim-sil" data-value="@resim.Id" style="cursor:pointer"><i class="fa fa-trash"></i></span>
+                                        </td>
+                                    </tr>
+                                    sayac++;
+                                }
+                                <tr>
+                                    <td></td>
+                                    <td class="text-center">
+                                        <img id="secilen-resim" style="width:100px;height:100px" src="~/img/resim-yok.png" />
+                                        <button type="button" class="btn btn-success resim-sec"><i class="fa fa-plus" style="font-size:20px"></i> Resim Seç</button>
+                                        <input asp-for="ResimYolu" type="text" class="form-control m-input d-none">
+                                        <span asp-validation-for="ResimYolu"></span>
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <select class="form-control m-select2" asp-for="UrunKategoriId">
+
+                                            @for (int i = 0; i < UrunKategorileri.Count; i++)
+                                            {
+                                                <option value="@UrunKategorileri[i].Id">@(UrunKategorileri[i].Ad)</option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="UrunKategoriId"></span>
+                                    </td>
+                                    <td style="vertical-align:middle">
+                                        <input class="form-control" type="number" asp-for="Sira" />
+                                        <span asp-validation-for="Sira"></span>
+                                    </td>
+                                    <td style="vertical-align:middle"><button type="submit" class="btn btn-success">Ekle</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" style="color:red">@TempData["Hata"]?.ToString()</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <!--end::Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resim-sec-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Resim Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        var dosyaAdi = "img/resim-galerisi";
+    Dropzone.autoDiscover = false;
+        $(function () {
+
+            $(".urun-kategori").select2({
+                placeholder: "Kategori Seçiniz"
+            });
+
+            $("#UrunKategoriId").select2({
+                placeholder: "Kategori Seçiniz"
+            });
+
+        var hedef = "";
+        $("#dZUpload").dropzone({
+            url: '@Url.Action("Upload","DosyaIslemleri",new {dosyaAdi= "img/resim-galerisi", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check" data-hedef="'+hedef+'" style="height:100px">' +
+                    '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                $("#images").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+            $(".resim-sec").click(function () {
+                var dosyaAdi = "img/resim-galerisi";
+            hedef = $(this).data("hedef");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + dosyaAdi,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html = '<div class="col-md-3 box text-center">' +
+                            '<label>' +
+                            '<img src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check" data-hedef="' + hedef + '">' +
+                            '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                            '</label>' +
+                            '</div>';
+
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+            $('#resim-sec-modal').modal('show');
+        });
+
+        $(document).on("click", ".img-check", function (e) {
+            $('.img-check').not(this).removeClass('check')
+                .siblings('input').prop('checked', false);
+
+            $(this).addClass('check')
+                .siblings('input').prop('checked', true);
+
+
+            var image = $(this);
+
+            $("#ResimYolu").attr("value", image.attr("src"));
+            $("#secilen-resim").attr("src", image.attr("src"))
+        });
+
+        $("body").on("click", ".resim-sil", function () {
+            var resimId = $(this).data("value");
+
+            $.ajax({
+                url: "/Admin/AnahtarDeger/FotoGaleriSil?resimId=" + resimId,
+                type: "POST",
+                success: function (data) {
+                    if (data.BasariliMi == false) {
+
+                        var notify = $.notify({
+                            message: data.Mesaj
+                        }, {
+                                delay: 1000,
+                                type: 'danger',
+                                allow_dismiss: true,
+                                placement: {
+                                    from: 'top',
+                                    align: 'left'
+                                },
+                                z_index: 1051
+                            });
+                    }
+                    else {
+                        window.location.href = window.location.href;
+                    }
+                },
+                beforeSend: function () {
+
+                },
+                error: function (data) {
+
+                }
+            });
+        })
+
+        $(".sira-no").blur(function () {
+
+            var resimId = $(this).data("resimid");
+            var siraNo = $(this).val();
+
+            $.ajax({
+                url: "/Admin/AnahtarDeger/FotoGaleriGuncelle?resimId=" + resimId + "&siraNo=" + siraNo,
+                type: "POST",
+                success: function (data) {
+                    if (data.BasariliMi == false) {
+
+                        var notify = $.notify({
+                            message: data.Mesaj
+                        }, {
+                                delay: 1000,
+                                type: 'danger',
+                                allow_dismiss: true,
+                                placement: {
+                                    from: 'top',
+                                    align: 'left'
+                                },
+                                z_index: 1051
+                            });
+                    }
+                    else {
+                        window.location.href = window.location.href;
+                    }
+                },
+                beforeSend: function () {
+
+                },
+                error: function (data) {
+
+                }
+            });
+
+            console.log($(this).data("resimid"));
+            })
+
+            $(".urun-kategori").change(function () {
+
+                var kategoriId = $(this).val();
+                var resimId = $(this).data("resimid");
+
+
+                $.ajax({
+                    url: "/Admin/AnahtarDeger/FotoGaleriGuncelle2?resimId=" + resimId + "&kategoriId=" + kategoriId,
+                    type: "POST",
+                    contentType: "application/json",
+                    data: null,
+                    success: function (data) {
+                        if (data.BasariliMi == false) {
+
+                            var notify = $.notify({
+                                message: data.Mesaj
+                            }, {
+                                    delay: 1000,
+                                    type: 'danger',
+                                    allow_dismiss: true,
+                                    placement: {
+                                        from: 'top',
+                                        align: 'left'
+                                    },
+                                    z_index: 1051
+                                });
+                        }
+                        else {
+                            window.location.href = window.location.href;
+                        }
+                    },
+                    beforeSend: function () {
+                    },
+                    error: function (data) {
+
+                    }
+                });
+
+            })
+
+    });
+    </script>
+
+}

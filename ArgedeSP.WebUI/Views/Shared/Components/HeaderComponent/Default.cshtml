@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+@model UrunlerViewModel
+<li class="nav-item dropdown">
+    <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        SEYAHATLER<i class="fas fa-caret-down ml-2"></i>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item nav-link btn-kisit " asp-controller="Urunler" asp-action="Local">YURT İÇİ SEYAHAT</a>
+
+        <a class="dropdown-item nav-link btn-kisit " asp-controller="Urunler" asp-action="Abroad">YURT DIŞI SEYAHAT</a>
+        <a class="dropdown-item nav-link btn-kisit " asp-controller="Urunler" asp-action="Honeymoon">BALAYI SEYAHAT</a>
+
+    </div>
+</li>
+@*<style>
+        @@media only screen and (max-width: 768px) {
+            .yukseklikmb {
+                margin-top: 35px !important;
+            }
+
+            .fontmb {
+                font-size: 13px !important;
+            }
+        }
+    </style>
+
+    <div class="header_middle middle_two">
+        <div class="container">
+            <div class="row align-items-center yukseklikmb">
+                <div class="col-lg-3 col-md-3">
+                    <div class="logo">
+                        <a href="/"><img src="~/logo.jpg"></a>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 ">
+                    <div class="middel_right">
+                        <div class="middel_right_info">
+                            <div class="header_wishlist">
+                                <a class="fontmb" href="tel:@(ViewBag.TelefonNumarasi)"><span class="fa fa-phone"></span> @ViewBag.TelefonNumarasi</a>
+                            </div>
+                            <div class="header_wishlist">
+                                <a class="fontmb" href="mailto:@(ViewBag.Email)"><span class="fa fa-envelope-o"></span> @ViewBag.Email</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@

@@ -1,0 +1,106 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+
+
+<div class="container" style="max-width:100%;">
+
+    <nav class="navbar navbar-expand-lg navbar-light  ">
+        <a class="navbar-brand" href="/">
+            <img src="~/images/homePage/travel.jpg" alt="" style="height:70px; width:86%;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto" id=" myDIV">
+               
+                <li class="nav-item ">
+                    <a class="nav-link" asp-controller="Anasayfa" asp-action="Anasayfa">ANASAYFA</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" asp-controller="Hakkimizda" asp-action="Hakkimizda">KURUMSAL</a>
+                </li>
+                @foreach (var urunKategori in ((List<UrunKategori>)ViewBag.Kategoriler).OrderBy(x => x.Ad))
+                {
+                    @if (urunKategori.UstId == null)
+                    {
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-controller="Travel" asp-action="Travels" asp-route-anaKategoriAdi="@urunKategori.SeoUrl">@urunKategori.Ad</a>
+                        </li>
+                    }
+                }
+                @*<li class="nav-item ">
+            <a class="nav-link" asp-controller="Hakkimizda" asp-action="Hakkimizda">KURUMSAL</a>
+        </li>*@
+                @*  *@
+                @*<li class="nav-item dropdown">
+            <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                SEYAHATLER<i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach (var urunKategori in ((List<UrunKategori>)ViewBag.Kategoriler).OrderBy(x => x.Ad))
+                {
+                    @if (urunKategori.UstId == null)
+                    {
+                        <a class="dropdown-item nav-link btn-kisit" style="max-width: 10rem;" asp-controller="Travel" asp-action="Travels" asp-route-anaKategoriAdi="@urunKategori.SeoUrl">@urunKategori.Ad</a>
+
+                    }
+                }
+            </div>
+        </li>*@
+                @*<li class="nav-item dropdown">
+            <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                SEYAHATLER<i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item nav-link btn-kisit " asp-controller="Urunler" asp-action="Local">YURT İÇİ SEYAHAT</a>
+
+                <a class="dropdown-item nav-link btn-kisit " asp-controller="Urunler" asp-action="Abroad">YURT DIŞI SEYAHAT</a>
+                <a class="dropdown-item nav-link btn-kisit " asp-controller="Urunler" asp-action="Honeymoon">BALAYI SEYAHAT</a>
+
+            </div>
+        </li>*@
+                @*  *@
+                @*<li class="nav-item">
+            <a class="nav-link" asp-controller="Travel" asp-action="Abroad">YURT DIŞI SEYAHAT</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Travel" asp-action="Local">YURT İÇİ SEYAHAT</a>
+        </li>*@
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Bloglar" asp-action="Bloglar">BLOG</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Iletisim" asp-action="Iletisim">İLETİŞİM</a>
+                </li>
+                @*<li>
+            <form class="est-search" asp-controller="Search" asp-action="Search">
+                <input type="search" placeholder="Ara..." id="searchItem" name="searchTerm">
+                <img src="~/images/homePage/search-icon.png" class="search-icon" />
+
+            </form>
+
+        </li>*@
+                <!--<form class="est-search" action="">
+    <img src="~/images/homePage/search-icon.png" class="search-icon" />-->
+                @*<i class="fa fa-search"></i>*@
+                <!--<input type="search" placeholder="Ara...">
+
+    </form>-->
+
+
+
+            </ul>
+            @*<form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>*@
+        </div>
+    </nav>
+</div>

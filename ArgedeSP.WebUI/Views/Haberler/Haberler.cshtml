@@ -1,0 +1,51 @@
+﻿@model List<Haber>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+ 
+
+
+<div class="breadcrumbs_area d-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a asp-controller="AnaSayfa" asp-action="AnaSayfa">@Localizer["anasayfa"]</a></li>
+                        <li>@Localizer["duyuru-ve-haberler"]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="blog_section mt-50 mb-50 ">
+    <div class="container">
+        <div class="row">
+
+            @foreach (var haber in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-2">
+                    <div class="single_blog">
+                        <div class="blog_thumb">
+                            <a asp-controller="Haberler" asp-action="Haberler" asp-route-seoUrl="@haber.Baslik.FriendlyUrl()" asp-route-haberId="@haber.Id">
+                                <img src="@haber.Resim" alt="">
+                            </a>
+                        </div>
+                        <div class="blog_content">
+                            <div class="date_post">
+                                <span class="ana-renk">@haber.OlusturmaTarihi.ToString("dd MMMM yyyy", CultureInfo.CurrentCulture)</span>
+                            </div>
+                            <h3><a asp-controller="Haberler" asp-action="HaberDetayi" asp-route-seoUrl="@haber.Baslik.FriendlyUrl()" asp-route-haberId="@haber.Id">@haber.Baslik</a></h3>
+                            <div class="blog_desc">
+                                <p>@haber.KisaAciklama.Kisalt(30)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section> 

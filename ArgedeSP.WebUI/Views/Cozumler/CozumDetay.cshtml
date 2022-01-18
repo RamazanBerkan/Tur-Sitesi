@@ -1,0 +1,229 @@
+﻿
+@model CozumDetayViewModel
+
+@{
+
+    Layout = "~/Views/Shared/_ContentLayout.cshtml";
+}
+
+
+
+<section id="y-single_info">
+    <div class="y-single_info">
+        <div class="container">
+            <div class="row y-single_info_inner y-section_content">
+                <div class="clearfix">
+                    <div class="y-breadcrum clearfix wow fadeInDown" data-wow-delay=".9s">
+                        <div class="     y-blog_info">
+                            <div class="y-heading " style="color:#f5a61f;">
+
+
+                                @*  @foreach (var urunKategori in Model.UrunKategorileri)
+                                    {
+                                        @if (urunKategori.UstId == null)
+                                        {
+
+                                            <span>
+                                                @urunKategori.Ad >
+                                            </span>
+                                        @foreach (var altKategori in Model.UrunKategorileri.Where(x => x.UstId == urunKategori.Id && x.Id == Model.Urun.UrunKategori.Id))
+                                        {
+                                            <span>
+                                                @altKategori.Ad >
+                                            </span>
+
+                                    }
+                                    }
+                                    }*@
+                                @foreach (UrunKategori kategori in ViewBag.Kategoriler)
+                                {
+                                    if (!kategori.Urunler.Any())
+                                    {
+
+                                        <a style="vertical-align:middle; color:#f5a61f; font-size:16px; font-weight:500;" class="urunyolu " asp-controller="Kategoriler" asp-action="Kategoriler" asp-route-anaKategoriAdi="@kategori.SeoUrl" asp-route-altKategoriAdi="@kategori.SeoUrl">@kategori.Ad</a> <span style="color:#f5a61f; padding:0px; ">></span>
+
+                                    }
+
+                                    else
+                                    {
+                                        <a style="vertical-align:middle; color:#f5a61f; font-size:16px; font-weight:500;" class="urunyolu " asp-controller="Urunler" asp-action="Urunler" asp-route-anaKategoriAdi="@kategori.SeoUrl" asp-route-altKategoriAdi="@kategori.SeoUrl">@kategori.Ad</a> <span style="color:#f5a61f; padding:0px;">></span>
+
+
+                                    }
+
+
+                                }
+                                <a style="vertical-align:middle; color:#f5a61f; font-size:16px; font-weight:500;" class="urunyolu "> @Model.Urun.UrunAdi </a>
+
+
+
+
+                                @*@foreach (UrunKategori kategori in ViewBag.Kategoriler)
+                                    {
+                                        @kategori.UstKategori.UstKategori.Ad
+
+                                    } >*@
+                                @*@foreach (UrunKategori kategori in ViewBag.Kategoriler)
+                                    {
+                                    @kategori.UstKategori.Ad
+
+                                    } >
+                                    @foreach (UrunKategori kategori in ViewBag.Kategoriler)
+                                    {
+                                        @kategori.Ad
+
+                                    }
+                                    >@Model.Urun.UrunAdi*@
+
+                                @*@Model.Urun.UrunKategori.UstKategori.Ad > @Model.Urun.UrunKategori.Ad > @Model.Urun.UrunAdi*@
+
+                            </div>
+                            <div style="height:20px;"> </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6">
+                        <div>
+
+                            <img id="big" src="@Model.Urun.Resim" class="img-responsive" alt="">
+
+                        </div>
+                        <div class="thumbnails">
+                            @{
+                                foreach (var item in Model.Urun.UrunResimGalerisi)
+                                {
+                                    <a onclick="OnChangeImage('@item.ResimUrl')" href="@item.ResimUrl">
+                                        <img style="height:80px;  border:solid 1px #c8cad0 !important; margin-right:2px; margin-left:2px; margin-bottom:4px; " class="col-md-3 col-xs-3" src="@item.ResimUrl" />
+                                    </a>
+
+                                }
+                            }
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6 pull-right y-product_text_details">
+                        @*<ul class="y-product_details clearfix">
+                                <li><span class="y-nav_but" data-toggle="tooltip" data-placement="bottom" title="Paylaş"><i class="fa fa-share-alt"></i></span></li>
+                                <li><span class="y-nav_but" data-toggle="tooltip" data-placement="bottom" title="Favorilere Ekle"><i class="fa fa-heart"></i></span></li>
+                                <li><span class="y-nav_but" data-toggle="tooltip" data-placement="bottom" title="Karşılaştır"><i class="fa fa-sliders"></i></span></li>
+                            </ul>*@
+                        <h5>@Localizer["acıklama"]</h5>
+                        <p>@Html.Raw(Model.Urun.UzunAciklama) </p>
+                        @*<div class="y-product_specs">
+                                <h5>Özellikleri</h5>
+                                <p>@Html.Raw(Model.Urun.TeknikOzellikler) </p>
+                            </div>*@
+                        @*<ul class="y-product_attr y-product_details clearfix">
+                                <li><span class="y-attr_title">Renk</span><span class="y-nav_but y-color_attr"></span></li>
+                                <li><span class="y-attr_title">Boyut</span><span class="y-nav_but">L</span></li>
+                                <li><span class="y-attr_title">tekerlek</span><span class="y-nav_but">27.5"</span></li>
+                            </ul>*@
+                        @*<div class="y-price_box">
+                                <span>@Model.Urun.Fiyat</span>
+                                <a class="y-button" href="#">Sepete ekle</a>
+                            </div>*@
+                    </div>
+                </div>
+
+                <div class="container" style="margin-bottom:70px;">
+                    <div class="row y-blog_info">
+                        <div id="y-popular_items" class="y-relative_outer mbl-benzeryazi">
+                            <h3 class="y-inner_sub_head">@Localizer["benzer-urun"]</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="y-popular_items y-relative_item clearfix  col-xs-12 col-sm-12 col-md-12 col-lg-12" id="y-rel_item_slide">
+
+                            @foreach (var benzer in Model.SizinIcinSectiklerimiz)
+                            {
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" style="display:inline-block; float:left !important;">
+
+                                    <div class="y-relative_img "><a asp-action="UrunDetay" asp-route-urunSeoUrl="@benzer.SeoUrl.FriendlyUrl()"><img src="@benzer.Resim" class="img-responsive paddingtop1" alt=""></a></div>
+                                    <div class="y-adv_info">
+                                        <a class="y-heading benzerurun" asp-action="UrunDetay" asp-route-urunSeoUrl="@benzer.SeoUrl.FriendlyUrl()"> <h4>@benzer.UrunAdi </h4> </a>
+                                        <div class="y-adv_info_foot clearfix">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+
+                            @*<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                    <div class="y-relative_img"><img src="assets/img/yatak2.jpg" class="img-responsive" alt=""></div>
+                                    <div class="y-adv_info">
+                                        <a class="y-heading" href="#">Corratec <br>BİZE ULAŞIN</a>
+                                        <div class="y-adv_info_foot clearfix">
+                                            <span class="pull-left">27899 TL</span>
+                                            <a href="#" class="pull-right"><i class="fa fa-cart-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                    <div class="y-relative_img"><img src="assets/img/yatak2.jpg" class="img-responsive" alt=""></div>
+                                    <div class="y-adv_info">
+                                        <a class="y-heading" href="#">Corratec <br>BİZE ULAŞIN</a>
+                                        <div class="y-adv_info_foot clearfix">
+                                            <span class="pull-left">27899 TL</span>
+                                            <a href="#" class="pull-right"><i class="fa fa-cart-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                    <div class="y-relative_img"><img src="assets/img/yatak2.jpg" class="img-responsive" alt=""></div>
+                                    <div class="y-adv_info">
+                                        <a class="y-heading" href="#">Corratec <br>BİZE ULAŞIN</a>
+                                        <div class="y-adv_info_foot clearfix">
+                                            <span class="pull-left">27899 TL</span>
+                                            <a href="#" class="pull-right"><i class="fa fa-cart-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                        </div>
+
+                    </div>
+
+                </div>
+                @*<div class="y-arrow_line">
+                        <i class="fa fa-anchor y-left_anchor"></i>
+                        <i class="fa fa-anchor y-right_anchor"></i>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+
+    .y-product {
+    background-image: url(@Model.Urun.UrunKategori.NavbarResim) !important;
+}
+
+</style>
+<script type="text/javascript">
+    window.onload = function () {
+        $('.thumbnails a').simpleLightbox();
+        $('.thumbnails a').on('show.simplelightbox', function (e) {
+            console.log(e);
+        });
+    }
+
+    function OnChangeImage(src) {
+        $('#big').attr('src', src);
+        $('#big').parent().attr('href', src);
+        $('.thumbnails a').simpleLightbox();
+
+    }
+</script>
+
+
+
+

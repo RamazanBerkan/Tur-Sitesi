@@ -1,0 +1,82 @@
+﻿
+
+
+/*.BlueOverlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 55%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    background-color: #003065;
+    opacity: 65%;
+    clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);
+}
+.BlueOverlayShadow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 57%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    background-color: #003065;
+    opacity: 30%;
+    clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);
+}
+.card-img-overlay {
+    background-color: black;
+    opacity: 28%;
+}*/
+.right-solutions{
+    padding-top:5rem;
+    padding-bottom:5rem
+}
+.right-solutions h2 {
+    font-size: 2.5rem;
+    color: black;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+    text-align: center
+}
+.right-solution-paragraph {
+    font-size: 1rem;
+    color: #76787A;
+    font-weight: 400;
+    text-align: center
+}
+.aboutUs-banner {
+     position: relative
+}
+.content {
+    position: absolute;
+    top: 28%;
+    left: 30%;
+    right: 30%;
+    text-align: center;
+    color:white
+}
+.content h3 {
+    font-weight:700
+ 
+}
+.card-img-overlay {
+    padding: unset !important;
+}
+.left-quote {
+    top: -6%;
+    left: 18%;
+}
+.right-quote {
+    bottom: -6%;
+    right: 18%;
+}
+.bannerBg{
+    max-height:450px
+}
+.vission-misson{
+    padding-top:5rem;
+    padding-bottom:10rem;
+}

@@ -1,0 +1,78 @@
+﻿@*et{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    et{
+        ViewData["Title"] = "Ürünlerimiz - EST";
+    }
+    etmodel UrunViewModel
+
+    <link href="~/Client/assets/css/products.css" rel="stylesheet" />
+
+    <div class="container-fluid p-0">
+        <div class="card card-image site-banner" style="background-image: url('../Client/assets/img/banner/products-stock-banner.png')">
+            <div class="banner-mask">
+                <h6 class="banner-text">Ürünlerimiz</h6>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-12 mb-5">
+                <div class="title-box" style="width: 11.5%">Ürünlerimiz</div>
+            </div>
+        </div>
+        <div class="row">
+            et{
+                etforeach (var urun in Model.Urunler)
+                {
+                    <div class="col-md-4 product">
+                        <div class="card">
+                            <div class="card-title">
+                                <i class="fas fa-circle"></i>
+                                <span>eturun.UrunAdi</span>
+                            </div>
+                            <img class="card-img-top urun" src="eturun.Resim" alt="eturun.UrunAdi">
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>*@
+@model UrunViewModel
+
+@ViewBag.Kategoriler
+@foreach (var urun in Model.Urunler)
+{
+    @urun.UrunKategori
+    <div class="col-md-12 col-lg-4 pb-3">
+        <div class="card product-card">
+            <a asp-controller="Urunler" asp-action="UrunDetay" asp-route-urunSeoUrl="@urun.SeoUrl">
+                <img class="card-img-top " src="@urun.Resim" alt="@urun.UrunAdi">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        @urun.UrunAdi
+                    </h3>
+                    <div class="card-text kisit" style="color:black!important">
+
+
+                        @Html.Raw(urun.KisaAciklama)
+
+                    </div>
+                    <div asp-controller="" asp-action="" class="btn card-button mt-2">
+                        İncele
+                        <img src="~/Client/assets/img/svg/search-icon.svg" width="14" style="min-height: 2vh; max-height: 2vh; object-fit: contain !important;" />
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+}
+
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+
+
+

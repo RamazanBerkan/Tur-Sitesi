@@ -1,0 +1,246 @@
+﻿@model ReferansEkle_RES
+<style>
+    .check {
+        opacity: 0.5;
+        color: #996;
+    }
+
+    .box {
+        margin-bottom: 5px;
+    }
+</style>
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="container-fluid" style="padding-top:20px">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Referans Ekleme
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    @if (TempData["Basarili"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            @TempData["Basarili"].ToString()
+                        </div>
+                    }
+
+                    @if (TempData["Hata"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["Hata"].ToString()
+
+                        </div>
+                    }
+
+                    <!--begin::Form-->
+                    <form asp-controller="Referanslar" asp-action="ReferansEkle" asp-area="Admin" method="post">
+                        <div class="m-form m-form--fit m-form--label-align-right">
+                            <div class="m-portlet__body">
+                                <div class="row p-4">
+
+                                
+                                        
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <label class="col-form-label">Referans Adı</label>
+                                            <input asp-for="ReferansEkle_REQ.ReferansAdi" type="text" class="form-control m-input" placeholder="Referans adı">
+                                            <span asp-validation-for="ReferansEkle_REQ.ReferansAdi"></span>
+                                        </div>
+                                   
+
+
+                                  
+                                       
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <label class="col-form-label">Menü Adı Giriniz.</label>
+                                            <input asp-for="ReferansEkle_REQ.KisaAciklama" type="text" class="form-control m-input" placeholder="Kısa açıklama giriniz">
+                                            <span asp-validation-for="ReferansEkle_REQ.KisaAciklama"></span>
+                                        </div>
+                                    
+                                    @*
+        <div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Uzun Açıklama</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <textarea asp-for="ReferansEkle_REQ.UzunAciklama" rows="10" cols="80">
+                     @Model.ReferansEkle_REQ.UzunAciklama
+                    </textarea>
+                <span asp-validation-for="ReferansEkle_REQ.UzunAciklama"></span>
+            </div>
+        </div>
+                                    *@
+
+                                   
+                                        
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <label class="col-form-label">Seo Url</label>
+                                            <input asp-for="ReferansEkle_REQ.SeoUrl" type="text" class="form-control m-input" placeholder="Seo url giriniz">
+                                            <span asp-validation-for="ReferansEkle_REQ.SeoUrl"></span>
+                                        </div>
+                                   
+
+
+                                    
+                                        
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <label class="col-form-label">Ana Resim</label> <br />
+                                            <img id="ReferansEkle_REQ_Resim_secilen_resim" style="height:100px;width:100px;" src="@Model.ReferansEkle_REQ.Resim" /><br />
+                                            <button type="button" class="btn btn-info resim-sec ml-1 mt-2" data-hedef="ReferansEkle_REQ_Resim">Resim Seç</button>
+                                            <input asp-for="ReferansEkle_REQ.Resim" type="text" class="form-control m-input d-none">
+                                            <span asp-validation-for="ReferansEkle_REQ.Resim"></span>
+                                        </div>
+                                    
+
+                                    @*<div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Arka Plan Resim</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <img id="ReferansEkle_REQ_ArkaPlanResmi_secilen_resim" style="height:100px;width:100px;" src="@Model.ReferansEkle_REQ.ArkaPlanResmi" />
+                <button type="button" class="btn btn-info resim-sec" data-hedef="ReferansEkle_REQ_ArkaPlanResmi">Resim Seç</button>
+                <input asp-for="ReferansEkle_REQ.ArkaPlanResmi" type="text" class="form-control m-input d-none">
+                <span asp-validation-for="ReferansEkle_REQ.ArkaPlanResmi"></span>
+            </div>
+        </div>*@
+                                </div>
+                            </div>
+
+
+                            <div class="m-portlet__foot m-portlet__foot--fit">
+                                <div class="m-form__actions m-form__actions">
+                                    <div class="row">
+                                        <div class="col-lg-9 ml-lg-auto">
+                                            <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--end::Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resim-sec-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Resim Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+
+    <script>
+        var dosyaAdi = "img/referans-resimleri";
+    Dropzone.autoDiscover = false;
+    $(function () {
+
+        //CKEDITOR.replace('ReferansEkle_REQ.UzunAciklama', {
+        //    customConfig: '/lib/ckeditor/config.js'
+        //});
+        var hedef = "";
+        $("#dZUpload").dropzone({
+            url: '@Url.Action("Upload","DosyaIslemleri",new {dosyaAdi= "img/referans-resimleri", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check" data-hedef="'+hedef+'" style="height:100px">' +
+                    '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                $("#images").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+        $(".resim-sec").click(function () {
+            hedef = $(this).data("hedef");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + dosyaAdi,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html = '<div class="col-md-3 box text-center">' +
+                            '<label>' +
+                            '<img src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check" data-hedef="' + hedef + '">' +
+                            '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                            '</label>' +
+                            '</div>';
+
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+            $('#resim-sec-modal').modal('show');
+        });
+
+        $(document).on("click", ".img-check", function (e) {
+            var hedef = $(this).data("hedef");
+            $('.img-check').not(this).removeClass('check')
+                .siblings('input').prop('checked', false);
+
+            $(this).addClass('check')
+                .siblings('input').prop('checked', true);
+
+
+            var image = $(this);
+
+            $("#" + hedef).attr("value", image.attr("src"));
+            $("#"+hedef+"_secilen_resim").attr("src", image.attr("src"))
+        });
+
+
+    });
+    </script>
+
+}

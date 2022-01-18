@@ -1,0 +1,507 @@
+﻿@model SliderResim
+<style>
+    .check {
+        opacity: 0.5;
+        color: #996;
+    }
+
+    .box {
+        margin-bottom: 5px;
+    }
+
+    .table {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 2px;
+    }
+
+    .thead {
+        display: table-header-group;
+        color: white;
+        font-weight: bold;
+        background-color: grey;
+    }
+
+    .tbody {
+        display: table-row-group;
+    }
+
+    .tr {
+        display: table-row;
+    }
+
+    .td {
+        display: table-cell;
+        border: 1px solid black;
+        padding: 1px;
+    }
+
+    .tr.editing .td INPUT {
+        width: 100px;
+    }
+
+    .slider-nav {
+        display: flex; 
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .card-img{
+        box-shadow: 0px 1px 9px rgba(0,0,0,.26);
+    }
+
+
+</style>
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="container-fluid" style="padding-top:20px">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h2 class="m-portlet__head-text">
+                                    Slider Ve Banner Düzenleme ekranı
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    @if (TempData["Basarili"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            @TempData["Basarili"].ToString()
+                        </div>
+                    }
+
+                    @if (TempData["Hata"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["Hata"].ToString()
+
+                        </div>
+                    }
+
+                    <!--begin::Form-->
+                   
+
+
+
+
+                <div class="table m-table m-table-head-separator-primary">
+                    <div class="thead">
+                        <div class="tr">
+                            <div class="td">#</div>
+                            <div class="td">Resim</div>
+                            <div class="td">Yeri</div>
+                            <div class="td">Üst Başlık</div>
+                            <div class="td">Açıklama</div>
+                            <div class="td">Kısa Metin</div>
+                            <div class="td">Sıra</div>
+                            <div class="td">Dil</div>
+                            <div class="td">İşlem</div>
+                        </div>
+                    </div>
+
+
+
+
+                    @*@{
+                        int sayac = 1;
+
+
+                    }
+                    @foreach (var resim in (List<SliderResim>)ViewBag.SliderResimleri)
+                    {
+                        <div class="card card-image" style="width: 18rem;">
+                            <div class="card-body">
+                                <form asp-controller="AnahtarDeger" asp-action="SliderDuzenle" asp-area="Admin" method="post">
+                                    <input type="hidden" asp-for="Id" value="@resim.Id" />
+
+                                    <div class=""><img style="width:200px;height:150px" src="@resim.ResimUrl" /></div>
+                                    <div class="" style="vertical-align:middle"><input class="form-control" asp-for="UstBaslik" value="@resim.UstBaslik" /></div>
+                                    <div class="" style="vertical-align:middle">
+                                        <input class="form-control" asp-for="AltBaslik" value="@resim.AltBaslik" />
+                                    </div>
+                                    <div class="" style="vertical-align:middle"><input class="form-control" asp-for="Link" value="@resim.Link" /></div>
+                                    <div class="" style="vertical-align:middle"><input class="form-control" type="number" asp-for="ResimSira" value="@resim.ResimSira" /></div>
+                                    <div class="" style="vertical-align:middle">
+                                        <select class="form-control" asp-for="Dil">
+                                            <option value="">Dil Seçiniz</option>
+                                            @if (resim.Dil == Enums.Dil.Turkce)
+                                            {
+                                                <option value="1" selected>Türkçe</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="1">Türkçe</option>
+                                            }
+
+                                            @if (resim.Dil == Enums.Dil.Ingilizce)
+                                            {
+                                                <option value="2" selected>İngilizce</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="2">İngilizce</option>
+
+                                            }
+                                        </select>
+                                        <span asp-validation-for="Dil"></span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    }
+
+                    <div class="card card-image" style="width: 18rem;">
+                        <div class="card-body">
+                            <form class="" asp-controller="AnahtarDeger" asp-action="Slider" asp-area="Admin" method="post">
+                                <div class=""></div>
+                                <div class="">
+                                    <img id="secilen-resim" style="width:100px;height:100px" src="~/img/resim-yok.png" />
+                                    <button type="button" class="btn btn-success resim-sec"><i class="fa fa-plus" style="font-size:20px"></i> Resim Seç</button>
+                                    <input asp-for="ResimUrl" type="text" class="form-control m-input d-none">
+                                    <span asp-validation-for="ResimUrl"></span>
+                                </div>
+                                <div class="" style="vertical-align:middle"><input class="form-control" asp-for="UstBaslik" /></div>
+                                <div class="" style="vertical-align:middle"><input class="form-control" asp-for="AltBaslik" /></div>
+                                <div class="" style="vertical-align:middle"><input class="form-control" asp-for="Link" /></div>
+                                <div class="" style="vertical-align:middle"><input class="form-control" type="number" asp-for="ResimSira" /></div>
+                                <div class="" style="vertical-align:middle">
+                                    <select class="form-control" asp-for="Dil">
+                                        <option value="">Dil Seçiniz</option>
+                                        <option value="1">Türkçe</option>
+                                        <option value="2">İngilizce</option>
+                                    </select>
+                                </div>
+                                <div class="td" style="vertical-align:middle"><button type="submit" class="btn btn-success">Ekle</button></div>
+                            </form>
+                            </div>
+                        </div>*@
+
+
+
+
+
+                    @{
+                        int sayac = 1;
+
+
+                    }
+                    @foreach (var resim in (List<SliderResim>)ViewBag.SliderResimleri)
+                    {
+                <form class="tr" asp-controller="AnahtarDeger" asp-action="SliderDuzenle" asp-area="Admin" method="post">
+                    <input type="hidden" asp-for="Id" value="@resim.Id" />
+                    <div class="td" scope="row">#@sayac</div>
+                    <div class="td"><img style="width:200px;height:150px" src="@resim.ResimUrl" /></div>
+                    <div class="td" style="vertical-align:middle">
+                        <select class="form-control" asp-for="SliderYeri">
+                            <option value="">Yer Seçiniz</option>
+                            @if (resim.SliderYeri == Enums.SliderYeri.AnasayfaSlider)
+                            {
+                                <option value="0" selected>Anasayfa Slider</option>
+                            }
+                            else
+                            {
+                                  <option value="0">Anasayfa Slider</option>
+                            }
+
+                            @if (resim.SliderYeri == Enums.SliderYeri.AnasayfaBanner)
+                            {
+                                <option value="1" selected>Anasayfa Banner </option>
+                            }
+                            else
+                            {
+                              <option value="1">Anasayfa Banner</option>
+
+                            }
+                        </select>
+                        <span asp-validation-for="SliderYeri"></span>
+                    </div>
+                    <div class="td" style="vertical-align:middle"><input class="form-control" asp-for="UstBaslik" value="@resim.UstBaslik" /></div>
+                    <div class="td" style="vertical-align:middle">
+                        <input class="form-control" asp-for="AltBaslik" value="@resim.AltBaslik" />
+                    </div>
+                    <div class="td" style="vertical-align:middle"><input class="form-control" asp-for="Link" value="@resim.Link" /></div>
+                    <div class="td" style="vertical-align:middle"><input class="form-control" type="number" asp-for="ResimSira" value="@resim.ResimSira" /></div>
+                    <div class="td" style="vertical-align:middle">
+                        <select class="form-control" asp-for="Dil">
+                            <option value="">Dil Seçiniz</option>
+                            @if (resim.Dil == Enums.Dil.Turkce)
+                            {
+                                <option value="1" selected>Türkçe</option>
+                            }
+                            else
+                            {
+                                <option value="1">Türkçe</option>
+                            }
+
+                            @if (resim.Dil == Enums.Dil.Ingilizce)
+                            {
+                                <option value="2" selected>İngilizce</option>
+                            }
+                            else
+                            {
+                                <option value="2">İngilizce</option>
+
+                            }
+                        </select>
+                        <span asp-validation-for="Dil"></span>
+                    </div>
+                    <div class="td" style="vertical-align:middle">
+                        <button class="badge badge-success" type="submit" style="cursor:pointer"><i class="fas fa-sync"></i></button>
+                        <span class="badge badge-danger resim-sil" data-value="@resim.Id" style="cursor:pointer"><i class="fa fa-trash"></i></span>
+                    </div>
+                </form>
+                        sayac++;
+                    }
+                <form class="tr" asp-controller="AnahtarDeger" asp-action="Slider" asp-area="Admin" method="post">
+                    <div class="td"></div>
+                    <div class="td">
+                        <img id="secilen-resim" style="width:100px;height:100px" src="~/img/resim-yok.png" />
+                        <button type="button" class="btn btn-success resim-sec"><i class="fa fa-plus" style="font-size:20px"></i> Resim Seç</button>
+                        <input asp-for="ResimUrl" type="text" class="form-control m-input d-none">
+                        <span asp-validation-for="ResimUrl"></span>
+                    </div>
+                    <div class="td" style="vertical-align:middle">
+                        <select class="form-control" asp-for="SliderYeri">
+                            <option value="">Yer Seçiniz</option>
+                            <option value="0">Anasayfa Slider</option>
+                            <option value="1">Anasayfa Banner</option>
+                        </select>
+                    </div>
+                    <div class="td" style="vertical-align:middle"><input class="form-control" asp-for="UstBaslik" /></div>
+                    <div class="td" style="vertical-align:middle"><input class="form-control" asp-for="AltBaslik" /></div>
+                    <div class="td" style="vertical-align:middle"><input class="form-control" asp-for="Link" /></div>
+                    <div class="td" style="vertical-align:middle"><input class="form-control" type="number" asp-for="ResimSira" /></div>
+                    <div class="td" style="vertical-align:middle">
+                        <select class="form-control" asp-for="Dil">
+                            <option value="">Dil Seçiniz</option>
+                            <option value="1">Türkçe</option>
+                            <option value="2">İngilizce</option>
+                        </select>
+                    </div>
+                    <div class="td" style="vertical-align:middle"><button type="submit" class="btn btn-success">Ekle</button></div>
+                </form>
+
+
+                </div>
+
+                    <!--end::Form-->
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resim-sec-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Resim Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        var dosyaAdi = "img/slider-resimleri";
+    Dropzone.autoDiscover = false;
+    $(function () {
+
+        var hedef = "";
+        $("#dZUpload").dropzone({
+            url: '@Url.Action("Upload","DosyaIslemleri",new {dosyaAdi= "img/slider-resimleri", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check" data-hedef="'+hedef+'" style="height:100px">' +
+                    '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                $("#images").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+        $(".resim-sec").click(function () {
+            hedef = $(this).data("hedef");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + dosyaAdi,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html = '<div class="col-md-3 box text-center">' +
+                            '<img src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check">' +
+                            '<label>' + extractFileNameFromPath(data[i]) + '</label>' +
+                            '<input type="radio" value="val1" class="d-none" autocomplete="off"><br>' +
+                            '<button data-filepath="' + data[i] + '" type="button" class="btn btn-danger delete-file">X</button>' +
+                            '</div>';
+
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+            $('#resim-sec-modal').modal('show');
+        });
+
+        $(document).on("click", ".img-check", function (e) {
+            $('.img-check').not(this).removeClass('check')
+                .siblings('input').prop('checked', false);
+
+            $(this).addClass('check')
+                .siblings('input').prop('checked', true);
+
+
+            var image = $(this);
+
+            $("#ResimUrl").attr("value", image.attr("src"));
+            $("#secilen-resim").attr("src", image.attr("src"))
+        });
+
+        //to delete files
+        $(document).on("click", ".delete-file", function (e) {
+            var filepath = $(this).data("filepath");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/DeleteFile?fileUrl=" + filepath,
+                type: "DELETE",
+                beforeSend: function () {
+                    return confirm("Are you sure?");
+                },
+                success: $(this).parent(".img-box").remove(),
+            });
+            $(document).ajaxStop(function () {
+                window.location.reload();
+            });
+        });
+
+        //to extract file name
+        function extractFileNameFromPath(path) {
+            arr = path.split('/');
+            return arr[arr.length - 1];
+        }
+
+
+        $("body").on("click", ".resim-sil", function () {
+            var resimId = $(this).data("value");
+
+            $.ajax({
+                url: "/Admin/AnahtarDeger/SliderSil?sliderId=" + resimId,
+                type: "POST",
+                success: function (data) {
+                    if (data.BasariliMi == false) {
+
+                        var notify = $.notify({
+                            message: data.Mesaj
+                        }, {
+                                delay: 1000,
+                                type: 'danger',
+                                allow_dismiss: true,
+                                placement: {
+                                    from: 'top',
+                                    align: 'left'
+                                },
+                                z_index: 1051
+                            });
+                    }
+                    else {
+                        window.location.href = window.location.href;
+                    }
+                },
+                beforeSend: function () {
+
+                },
+                error: function (data) {
+
+                }
+            });
+        })
+
+        $(".sira-no").blur(function () {
+
+            var resimId = $(this).data("resimid");
+            var siraNo = $(this).val();
+
+            $.ajax({
+                url: "/Admin/AnahtarDeger/FotoGaleriGuncelle?resimId=" + resimId + "&siraNo=" + siraNo,
+                type: "POST",
+                success: function (data) {
+                    if (data.BasariliMi == false) {
+
+                        var notify = $.notify({
+                            message: data.Mesaj
+                        }, {
+                                delay: 1000,
+                                type: 'danger',
+                                allow_dismiss: true,
+                                placement: {
+                                    from: 'top',
+                                    align: 'left'
+                                },
+                                z_index: 1051
+                            });
+                    }
+                    else {
+                        window.location.href = window.location.href;
+                    }
+                },
+                beforeSend: function () {
+
+                },
+                error: function (data) {
+
+                }
+            });
+
+            console.log($(this).data("resimid"));
+        })
+
+    });
+    </script>
+
+}

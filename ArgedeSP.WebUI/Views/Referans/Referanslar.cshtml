@@ -1,0 +1,121 @@
+﻿@*degisimforeach (var resim in Model.SliderResim)
+    {
+        <img src="degisimresim.ResimUrl" style="width:100%" alt="degisimresim.UstBaslik" />
+    }
+
+
+    <div class=" m-container mt20 mr5 ml5 asideCorporate">
+
+        <ul class="nav nav-tabs responsive ulCorporate " id="myTab">
+            degisim{ Boolean first = true; }
+            degisimforeach (var referanskategori in Model.Referanslar.GroupBy(x => x.KisaAciklama).Select(x => new { Key = x.Key, Value = x.FirstOrDefault() }))
+            {
+                <li style="min-width: 200px;" class="degisim( first ? "active" : "" )"><a style="color:white !important; border-bottom-color:white !important;" href="#degisimreferanskategori.Value.KisaAciklama.FriendlyUrl()" data-toggle="tab" class="ui-link text-white">degisimreferanskategori.Value.KisaAciklama</a></li>
+
+                first = false;
+
+            }
+        </ul>
+
+        <div class="tab-content responsive tabsCorporate container">
+
+            degisim{ Boolean second = true; }
+            degisimforeach (var referanskategori in Model.Referanslar.GroupBy(x => x.KisaAciklama).Select(x => new { Key = x.Key, Value = x.ToList() }))
+            {
+                <div class="tab-pane degisim( second ? "active" : "" )" id="degisimreferanskategori.Value.FirstOrDefault().KisaAciklama.FriendlyUrl()">
+                    <div class="">
+
+                        degisimforeach (var referans in referanskategori.Value)
+                        {
+                            <div class=" cardref " style="padding:10px">
+                                <div class="product-grid">
+                                    <div class="product-image">
+                                        <a href="degisimreferans.SeoUrl" target="_blank">
+                                            <img class="pic-1" src="degisimreferans.Resim">
+                                            <img class="pic-2" src="degisimreferans.Resim">
+                                        </a>
+                                    </div>
+                                    <div class="">
+                                        <h4><a href="degisimreferans.SeoUrl" target="_blank" style="color: #003d70;">degisimreferans.ReferansAdi</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                second = false;
+            }
+        </div>
+
+    </div>
+
+    <div style="clear:both"></div>
+
+
+
+    <style>
+        #myTab {
+            justify-content: center;
+            display: flex;
+            background-color: #004f97;
+        }
+
+        .cardref {
+            text-align: center;
+            width: 23%;
+            float: left;
+            margin: 7px;
+            height: auto;
+            background: white;
+            box-shadow: 0px 0px 0px grey;
+            -webkit-transition: box-shadow .2s ease-out;
+            box-shadow: .8px .9px 3px grey;
+            border-radius: 5px;
+        }
+
+            .cardref:hover {
+                box-shadow: 1px 8px 20px grey;
+                -webkit-transition: box-shadow .6s ease-in;
+            }
+
+        .asideCorporate {
+            min-height: 500px;
+        }
+    </style>*@
+@model ReferansViewModel
+@*{
+        ViewData["Title"] = "Referanslar";
+    }*@
+<div class="banner-container">
+    <img class="img-fluid" src="~/images/homePage/aboutUs-banner.png">
+    <div class="blueOverlay"></div>
+
+    <div class="bannerText">
+        Markalarımız
+    </div>
+
+</div>
+
+
+<div class="container">
+    <div class="referances-container">
+        <div class="slick-wrapper">
+            <div class="carousel-2">
+                @foreach (var resim in Model.Referanslar)
+                {
+                    <div class="card" >
+                        <img src="@Html.Raw(resim.Resim)" class="img-fluid">
+
+                    </div>
+                }
+            </div>
+            @*<img src="~/images/homePage/Tp-Link-colored.png" />
+                <img src="~/images/homePage/infinet-colored.png" />
+                <img src="~/images/homePage/Mimosa-colored.png" />
+                <img src="~/images/homePage/CNet-colored.png" />
+                <img src="~/images/homePage/Ubiquiti-colored.png" />
+                <img src="~/images/homePage/Cambium Networks-colored.png" />*@
+        </div>
+    </div>
+</div>

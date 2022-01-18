@@ -1,0 +1,395 @@
+﻿
+@{
+   
+    Layout = "~/Views/Shared/_ContentLayout.cshtml";
+}
+
+
+
+
+@model UrunViewModel
+
+
+<section id="y-single_info">
+    <div class="y-single_info">
+        <div class="container">
+            <div class="row y-single_info_inner y-section_content">
+                <div class="col-lg-12 clearfix">
+                    <div class="y-breadcrum clearfix wow fadeInDown" data-wow-delay=".9s">
+                        <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 y-blog_info">
+
+
+
+                            <h3 style="font-size:18px !important; margin-bottom:1% !important;" class="y-heading">@ViewBag.Kategoriadi</h3>
+
+
+
+                            
+
+
+
+
+
+
+                        </div>
+                        @*@foreach (var urunKategori in Model.UrunKategorileri)
+                {
+                    @if (urunKategori.UstId == null)
+                    {
+                        @foreach (var altKategori in Model.UrunKategorileri.Where(x => x.UstId == urunKategori.Id))
+                        {
+                            if (Model.altKategoriSeoUrl == altKategori.SeoUrl)
+                            {
+                                <h3 style="font-size:18px !important; margin-bottom:1% !important;" class="y-heading">@altKategori.Ad</h3>
+
+                            }
+
+                        }
+                    }
+                }*@
+
+
+
+
+
+                        <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-3 pull-right">
+
+                    </div>
+                </div>
+
+
+                @*@foreach (var urunKategori in (List<UrunKategori>)ViewBag.Kategoriler)
+        {
+
+
+
+            @if (urunKategori.UstId == null)
+            {
+                <a>@urunKategori.Ad </a>
+
+                <ul class="drop-setting">
+
+                    @foreach (var altKategori in ((List<UrunKategori>)ViewBag.Kategoriler).Where(x => x.UstId == urunKategori.Id))
+                    {
+                        <li style="vertical-align:middle;"><a style="vertical-align:middle;" asp-controller="Urunler" asp-action="Urunler" asp-route-anaKategoriAdi="@urunKategori.SeoUrl" asp-route-altKategoriAdi="@altKategori.SeoUrl">@altKategori.Ad</a></li>
+                    }
+
+
+
+                </ul>
+            }
+
+               
+
+        }*@
+                
+                  @foreach (var altKategori in ((List<UrunKategori>)ViewBag.Kategoriler))
+                    {
+                        if (!altKategori.Urunler.Any())
+
+                        {
+
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 " style="margin-bottom:30px !important;">
+                                <div class="y-yacht_intro_img">
+                                    <a asp-controller="Kategoriler" asp-action="Kategoriler" asp-route-kategoriAdi="@altKategori.UstKategori.SeoUrl" asp-route-altKategoriAdi="@altKategori.SeoUrl" asp-route-urunSeoUrl="@altKategori.SeoUrl" asp-route-urunId="@altKategori.Id"><img src="@altKategori.Resim" class="img-responsive" style="width:100%" alt=""></a>
+                                </div>
+
+
+
+                                <div class="y-yacht_intro">
+                                    <a asp-controller="Kategoriler" asp-action="Kategoriler" asp-route-kategoriAdi="@altKategori.UstKategori.SeoUrl" asp-route-altKategoriAdi="@altKategori.SeoUrl" asp-route-urunSeoUrl="@altKategori.SeoUrl" asp-route-urunId="@altKategori.Id">@altKategori.Ad</a> <br>
+                                    @*<span><br>Fiyat :<strong>@urun.Fiyat</strong></span> burası yorum
+                            <a class="y-button sepeteekle " href="üründetay.html">Sepete ekle</a>*@
+                                </div>
+                            </div>
+
+
+                      }
+
+
+                      else
+
+                      {
+
+
+
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 " style="margin-bottom:30px !important;">
+                                <div class="y-yacht_intro_img">
+                                    <a asp-controller="Urunler" asp-action="Urunler" asp-route-kategoriAdi="@altKategori.UstKategori.SeoUrl" asp-route-altKategoriAdi="@altKategori.SeoUrl" asp-route-urunSeoUrl="@altKategori.SeoUrl" asp-route-urunId="@altKategori.Id"><img src="@altKategori.Resim" class="img-responsive" style="width:100%" alt=""></a>
+                                </div>
+
+
+
+                                <div class="y-yacht_intro">
+                                    <a asp-controller="Urunler" asp-action="Urunler" asp-route-kategoriAdi="@altKategori.UstKategori.SeoUrl" asp-route-altKategoriAdi="@altKategori.SeoUrl" asp-route-urunSeoUrl="@altKategori.SeoUrl" asp-route-urunId="@altKategori.Id">@altKategori.Ad</a> <br>
+                                    @*<span><br>Fiyat :<strong>@urun.Fiyat</strong></span> burası yorum
+                            <a class="y-button sepeteekle " href="üründetay.html">Sepete ekle</a>*@
+                                </div>
+                            </div>
+                      }
+                  }
+
+                
+
+
+
+
+            </div>
+        </div>
+    </div>
+    @*<div class="y-pagination row clearfix">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <ul class="row y-pagination_num clearfix">
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#" class="y-active_page">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+            </div>
+        </div>*@
+
+</section>
+
+<style>
+    a {
+        color: #f5a61f;
+    }
+
+        a:hover {
+            color: #754c05;
+        }
+
+    .sepeteekle {
+        color: FFFFFF;
+    }
+
+  .y-product {
+    background-image: url(@ViewBag.NavbarResim) !important;
+}
+</style>
+
+
+
+
+
+@*
+
+    @foreach (var resim in Model.SliderResim)
+    {
+        <img src="@resim.ResimUrl" style="width:100%" alt="@resim.UstBaslik" />
+    }
+    <section id="y-single_info">
+        <div class="y-single_info">
+            <div class="m-container">
+
+                <div class="row margin-to y-section_content">
+
+
+
+                    <div class="container margin-bo clearfix">
+                        <div class="y-breadcrum clearfix wow fadeInDown" data-wow-delay=".9s">
+                            <div class="col-lg-12 col-md-8 col-sm-7 col-xs-12">
+
+                                @foreach (var urunKategori in Model.UrunKategorileri)
+                                {
+                                    @if (urunKategori.UstId == null)
+                                    {
+                                        @foreach (var altKategori in Model.UrunKategorileri.Where(x => x.UstId == urunKategori.Id))
+                                        {
+                                            if (Model.altKategoriSeoUrl == altKategori.SeoUrl)
+                                            {
+                                                <h3 style="font-size:18px !important; margin-bottom:1% !important;" class="y-heading">@altKategori.Ad</h3>
+
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="col-md-5">
+                            <select class="form-control" onchange="window.location.href=this.value" name="altKategoriAdi">
+                                @foreach (var urunKategori in Model.UrunKategorileri)
+                                {
+                                    @if (urunKategori.UstId == null)
+                                    {
+
+                                        <optgroup label="@urunKategori.Ad">@urunKategori.Ad</optgroup>
+                                        @foreach (var altKategori in Model.UrunKategorileri.Where(x => x.UstId == urunKategori.Id))
+                                        {
+                                            if (Model.altKategoriSeoUrl == altKategori.SeoUrl)
+                                            {
+                                                <option style="margin-left:10px" selected value="@Url.Action("Urunler", "Urunler", new { anaKategoriAdi = urunKategori.SeoUrl, altKategoriAdi = altKategori.SeoUrl })">@altKategori.Ad</option>
+                                            }
+                                            else
+                                            {
+                                                <option style="margin-left:10px" value="@Url.Action("Urunler", "Urunler", new { anaKategoriAdi = urunKategori.SeoUrl, altKategoriAdi = altKategori.SeoUrl })">@altKategori.Ad</option>
+                                            }
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-5">
+                            <input class="form-control" type="text" id="filtre" value="@Model.filtre" placeholder="Ürün Adı Giriniz." />
+                        </div>
+
+                        <a class="btn  btn-default" data-value="@Url.Action("Urunler", "Urunler", new { anaKategoriAdi = Model.anaKategoriSeoUrl, altKategoriAdi = Model.altKategoriSeoUrl, filtre="" })" onclick="var link = $(this).data('value'); window.location.href =link + '/' + $('#filtre').val()">Arama <i class="fas fa-search"></i></a>
+
+
+                    </div>
+                    <br />
+
+
+                    <div style="margin-top:3%; margin-bottom:3%;" class="container">
+
+
+                        <div class="col-md-12">
+
+                            <div class="y-product_listing y-product_listing_side clearfix">
+
+                                @foreach (var urun in Model.Urunler)
+                                {
+
+                                    <div class="col-md-4 col-sm-6  card-overlay" style="border:1px solid #ededed;margin-top:2%;margin-bottom:2%;">
+                                        <div class="product-grid description">
+                                            <div class="product-image ">
+
+                                                <img src="@urun.Resim" alt="@urun.UrunModel" class=" image" style="width:100%">
+
+
+                                            </div>
+                                            <a asp-controller="Urunler" asp-action="UrunDetay" asp-route-kategoriAdi="@urun.UrunKategori.UstKategori.SeoUrl" asp-route-altKategoriAdi="@urun.UrunKategori.SeoUrl" asp-route-urunSeoUrl="@urun.SeoUrl" asp-route-urunId="@urun.Id">
+
+                                                <div class="overlay">
+                                                    <div class="text"> Ayrıntılar</div>
+                                                </div>
+                                            </a>
+                                            <div class="product-content">
+                                                <h4>@urun.UrunModel</h4>
+                                                <h6 class="title"><a asp-controller="Urunler" asp-action="UrunDetay" asp-route-kategoriAdi="@urun.UrunKategori.UstKategori.SeoUrl" asp-route-altKategoriAdi="@urun.UrunKategori.SeoUrl" asp-route-urunSeoUrl="@urun.SeoUrl" asp-route-urunId="@urun.Id">@urun.UrunAdi</a></h6>
+
+                                                @*<div class="price" >
+                                                        @Localizer["tutar"]   :@urun.Fiyat
+                                                        <span>@urun.Fiyat</span>
+                                                    </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+
+        @@media (min-width: 1400px) {
+
+            .container {
+                width: 70%;
+            }
+        }
+
+        .zoom {
+            height: 350px;
+            transition: transform 0.4s; /* Animation */
+        }
+
+            .zoom a img:hover {
+                background-color: yellow !important;
+            }
+
+            .zoom:hover {
+                transform: scale(1.05);
+                z-index: 99999;
+            }
+
+        .ortala {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .description {
+            position: relative;
+        }
+
+        .image {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-height: 350px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: rgba(0, 110, 255,0.9) !important;
+            z-index: 2;
+        }
+
+        .description:hover .overlay {
+            opacity: 1;
+        }
+
+        .text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+            white-space: nowrap;
+            border: 1px solid #fff;
+            padding: 15px 30px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+    </style> *@

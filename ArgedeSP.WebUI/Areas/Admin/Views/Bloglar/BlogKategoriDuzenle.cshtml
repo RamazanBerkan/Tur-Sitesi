@@ -1,0 +1,332 @@
+﻿@model BlogKategoriEkle_RES
+<style>
+    .check {
+        opacity: 0.5;
+        color: #996;
+    }
+
+    .box {
+        margin-bottom: 5px;
+    }
+</style>
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="container-fluid" style="padding-top:20px">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Blog Kategori Düzenleme
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    @if (TempData["Basarili"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            @TempData["Basarili"].ToString()
+                        </div>
+                    }
+
+                    @if (TempData["Hata"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["Hata"].ToString()
+
+                        </div>
+                    }
+
+                    <!--begin::Form-->
+                    <form asp-controller="Bloglar" asp-action="BlogKategoriDuzenle" asp-area="Admin" method="post">
+                        <div class="m-form m-form--fit m-form--label-align-right">
+                            <div class="m-portlet__body">
+                                <input asp-for="BlogKategoriEkle_REQ.Id" type="hidden" />
+                                <div class="row p-4" id="yazi-ekle">
+
+
+                                    <div class=" card text-white  mt-2 mb-3 genis "  >
+                                        <div class="card-header" style="justify-content:center;object-fit:cover;"><h5> Dil</h5></div>
+                                        <div class="card-body" style="justify-content:center;">
+                                            <select class="form-control" asp-for="BlogKategoriEkle_REQ.Dil">
+                                                <option value="1" selected>Türkçe</option>
+                                                <option value="2">İngilizce</option>
+                                                <option value="4">Rusça</option>
+                                                <option value="5">Norveççe</option>
+                                            </select>
+                                            <span asp-validation-for="BlogKategoriEkle_REQ.Dil"></span>
+
+                                        </div>
+                                    </div>
+                                    @*<div class="col-lg-6 col-md-6 col-sm-12">
+            <label class="col-form-label">Dil</label>
+            <select class="form-control" asp-for="BlogKategoriEkle_REQ.Dil">
+                <option value="1">Türkçe</option>
+                <option value="2">İngilizce</option>
+            </select>
+            <span asp-validation-for="BlogKategoriEkle_REQ.Dil"></span>
+        </div>*@
+
+                                    <div class=" card text-white  mt-2 mb-3 genis"  >
+                                        <div class="card-header" style="justify-content:center;object-fit:cover;"><h5> Kategori Adı</h5></div>
+                                        <div class="card-body" style="justify-content:center;">
+                                            <input asp-for="BlogKategoriEkle_REQ.BlogKategoriAdi" type="text" class="form-control m-input" placeholder="Kategori adı">
+                                            <span asp-validation-for="BlogKategoriEkle_REQ.BlogKategoriAdi"></span>
+
+                                        </div>
+                                    </div>
+
+
+                                    @*<div class="col-lg-6 col-md-6 col-sm-12">
+            <label class="col-form-label">Kategori Adı</label>
+            <input asp-for="BlogKategoriEkle_REQ.BlogKategoriAdi" type="text" class="form-control m-input" placeholder="Kategori adı">
+            <span asp-validation-for="BlogKategoriEkle_REQ.BlogKategoriAdi"></span>
+        </div>*@
+
+
+                                    <div class=" card text-white  mt-2 mb-3 genis"  >
+                                        <div class="card-header" style="justify-content:center;object-fit:cover;"><h5> Ana Dil Karşılığı</h5></div>
+                                        <div class="card-body" style="justify-content:center;">
+                                            <input asp-for="BlogKategoriEkle_REQ.AnaDilcesi" type="text" class="form-control m-input" placeholder="Ana dil karşılığı">
+                                            <span asp-validation-for="BlogKategoriEkle_REQ.AnaDilcesi"></span>
+                                        </div>
+                                    </div>
+
+
+                                    @*<div class="col-lg-6 col-md-6 col-sm-12">
+            <label class="col-form-label">Ana Dil Karşılığı</label>
+            <input asp-for="BlogKategoriEkle_REQ.AnaDilcesi" type="text" class="form-control m-input" placeholder="Ana dil karşılığı">
+            <span asp-validation-for="BlogKategoriEkle_REQ.AnaDilcesi"></span>
+        </div>*@
+                                    <div class=" card text-white  mt-2 mb-3 genis"  >
+                                        <div class="card-header" style="justify-content:center;object-fit:cover;"><h5> Seo Url</h5></div>
+                                        <div class="card-body" style="justify-content:center;">
+                                            <input asp-for="BlogKategoriEkle_REQ.SeoUrl" type="text" class="form-control m-input" placeholder="SeoUrl">
+                                            <span asp-validation-for="BlogKategoriEkle_REQ.SeoUrl"></span>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-lg-6 col-md-6 col-sm-12">
+            <label class="col-form-label">SeoUrl</label>
+            <input asp-for="BlogKategoriEkle_REQ.SeoUrl" type="text" class="form-control m-input" placeholder="SeoUrl">
+            <span asp-validation-for="BlogKategoriEkle_REQ.SeoUrl"></span>
+        </div>*@
+                                    <div class=" card text-white  mt-2 mb-3 genis"  >
+                                        <div class="card-header" style="justify-content:center;object-fit:cover;"><h5> Ana Resim</h5></div>
+                                        <div class="card-body" style="display:grid; align-items:flex-end;">
+                                            <img id="BlogKategoriEkle_REQ_Resim_secilen_resim" style="height:100px;width:100px;" src="@Model.BlogKategoriEkle_REQ.Resim" />
+                                            <button type="button" class="btn btn-info resim-sec" data-hedef="BlogKategoriEkle_REQ_Resim">Resim Seç</button>
+                                            <input asp-for="BlogKategoriEkle_REQ.Resim" type="text" class="form-control m-input d-none">
+                                            <span asp-validation-for="BlogKategoriEkle_REQ.Resim"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class=" card text-white mt-2 mb-3 bos" style="color:white; border-color:white;"  >
+
+                                    </div>
+                                    @*<div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label class="col-form-label col-12">Ana Resim</label>
+                                        <img id="BlogKategoriEkle_REQ_Resim_secilen_resim" style="height:100px;width:100px;" src="@Model.BlogKategoriEkle_REQ.Resim" />
+                                        <button type="button" class="btn btn-info resim-sec" data-hedef="BlogKategoriEkle_REQ_Resim">Resim Seç</button>
+                                        <input asp-for="BlogKategoriEkle_REQ.Resim" type="text" class="form-control m-input d-none">
+                                        <span asp-validation-for="BlogKategoriEkle_REQ.Resim"></span>
+                                    </div>*@
+
+                                    @*<div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Kısa Açıklama</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <input asp-for="BlogKategoriEkle_REQ.KisaAciklama" type="text" class="form-control m-input" placeholder="Kısa açıklama giriniz">
+                <span asp-validation-for="BlogKategoriEkle_REQ.KisaAciklama"></span>
+            </div>
+        </div>
+        <div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Uzun Açıklama</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <textarea asp-for="BlogKategoriEkle_REQ.UzunAciklama" rows="10" cols="80">
+                     @Model.BlogKategoriEkle_REQ.UzunAciklama
+                    </textarea>
+                <span asp-validation-for="BlogKategoriEkle_REQ.UzunAciklama"></span>
+            </div>
+        </div>
+        <div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Seo Url</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <input asp-for="BlogKategoriEkle_REQ.SeoUrl" type="text" class="form-control m-input" placeholder="Seo url giriniz">
+                <span asp-validation-for="BlogKategoriEkle_REQ.SeoUrl"></span>
+            </div>
+        </div>
+        <div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Ana Resim</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <img id="BlogKategoriEkle_REQ_Resim_secilen_resim" style="height:100px;width:100px;" src="@Model.BlogKategoriEkle_REQ.Resim" />
+                <button type="button" class="btn btn-info resim-sec" data-hedef="BlogKategoriEkle_REQ_Resim">Resim Seç</button>
+                <input asp-for="BlogKategoriEkle_REQ.Resim" type="text" class="form-control m-input d-none">
+                <span asp-validation-for="BlogKategoriEkle_REQ.Resim"></span>
+            </div>
+        </div>
+        <div class="form-group m-form__group row">
+            <label class="col-form-label col-lg-3 col-sm-12">Arka Plan Resim</label>
+            <div class="col-lg-6 col-md-9 col-sm-12">
+                <img id="BlogKategoriEkle_REQ_ArkaPlanResim_secilen_resim" style="height:100px;width:100px;" src="@Model.BlogKategoriEkle_REQ.ArkaPlanResim" />
+                <button type="button" class="btn btn-info resim-sec" data-hedef="BlogKategoriEkle_REQ_ArkaPlanResim">Resim Seç</button>
+                <input asp-for="BlogKategoriEkle_REQ.ArkaPlanResim" type="text" class="form-control m-input d-none">
+                <span asp-validation-for="BlogKategoriEkle_REQ.ArkaPlanResim"></span>
+            </div>
+        </div>*@
+
+                                </div>
+                            </div>
+
+
+                            <div class="m-portlet__foot m-portlet__foot--fit">
+                                <div class="m-form__actions m-form__actions">
+                                    <div class="row">
+                                        <div class="col-lg-9 ml-lg-auto">
+                                            <button type="submit" class="btn btn-info pull-right mr-3">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+                    <!--end::Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resim-sec-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resim Seç</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block full">
+                            <div id="dZUpload" class="dropzone">
+                                <div class="dz-default dz-message">
+                                    Resim Yükle
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row pt-4" id="images">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/lib/ckeditor/ckeditor.js"></script>
+
+    <script>
+        var dosyaAdi = "img/blog-kategori-resimleri";
+    Dropzone.autoDiscover = false;
+    $(function () {
+
+        //CKEDITOR.replace('BlogKategoriEkle_REQ.UzunAciklama', {
+        //    customConfig: '/lib/ckeditor/config.js'
+        //});
+        var hedef = "";
+        $("#dZUpload").dropzone({
+            url: '@Url.Action("Upload","DosyaIslemleri",new {dosyaAdi= "img/blog-kategori-resimleri", area ="Admin"})',
+            addRemoveLinks: true,
+            success: function (file, response) {
+                file.previewElement.classList.add("dz-success");
+                var html =
+                    '<div class="col-md-3 box text-center">' +
+                    '<label>' +
+                    '<img src="' + response.DosyaUrl + '" alt="..." class="img-thumbnail img-check" data-hedef="'+hedef+'" style="height:100px">' +
+                    '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                    '</label>' +
+                    '</div>';
+                $("#images").append(html);
+            },
+            error: function (file, response) {
+                file.previewElement.classList.add("dz-error");
+            }
+        });
+
+        $(".resim-sec").click(function () {
+            hedef = $(this).data("hedef");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/ResimleriGetir?dosyaAdi=" + dosyaAdi,
+                type: "POST",
+                contentType: "application/json",
+                data: null,
+                success: function (data) {
+                    var htmlToplam = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html = '<div class="col-md-3 box text-center">' +
+                            '<label>' +
+                            '<img src="' + data[i] + '" alt="image" style="height:100px" class="img-thumbnail img-check" data-hedef="' + hedef + '">' +
+                            '<input type="radio" value="val1" class="d-none" autocomplete="off">' +
+                            '<br> <button data-filepath="' + data[i] + '" type="button" class="btn btn-danger delete-file">X</button>' +
+                            '</label>' +
+                            '</div>';
+
+                        htmlToplam = htmlToplam + html;
+                    }
+
+                    $("#images").append(htmlToplam);
+                },
+                beforeSend: function () {
+                    $("#images").html("");
+                },
+                error: function (data) {
+
+                }
+            });
+            $('#resim-sec-modal').modal('show');
+        });
+        $(document).on("click", ".delete-file", function (e) {
+            var filepath = $(this).data("filepath");
+            $.ajax({
+                url: "/Admin/DosyaIslemleri/DeleteFile?fileUrl=" + filepath,
+                type: "DELETE",
+                beforeSend: function () {
+                    return confirm("Are you sure?");
+                },
+                success: $(this).parent(".img-box").remove(),
+            });
+            $(document).ajaxStop(function () {
+                window.location.reload();
+            });
+        });
+        $(document).on("click", ".img-check", function (e) {
+            var hedef = $(this).data("hedef");
+            $('.img-check').not(this).removeClass('check')
+                .siblings('input').prop('checked', false);
+
+            $(this).addClass('check')
+                .siblings('input').prop('checked', true);
+
+
+            var image = $(this);
+
+            $("#" + hedef).attr("value", image.attr("src"));
+            $("#"+hedef+"_secilen_resim").attr("src", image.attr("src"))
+        });
+
+
+    });
+    </script>
+
+}

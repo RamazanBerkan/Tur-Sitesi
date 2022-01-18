@@ -1,0 +1,85 @@
+﻿@model UrunViewModel
+@{
+    Layout = null;
+}
+
+@*<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>*@
+<style>
+    .items {
+        width: 90%;
+        margin: 0px auto;
+        margin-top: 100px
+    }
+
+    .slick-slide {
+        margin: 10px
+    }
+
+        .slick-slide img {
+            width: 100%;
+            border: 0px solid #fff
+        }
+
+    .pad {
+        /*  padding-left: 8rem;
+        padding-right: 8rem;*/
+    }
+
+    .slick-next:before {
+        content: '→' !important;
+        z-index: initial !important;
+        color: black !important;
+    }
+
+    .slick-prev:before {
+        content: '←' !important;
+        z-index: initial !important;
+        color: black !important;
+        margin-right: 3px;
+    }
+</style>
+@*<div class="slick-wrapper pad items">
+
+    @foreach (var item in Model.Urunler)
+    {
+        <div style="width:5%;">
+            <img src=" @item.Resim" class=" ref-img" />
+        </div>
+    }
+
+
+</div>*@
+@*<script>
+        $(document).ready(function () {
+
+            $('.items').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 1
+            });
+        });
+    </script>*@
+
+
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+
+    <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@m uk-grid">
+        @foreach (var item in Model.Urunler)
+        {
+            <li style="padding:50px;">
+                <div class="uk-panel">
+                    <img src=" @item.Resim" alt="" class=" ref-img">
+                </div>
+                @*<div class="uk-position-center uk-panel"><h1>1</h1></div>*@
+            </li>
+        }
+
+
+    </ul>
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+
+</div>
